@@ -13,14 +13,17 @@ base_url: https://api.deepseek.com
 max_tokens: 8000
 temperature: 1.0
 
-prompt: tasks/english/prompts/v2.md
+# 相对路径以本任务目录 daily-english/ 为基准。
+prompt: prompts/v2.md
 prompt_version: v2
-schema: tasks/english/schema.json
-content_dir: content/english
-site_dir: site
 
 site_title: Daily English
 site_description: 每天 5–10 分钟，雅思高频词精讲、同义替换、搭配与练习。
+site_footer: 由 DeepSeek + GitHub Actions 自动生成
+
+email_header: Daily English · IELTS
+email_preheader: 5 个雅思高频词 · 同义替换 · 高频搭配 · 1 段对话 · 2 道练习
+email_footer: 由 DeepSeek + GitHub Actions 自动生成 · 每天 5–10 分钟，坚持比一次学很多更重要。
 
 # Phase 1 先不做音频；需要时再接入 edge-tts + R2。
 audio:

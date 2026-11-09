@@ -66,12 +66,12 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
           set -euo pipefail
-          target="content/english/${DATE}.json"
+          target="daily-english/content/${DATE}.json"
           if [ "${DRY_RUN}" = "true" ] && [ ! -f "${target}" ]; then
             echo "dry-run：没有现成内容，使用 fixture。"
-            python scripts/generate.py --date "${DATE}" --fixture
+            python scripts/generate.py --task english --date "${DATE}" --fixture
           else
-            python scripts/generate.py --date "${DATE}"
+            python scripts/generate.py --task english --date "${DATE}"
           fi
 
       - name: Send email
@@ -82,6 +82,7 @@ jobs:
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
           MAIL_REPLY_TO: ${{ secrets.MAIL_REPLY_TO }}
           EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
+          SITE_URL: ${{ vars.SITE_URL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
@@ -91,13 +92,13 @@ jobs:
         run: |
           set -euo pipefail
           if [ "${DRY_RUN}" = "true" ]; then
-            python scripts/send_email.py --date "${DATE}" --dry-run --out-dir artifacts
+            python scripts/send_email.py --task english --date "${DATE}" --dry-run --out-dir artifacts
           else
-            python scripts/send_email.py --date "${DATE}"
+            python scripts/send_email.py --task english --date "${DATE}"
           fi
 
       - name: Build site
-        run: python scripts/build_site.py
+        run: python scripts/build_site.py --task english
 
       - name: Commit content and sent state
         if: inputs.dry_run != true
@@ -107,7 +108,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/english state/sent.json
+          git add daily-english
           if git diff --cached --quiet; then
             echo "没有需要提交的变更。"
             exit 0
@@ -177,5 +178,6 @@ jobs:
           SMTP_SECURITY: ${{ secrets.SMTP_SECURITY }}
         run: |
           python scripts/alert.py \
+            --task english \
             --message "Daily English 工作流失败。内容生成、发送或部署没有完成，请查看运行日志。" \
             --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "daily-english"))
 
 import common  # noqa: E402
 import render  # noqa: E402
@@ -13,7 +14,8 @@ import send_email  # noqa: E402
 
 class RenderTests(unittest.TestCase):
     def setUp(self):
-        self.content = common.load_json(ROOT / "tasks" / "english" / "fixture.json")
+        self.config = common.load_config("english")
+        self.content = common.load_json(ROOT / "daily-english" / "fixture.json")
 
     def test_body_html_contains_every_section(self):
         body = render.content_to_body_html(self.content)
@@ -40,7 +42,7 @@ class RenderTests(unittest.TestCase):
         self.assertIn(first_word, text)
 
     def test_render_content_subject_and_preheader(self):
-        rendered = render.render_content(self.content, "https://example.com/")
+        rendered = render.render_content(self.content, self.config, "https://example.com/")
         self.assertIn(self.content["date"], rendered.subject)
         self.assertIn(self.content["theme"], rendered.subject)
         self.assertTrue(rendered.preheader)
@@ -51,7 +53,7 @@ class RenderTests(unittest.TestCase):
         content = copy.deepcopy(self.content)
         content["title"] = '<script>alert("x")</script>'
         content["words"][0]["term"] = "<b>word</b>"
-        rendered = render.render_content(content)
+        rendered = render.render_content(content, self.config)
         self.assertNotIn("<script>alert", rendered.html)
         self.assertIn("&lt;script&gt;", rendered.html)
         self.assertIn("&lt;b&gt;word&lt;/b&gt;", rendered.html)
@@ -70,7 +72,7 @@ class RenderTests(unittest.TestCase):
         self.assertIn(expected, body)
 
     def test_build_message_has_text_and_html_parts(self):
-        rendered = render.render_content(self.content)
+        rendered = render.render_content(self.content, self.config)
         message = send_email.build_message(
             rendered,
             "Daily English <daily@example.com>",

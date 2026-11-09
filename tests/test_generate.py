@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+import common  # noqa: E402
 import generate  # noqa: E402
 
 
@@ -90,7 +91,7 @@ class ContextTests(unittest.TestCase):
         ]
         contents[0]["theme"] = "work"
         contents[1]["theme"] = "work"
-        context = generate.build_context("2026-11-09", self.config, contents, self.today)
+        context = generate.build_context("english", "2026-11-09", self.config, contents, self.today)
         self.assertEqual(context["recent_words"], ["beta", "alpha"])
         self.assertEqual(context["recent_themes"], ["work"])
         self.assertNotIn("today", context["recent_words"])
@@ -100,14 +101,14 @@ class ContextTests(unittest.TestCase):
             make_content("2026-11-06", ["alpha"]),
             make_content("2026-11-09", ["today"]),
         ]
-        context = generate.build_context("2026-11-09", self.config, contents, self.today)
+        context = generate.build_context("english", "2026-11-09", self.config, contents, self.today)
         self.assertEqual([item["term"] for item in context["review_candidates"]], ["alpha"])
 
     def test_recent_themes_are_capped(self):
         contents = [
             make_content(f"2026-10-{day:02d}", [f"w{day}"]) for day in range(1, 15)
         ]
-        context = generate.build_context("2026-11-09", self.config, contents, self.today)
+        context = generate.build_context("english", "2026-11-09", self.config, contents, self.today)
         self.assertEqual(len(context["recent_themes"]), 7)
 
 
@@ -122,6 +123,18 @@ class ModelJsonTests(unittest.TestCase):
 
     def test_object_is_parsed(self):
         self.assertEqual(generate._parse_json_object('{"a": 1}'), {"a": 1})
+
+
+class TaskPathTests(unittest.TestCase):
+    def test_normalize_task_accepts_directory_name(self):
+        self.assertEqual(common.normalize_task("daily-english"), "english")
+
+    def test_task_dir_is_top_level_daily_directory(self):
+        self.assertEqual(common.task_dir("english"), ROOT / "daily-english")
+
+    def test_unknown_task_is_rejected(self):
+        with self.assertRaises(ValueError):
+            common.normalize_task("../english")
 
 
 if __name__ == "__main__":

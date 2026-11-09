@@ -11,7 +11,8 @@ import html
 import os
 import sys
 
-import render
+import common
+import email_layout
 import send_email
 
 
@@ -19,8 +20,8 @@ def _e(value: object) -> str:
     return html.escape(str(value or ""), quote=True)
 
 
-def build_alert(message: str, run_url: str = "") -> render.RenderedContent:
-    subject = "【Daily English】今天的推送失败了"
+def build_alert(message: str, run_url: str = "", name: str = "Daily English") -> email_layout.RenderedContent:
+    subject = f"【{name}】今天的推送失败了"
     text_lines = [
         subject,
         "",
@@ -45,7 +46,7 @@ def build_alert(message: str, run_url: str = "") -> render.RenderedContent:
 </body>
 </html>
 """
-    return render.RenderedContent(
+    return email_layout.RenderedContent(
         date="",
         subject=subject,
         preheader="定时任务失败",
@@ -56,6 +57,7 @@ def build_alert(message: str, run_url: str = "") -> render.RenderedContent:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="发送工作流失败告警邮件。")
+    parser.add_argument("--task", default="", help="任务名，例如 english（默认）")
     parser.add_argument("--message", default="定时任务运行失败，请查看日志。")
     parser.add_argument("--run-url", default="")
     return parser.parse_args(argv)
@@ -70,7 +72,13 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     try:
-        rendered = build_alert(args.message, args.run_url)
+        task = common.normalize_task(args.task)
+        try:
+            config = common.load_config(task)
+            name = str(config.get("name") or config.get("site_title") or "Daily English")
+        except (OSError, ValueError):
+            name = "Daily English"
+        rendered = build_alert(args.message, args.run_url, name)
         reply_to = os.getenv("MAIL_REPLY_TO", "").strip()
         send_email.send_email(rendered, to_value, from_addr, reply_to)
         print("告警邮件已发送。")

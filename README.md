@@ -2,7 +2,7 @@
 
 日常学习推送平台。Phase 1 先做 **Daily English**：每天北京时间早上 7:30，用 DeepSeek 生成一份雅思词汇学习内容（B2–C1），发到邮箱，并归档到 GitHub Pages。
 
-仓库名不绑定单一任务；以后加资讯、基础知识等任务时，继续用这一套生成、发送、归档流程。
+仓库按任务拆分：每个任务一个顶层目录 `daily-<task>/`，公共流水线在 `scripts/`。以后加资讯、AI 基础、历史等任务时，不需要改公共逻辑。
 
 Phase 1 只做一件事：跑通 **定时 → 生成 → 发送 → 归档** 的最小闭环。先不接搜索、音频和反馈系统，等内容质量稳定后再加。
 
@@ -10,14 +10,14 @@ Phase 1 只做一件事：跑通 **定时 → 生成 → 发送 → 归档** 的
 
 ```
 GitHub Actions（cron 23:30 UTC / 北京 07:30）
-  └─ scripts/generate.py
+  └─ scripts/generate.py --task english
        DeepSeek API + JSON Schema
-       → content/english/YYYY-MM-DD.json
-  └─ scripts/send_email.py
+       → daily-english/content/YYYY-MM-DD.json
+  └─ scripts/send_email.py --task english
        SMTP 或 Resend → 邮箱
-       → state/sent.json 记录已发送
-  └─ scripts/build_site.py
-       → site/index.html + site/YYYY-MM-DD.html → GitHub Pages
+       → daily-english/state/sent.json 记录已发送
+  └─ scripts/build_site.py --task english
+       → site/english/ + site/index.html → GitHub Pages
   └─ 任一步失败 → scripts/alert.py 发告警邮件
 ```
 
@@ -29,27 +29,31 @@ GitHub Actions（cron 23:30 UTC / 北京 07:30）
 - 0–2 个复习项：从 3 / 7 / 14 天前首次出现的词里选
 - 考频只用 high / medium / low 标签，不写具体出现次数，也不冒充剑桥真题原句
 
-字段定义见 `tasks/english/schema.json`，示例见 `tasks/english/fixture.json`。
+字段定义见 `daily-english/schema.json`，示例见 `daily-english/fixture.json`。
 
 ## 目录
 
 ```
-tasks/english/
-  config.yml        任务配置（时区、模型、prompt、输出目录）
-  prompts/v2.md     生成 prompt（可版本化迭代）
-  schema.json       内容 JSON Schema
-  fixture.json      本地预览用的样例内容
-content/english/    每天生成的内容（工作流自动提交）
-state/sent.json     已发送日期，防止重复发送
-scripts/
-  common.py         配置、日期、内容读写、校验
-  generate.py       调用 DeepSeek 生成内容
-  render.py         渲染邮件 HTML / 纯文本
-  send_email.py     发送邮件（SMTP / Resend）
-  build_site.py     构建静态归档站
-  alert.py          失败告警
-tests/              单元测试
+daily-english/            一个任务 = 一个顶层目录
+  config.yml              任务配置（时区、模型、prompt、站点文案）
+  prompts/v2.md           生成 prompt（可版本化迭代）
+  schema.json             内容 JSON Schema
+  fixture.json            本地预览用的样例内容
+  render.py               任务专用渲染（邮件正文 + 站点 CSS）
+  content/                每天生成的内容（工作流自动提交）
+  state/sent.json         已发送日期，防止重复发送
+scripts/                  公共流水线，不写死具体任务
+  common.py               任务路径解析、配置、日期、内容读写、校验
+  generate.py             调用 DeepSeek 生成内容
+  send_email.py           发送邮件（SMTP / Resend）
+  email_layout.py         公共邮件外壳与预览输出
+  build_site.py           构建任务归档站和 Learning Hub 入口
+  alert.py                失败告警
+tests/                    单元测试
+docs/                     部署与交接文档
 ```
+
+旧任务目录 `tasks/`、`content/`、`state/` 已合并进 `daily-english/`；新增任务照 `daily-english/` 的形状复制即可。
 
 ## 本地跑通
 
@@ -72,24 +76,25 @@ set -a; source .env; set +a
 先用 fixture 走一遍，不调用 API、不发邮件：
 
 ```bash
-python scripts/generate.py --fixture --date 2026-11-09
-python scripts/send_email.py --date 2026-11-09 --dry-run
-open preview/2026-11-09/email.html
+python scripts/generate.py --task english --fixture --date 2026-11-09
+python scripts/send_email.py --task english --date 2026-11-09 --dry-run
+open preview/english/2026-11-09/email.html
 
-python scripts/build_site.py
+python scripts/build_site.py --task english
+open site/english/index.html
 open site/index.html
 ```
 
 真正生成一天内容：
 
 ```bash
-python scripts/generate.py --date 2026-11-09
+python scripts/generate.py --task english --date 2026-11-09
 ```
 
-想换模型可以临时覆盖，或直接改 `tasks/english/config.yml`：
+想换模型可以临时覆盖，或直接改 `daily-english/config.yml`：
 
 ```bash
-python scripts/generate.py --date 2026-11-09 --model deepseek-v4-pro
+python scripts/generate.py --task english --date 2026-11-09 --model deepseek-v4-pro
 ```
 
 跑测试：
@@ -98,7 +103,18 @@ python scripts/generate.py --date 2026-11-09 --model deepseek-v4-pro
 python -m unittest discover -s tests -v
 ```
 
-清理本地预览产物：`rm -rf preview site content/english/*.json`（确认没有想保留的内容）。
+清理本地预览产物：`rm -rf preview site daily-english/content/*.json`（确认没有想保留的内容）。
+
+## 新增任务
+
+1. 复制 `daily-english/` 为 `daily-<task>/`，改 `config.yml` 里的 `name`、`prompt`、`site_title`、`site_description` 和邮件文案。
+2. 写该任务的 `schema.json`、`prompts/v1.md`、`fixture.json` 和 `render.py`。
+3. `render.py` 至少提供三个东西：
+   - `content_to_body_html(content) -> str`：邮件和站点共用的正文 HTML
+   - `render_content(content, config, site_url="") -> email_layout.RenderedContent`：邮件主题、preheader、HTML、纯文本
+   - `SITE_CSS: str`：任务归档站的样式
+4. 在 workflow 里加一个 job（或复制一份 `daily.yml`），把命令里的 `--task` 换成新任务名。公共脚本不需要改。
+5. 跑 `python scripts/build_site.py --task <task>`，任务会自动出现在 `site/index.html` 的入口页。
 
 ## 部署到 GitHub
 
@@ -112,11 +128,11 @@ python -m unittest discover -s tests -v
 
 ## 每天的运行与幂等
 
-- `generate.py` 发现当天内容已存在就跳过；`--force` 可覆盖。
-- `send_email.py` 发现 `state/sent.json` 里有当天日期就跳过；`--force` 可重发。
-- 工作流会把 `content/english/*.json` 和 `state/sent.json` 提交回仓库，用 `GITHUB_TOKEN` push。**这类提交不会再次触发工作流**，所以不会循环。
+- `generate.py` 发现 `daily-english/content/<date>.json` 已存在就跳过；`--force` 可覆盖。
+- `send_email.py` 发现 `daily-english/state/sent.json` 里有当天日期就跳过；`--force` 可重发。
+- 工作流会把 `daily-english/` 提交回仓库，用 `GITHUB_TOKEN` push。**这类提交不会再次触发工作流**，所以不会循环。
 - 只有默认分支上的 `schedule` 会生效；GitHub 的 cron 可能延迟几分钟到几十分钟，属正常现象。
-- 极端情况下：邮件已发出但提交 state 失败，重跑会再发一次。重跑前先看一眼 `state/sent.json` 和邮箱。
+- 极端情况下：邮件已发出但提交 state 失败，重跑会再发一次。重跑前先看一眼 `daily-english/state/sent.json` 和邮箱。
 
 ## 候选方案与当前选择
 
@@ -137,8 +153,8 @@ Phase 1 的选择与备选，方便以后调整：
 
 ## Prompt 迭代
 
-- 当前 prompt 在 `tasks/english/prompts/v2.md`，每篇内容会记录 `prompt_version`。
-- 修改方式：复制成 `v3.md` → 改 `config.yml` 的 `prompt` 和 `prompt_version` → 提交。下一班任务自动使用新版本，历史内容仍可追溯是哪个版本生成的。
+- 当前 prompt 在 `daily-english/prompts/v2.md`，每篇内容会记录 `prompt_version`。
+- 修改方式：复制成 `v3.md` → 改 `daily-english/config.yml` 的 `prompt` 和 `prompt_version` → 提交。下一班任务自动使用新版本，历史内容仍可追溯是哪个版本生成的。
 - 不要在多天内容之间直接静默改 `v2.md`，否则出问题时无法判断是 prompt 还是模型波动。
 
 ## 下一步（Phase 2）
@@ -146,5 +162,5 @@ Phase 1 的选择与备选，方便以后调整：
 1. 反馈入口：邮件底部加“今天难度如何 / 哪个部分最有用”，或每周发一封简短问卷。
 2. 每周 meta 任务：读最近 7 天内容和反馈，提出 prompt 修改建议（先输出 diff，人工确认后合并）。
 3. 音频：edge-tts + R2，复用 tech-digest 的 `make_audio.py`。
-4. 第二类任务（资讯、基础知识）接入同一套生成/发送/归档流程，再把公共部分抽成框架。
+4. 第二类任务（AI 基础、资讯、历史）接入同一套生成/发送/归档流程，`site/` 入口页会自动聚合。
 5. 查看与定制化学习：在 Pages 之上做 PWA / App。

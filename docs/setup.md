@@ -13,7 +13,7 @@ git remote add origin git@github.com:<你的账号>/learning-hub.git
 git push -u origin main
 ```
 
-私有仓库即可。工作流需要写权限把当天内容和 `state/sent.json` 提交回仓库。
+私有仓库即可。工作流需要写权限，把 `daily-english/` 下的当天内容和发送状态提交回仓库。
 
 ## 2. 配置 Secrets
 
@@ -56,7 +56,7 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 
 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
 
-站点地址默认是 `https://<owner>.github.io/<repo>/`。如果使用自定义域名，添加仓库变量或 secret `SITE_URL`（工作流里用 `vars.SITE_URL` 读取，如需 secret 请改工作流），邮件底部的“查看往期推送”会使用它。
+站点地址默认是 `https://<owner>.github.io/<repo>/`，根页面是任务入口，英语归档在 `/english/`。如果使用自定义域名，添加仓库变量或 secret `SITE_URL`（工作流里用 `vars.SITE_URL` 读取，如需 secret 请改工作流），填站点根地址即可；邮件里的往期链接会自动加上任务名。
 
 ## 4. 第一次运行
 
@@ -74,10 +74,10 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 
 1. 跑单元测试。
 2. 按北京时间确定日期。
-3. `generate.py` 生成内容；已存在则跳过。
-4. `send_email.py` 发邮件；`state/sent.json` 已记录则跳过。
-5. `build_site.py` 构建 `site/`。
-6. 提交 `content/english/<date>.json` 和 `state/sent.json`。
+3. `generate.py --task english` 生成内容；已存在则跳过。
+4. `send_email.py --task english` 发邮件；`daily-english/state/sent.json` 已记录则跳过。
+5. `build_site.py --task english` 构建 `site/english/` 和根入口 `site/index.html`。
+6. 提交 `daily-english/` 下的内容和发送状态。
 7. 上传 Pages artifact。
 
 `deploy` job 部署 Pages；`alert` job 在任一环节失败时发告警邮件。
@@ -99,12 +99,12 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 
 **同一天重复发送**
 
-- 正常不会：发送成功后才写 `state/sent.json`。如果邮件已收到但日志显示提交失败，重跑前先手动确认。
-- 确实要重发：`workflow_dispatch` 时无法直接传 `--force`，可以本地运行 `python scripts/send_email.py --date <date> --force`，或临时改工作流。
+- 正常不会：发送成功后才写 `daily-english/state/sent.json`。如果邮件已收到但日志显示提交失败，重跑前先手动确认。
+- 确实要重发：`workflow_dispatch` 时无法直接传 `--force`，可以本地运行 `python scripts/send_email.py --task english --date <date> --force`，或临时改工作流。
 
 **想换模型**
 
-改 `tasks/english/config.yml`：
+改 `daily-english/config.yml`：
 
 ```yaml
 model: deepseek-v4-pro

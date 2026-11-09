@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Generate one day's English push content with the DeepSeek API.
+"""Generate one day's task content with the DeepSeek API.
 
 Examples:
-    python scripts/generate.py --fixture --date 2026-11-09
-    python scripts/generate.py --date 2026-11-09
-    python scripts/generate.py --date 2026-11-09 --dry-run
+    python scripts/generate.py --task english --fixture --date 2026-11-09
+    python scripts/generate.py --task english --date 2026-11-09
+    python scripts/generate.py --task english --date 2026-11-09 --dry-run
 """
 
 from __future__ import annotations
@@ -76,7 +76,13 @@ def build_review_candidates(contents: list[dict], today: date_cls) -> list[dict]
     return candidates[:10]
 
 
-def build_context(date_text: str, config: dict, contents: list[dict], today: date_cls) -> dict:
+def build_context(
+    task: str,
+    date_text: str,
+    config: dict,
+    contents: list[dict],
+    today: date_cls,
+) -> dict:
     recent = [content for content in contents if content.get("date", "") < date_text]
     recent_themes: list[str] = []
     recent_words: list[str] = []
@@ -90,9 +96,9 @@ def build_context(date_text: str, config: dict, contents: list[dict], today: dat
                 recent_words.append(term)
     return {
         "date": date_text,
-        "task": "english",
-        "level": config.get("level", "IELTS (B2-C1)"),
-        "prompt_version": config.get("prompt_version", "v1"),
+        "task": task,
+        "level": config.get("level", ""),
+        "prompt_version": config.get("prompt_version", ""),
         "recent_themes": recent_themes[:7],
         "recent_words": recent_words[:60],
         "review_candidates": build_review_candidates(recent, today),
@@ -193,7 +199,8 @@ def call_model(
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="生成一天英语推送内容。")
+    parser = argparse.ArgumentParser(description="生成一天的任务推送内容。")
+    parser.add_argument("--task", default="", help="任务名，例如 english（默认）")
     parser.add_argument("--date", help="日期 YYYY-MM-DD；默认按 config 时区取今天")
     parser.add_argument("--fixture", action="store_true", help="使用 fixture，不调用 API")
     parser.add_argument("--force", action="store_true", help="覆盖已存在的内容")
@@ -201,21 +208,22 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--model", help="覆盖 config 中的模型")
     args = parser.parse_args(argv)
 
-    config = common.load_config()
     try:
+        task = common.normalize_task(args.task)
+        config = common.load_config(task)
         date_text = common.resolve_date(args.date, config)
-        target = common.content_path(date_text, config)
+        target = common.content_path(task, date_text, config)
         if target.is_file() and not args.force and not args.dry_run:
             print(f"内容已存在，跳过生成：{target}")
             return 0
 
         if args.fixture:
-            content = common.load_json(common.ROOT / "tasks/english/fixture.json")
+            content = common.load_fixture(task)
             content["date"] = date_text
-            content["task"] = "english"
-            content["level"] = config.get("level", "IELTS (B2-C1)")
-            content["prompt_version"] = config.get("prompt_version", "v1")
-            errors = common.validate_content(content)
+            content["task"] = task
+            content["level"] = config.get("level", "")
+            content["prompt_version"] = config.get("prompt_version", "")
+            errors = common.validate_content(content, common.load_schema(task, config))
             if errors:
                 print("fixture 不符合 schema：", file=sys.stderr)
                 for error in errors:
@@ -228,11 +236,10 @@ def main(argv: list[str] | None = None) -> int:
             print(f"已写入 fixture 内容：{target}")
             return 0
 
-        prompt_path = common.ROOT / config.get("prompt", "tasks/english/prompts/v2.md")
-        system_prompt = prompt_path.read_text(encoding="utf-8")
-        contents = common.load_all_contents(config)
+        system_prompt = common.load_prompt(task, config)
+        contents = common.load_all_contents(task, config)
         today = _to_date(date_text)
-        context = build_context(date_text, config, contents, today)
+        context = build_context(task, date_text, config, contents, today)
 
         if args.dry_run:
             print("=== system prompt ===")
@@ -241,14 +248,14 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(context, ensure_ascii=False, indent=2))
             return 0
 
-        schema = common.load_schema(config)
+        schema = common.load_schema(task, config)
         content = call_model(system_prompt, context, config, schema, args.model)
 
         # 权威字段由脚本覆盖，避免模型写错日期或版本。
         content["date"] = date_text
-        content["task"] = "english"
-        content["level"] = config.get("level", "IELTS (B2-C1)")
-        content["prompt_version"] = config.get("prompt_version", "v1")
+        content["task"] = task
+        content["level"] = config.get("level", "")
+        content["prompt_version"] = config.get("prompt_version", "")
 
         errors = common.validate_content(content, schema)
         if errors:

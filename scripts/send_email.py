@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Render and send one day's English push email.
+"""Render and send one day's task push email.
 
 Examples:
-    python scripts/send_email.py --date 2026-11-09 --dry-run
-    python scripts/send_email.py --date 2026-11-09
-    python scripts/send_email.py --date 2026-11-09 --force
+    python scripts/send_email.py --task english --date 2026-11-09 --dry-run
+    python scripts/send_email.py --task english --date 2026-11-09
+    python scripts/send_email.py --task english --date 2026-11-09 --force
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from email.utils import formatdate, make_msgid
 from pathlib import Path
 
 import common
-import render
+import email_layout
 
 RESEND_ENDPOINT = "https://api.resend.com/emails"
 
@@ -50,7 +50,7 @@ def _extract_email_address(value: str) -> str:
 
 
 def build_message(
-    rendered: render.RenderedContent,
+    rendered: email_layout.RenderedContent,
     from_addr: str,
     to_addrs: list[str],
     reply_to: str = "",
@@ -90,7 +90,7 @@ def _retry(operation, attempts: int = 3, base_delay: float = 2.0):
 
 
 def _send_via_smtp(
-    rendered: render.RenderedContent,
+    rendered: email_layout.RenderedContent,
     from_addr: str,
     to_addrs: list[str],
     reply_to: str,
@@ -154,7 +154,7 @@ def _send_via_smtp(
 
 
 def _send_via_resend(
-    rendered: render.RenderedContent,
+    rendered: email_layout.RenderedContent,
     from_addr: str,
     to_addrs: list[str],
     reply_to: str,
@@ -206,7 +206,7 @@ def _send_via_resend(
 
 
 def send_email(
-    rendered: render.RenderedContent,
+    rendered: email_layout.RenderedContent,
     to_value: str,
     from_addr: str,
     reply_to: str = "",
@@ -234,7 +234,8 @@ def _display_path(path: Path) -> str:
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="渲染并发送一天的英语推送邮件。")
+    parser = argparse.ArgumentParser(description="渲染并发送一天的任务推送邮件。")
+    parser.add_argument("--task", default="", help="任务名，例如 english（默认）")
     parser.add_argument("--date", help="日期 YYYY-MM-DD；默认按 config 时区取今天")
     parser.add_argument("--dry-run", action="store_true", help="只生成预览，不发送")
     parser.add_argument("--force", action="store_true", help="即使已发送过也重发")
@@ -249,33 +250,36 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
-        config = common.load_config()
+        task = common.normalize_task(args.task)
+        config = common.load_config(task)
         date_text = common.resolve_date(args.date, config)
-        content = common.load_content(date_text, config)
+        content = common.load_content(task, date_text, config)
 
-        if not args.dry_run and common.is_sent(date_text) and not args.force:
+        if not args.dry_run and common.is_sent(task, date_text, config) and not args.force:
             print(f"{date_text} 已发送过，跳过（--force 可重发）。")
             return 0
 
-        rendered = render.render_content(
+        renderer = common.load_renderer(task)
+        rendered = renderer.render_content(
             content,
-            args.site_url or common.derive_site_url(),
+            config,
+            args.site_url or common.derive_site_url(task),
         )
         if args.subject:
             rendered.subject = args.subject
 
-        print(f"内容文件：{_display_path(common.content_path(date_text, config))}")
+        print(f"内容文件：{_display_path(common.content_path(task, date_text, config))}")
         print(f"邮件主题：{rendered.subject}")
 
         if args.dry_run:
             out_dir = (
                 Path(args.out_dir).expanduser()
                 if args.out_dir
-                else common.ROOT / "preview" / date_text
+                else common.ROOT / "preview" / task / date_text
             )
             if not out_dir.is_absolute():
                 out_dir = Path.cwd() / out_dir
-            html_path, text_path = render.write_preview(rendered, out_dir)
+            html_path, text_path = email_layout.write_preview(rendered, out_dir)
             print(f"HTML 预览：{html_path}")
             print(f"纯文本预览：{text_path}")
             print("dry-run：未发送邮件。")
@@ -285,14 +289,14 @@ def main(argv: list[str] | None = None) -> int:
         from_addr = args.from_addr or os.getenv("MAIL_FROM", "")
         reply_to = os.getenv("MAIL_REPLY_TO", "").strip()
         message_id = send_email(rendered, to_value, from_addr, reply_to)
-        common.mark_sent(date_text)
+        common.mark_sent(task, date_text, config)
 
         provider = os.getenv("EMAIL_PROVIDER", "").strip().lower() or (
             "resend" if os.getenv("RESEND_API_KEY", "").strip() else "smtp"
         )
         print(f"发送成功：provider={provider} id={message_id}")
         return 0
-    except (OSError, ValueError, RuntimeError) as exc:
+    except (OSError, ValueError, RuntimeError, ImportError) as exc:
         print(f"错误：{exc}", file=sys.stderr)
         return 1
 

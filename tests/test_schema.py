@@ -12,8 +12,8 @@ import common  # noqa: E402
 
 class SchemaTests(unittest.TestCase):
     def setUp(self):
-        self.schema = common.load_schema()
-        self.fixture = common.load_json(ROOT / "tasks" / "english" / "fixture.json")
+        self.schema = common.load_schema("english")
+        self.fixture = common.load_json(ROOT / "daily-english" / "fixture.json")
 
     def test_fixture_is_valid(self):
         self.assertEqual(common.validate_content(self.fixture, self.schema), [])

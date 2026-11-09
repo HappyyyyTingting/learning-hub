@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Build the GitHub Pages archive from content JSON files."""
+"""Build a task's GitHub Pages archive and the shared Learning Hub index.
+
+The task renderer supplies the body HTML and site CSS; this module owns the
+page shell, the archive listing and the root page that links every built task.
+"""
 
 from __future__ import annotations
 
@@ -9,14 +13,13 @@ import sys
 from pathlib import Path
 
 import common
-import render
 
 
 def _e(value: object) -> str:
     return html.escape(str(value or ""), quote=True)
 
 
-WEB_CSS = """
+HUB_CSS = """
 :root {
   color-scheme: light;
   --bg: #f2f5f8;
@@ -25,8 +28,6 @@ WEB_CSS = """
   --muted: #667085;
   --line: #e1e7ed;
   --brand: #0b5cad;
-  --brand-soft: #e8f1fb;
-  --accent: #0a7ea4;
 }
 * { box-sizing: border-box; }
 body {
@@ -37,112 +38,30 @@ body {
     "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   font-size: 16px;
   line-height: 1.75;
-  overflow-wrap: anywhere;
 }
 a { color: var(--brand); }
-.container { width: min(100% - 32px, 720px); margin: 0 auto; padding: 28px 0 48px; }
-.site-header { margin-bottom: 22px; }
-.site-header .brand {
-  display: inline-block; font-size: 24px; font-weight: 800; color: var(--brand);
-  text-decoration: none; letter-spacing: -0.3px;
+.container { width: min(100% - 32px, 720px); margin: 0 auto; padding: 36px 0 48px; }
+h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.3; }
+.tagline { margin: 0 0 24px; color: var(--muted); }
+.tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.tasks a {
+  display: block; padding: 20px 22px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 14px;
+  text-decoration: none; color: var(--ink);
+  box-shadow: 0 8px 24px rgba(15, 35, 60, 0.04);
 }
-.site-header .tagline { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-.card {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-  padding: 30px 32px; box-shadow: 0 8px 24px rgba(15, 35, 60, 0.04);
-}
-.card h1 { margin: 0 0 6px; font-size: 28px; line-height: 1.35; }
-.meta { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
-.content h2 {
-  font-size: 19px; line-height: 1.45; margin: 30px 0 12px;
-  padding-bottom: 8px; border-bottom: 1px solid var(--line);
-}
-.content p { margin: 0 0 14px; }
-.content ul { margin: 0 0 16px; padding-left: 22px; }
-.content li { margin: 0 0 8px; }
-.word-card {
-  margin: 0 0 14px; padding: 14px 16px; background: #f8fafc;
-  border-left: 4px solid var(--brand); border-radius: 0 10px 10px 0;
-}
-.word-head { margin-bottom: 4px; }
-.term { font-size: 18px; font-weight: 700; color: #0b4f91; }
-.ipa { margin-left: 8px; color: var(--muted); font-size: 14px; }
-.pos {
-  margin-left: 8px; padding: 1px 7px; background: var(--brand-soft);
-  color: var(--brand); border-radius: 999px; font-size: 12px;
-}
-.definition-zh { color: #44505f; font-size: 14px; }
-.example { margin-top: 6px; color: var(--brand); font-style: italic; }
-.exam-focus {
-  margin: 6px 0 10px; padding: 8px 10px; background: #f4f8fd;
-  border-radius: 8px; color: #44505f; font-size: 14px;
-}
-.freq {
-  margin-left: 8px; padding: 1px 7px; border-radius: 999px;
-  font-size: 12px; font-weight: 700;
-}
-.freq-high { background: #e6f4ea; color: #1e7b3c; }
-.freq-medium { background: #fff4e5; color: #a15c00; }
-.freq-low { background: #eef1f4; color: #667085; }
-.senses { margin: 8px 0 10px; }
-.sense { margin: 0 0 8px; }
-.sense .pos { margin-left: 0; }
-.word-block { margin: 12px 0 0; }
-.block-title { margin-bottom: 6px; color: #0b4f91; font-size: 14px; font-weight: 700; }
-.synonym {
-  margin: 0 0 8px; padding: 10px 12px; background: #f8fafc; border-radius: 8px;
-}
-.syn-head { margin-bottom: 4px; }
-.syn-term { color: #0b4f91; font-weight: 700; }
-.syn-pos { margin-left: 6px; color: var(--muted); font-size: 13px; }
-.syn-def { margin-left: 6px; color: var(--ink); }
-.nuance { color: #44505f; font-size: 14px; }
-.collocation { color: var(--accent); font-size: 14px; }
-.collocations, .word-forms { margin: 0; padding-left: 20px; }
-.example-item { margin: 0 0 10px; }
-.translation { color: #44505f; font-size: 14px; }
-.note { color: var(--muted); font-size: 13px; }
-.dialogue { margin: 0 0 16px; }
-.line { margin: 0 0 10px; }
-.speaker { display: inline-block; min-width: 26px; font-weight: 700; color: #0b4f91; }
-.quiz-item, .review-item {
-  margin: 0 0 18px; padding: 12px 14px; background: #f8fafc; border-radius: 10px;
-}
-.question { font-weight: 600; margin-bottom: 6px; }
-.options { margin: 0; }
-.option-label { font-weight: 700; color: var(--brand); }
-.review-term { color: var(--muted); font-size: 13px; }
-.answers { margin: 0 0 8px; padding: 14px 16px; background: #f4f8fd; border-radius: 10px; }
-.answers p { margin: 0 0 10px; }
-.muted { color: var(--muted); font-size: 14px; }
-.back { margin-top: 28px; font-size: 14px; }
-.archive { list-style: none; margin: 0; padding: 0; }
-.archive li { border-bottom: 1px solid var(--line); }
-.archive li:last-child { border-bottom: 0; }
-.archive a {
-  display: grid; grid-template-columns: 112px 1fr auto; gap: 12px;
-  align-items: baseline; padding: 13px 2px; text-decoration: none; color: var(--ink);
-}
-.archive a:hover .archive-title { color: var(--brand); }
-.archive-date { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
-.archive-title { font-weight: 600; }
-.archive-theme { color: var(--muted); font-size: 13px; }
-.site-footer { margin-top: 26px; color: var(--muted); font-size: 12px; text-align: center; }
+.tasks a:hover { border-color: var(--brand); }
+.tasks strong { display: block; font-size: 19px; color: var(--brand); }
+.tasks span { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
 .empty { color: var(--muted); }
-@media (max-width: 620px) {
-  .container { padding-top: 18px; }
-  .card { padding: 22px 18px; border-radius: 12px; }
-  .card h1 { font-size: 23px; }
-  .content h2 { font-size: 18px; }
-  .archive a { grid-template-columns: 1fr auto; }
-  .archive-date { grid-column: 1 / -1; font-size: 12px; }
-}
+.site-footer { margin-top: 26px; color: var(--muted); font-size: 12px; text-align: center; }
 """
 
 
 def render_index(contents: list[dict], config: dict) -> str:
-    title = str(config.get("site_title", "Daily English"))
+    title = str(config.get("site_title") or config.get("name") or "Learning Hub")
     description = str(config.get("site_description", ""))
+    footer = str(config.get("site_footer", "由 DeepSeek + GitHub Actions 自动生成"))
     rows = []
     for content in contents:
         date_text = str(content.get("date", ""))
@@ -176,18 +95,19 @@ def render_index(contents: list[dict], config: dict) -> str:
     <p class="tagline">{_e(description)}</p>
   </header>
   <section class="card">{body}</section>
-  <footer class="site-footer">由 DeepSeek + GitHub Actions 自动生成</footer>
+  <footer class="site-footer">{_e(footer)}</footer>
 </main>
 </body>
 </html>
 """
 
 
-def render_page(content: dict, config: dict) -> str:
-    title = str(config.get("site_title", "Daily English"))
+def render_page(content: dict, config: dict, body_renderer) -> str:
+    title = str(config.get("site_title") or config.get("name") or "Learning Hub")
+    footer = str(config.get("site_footer", "由 DeepSeek + GitHub Actions 自动生成"))
     date_text = str(content.get("date", ""))
     page_title = str(content.get("title", ""))
-    body = render.content_to_body_html(content)
+    body = body_renderer(content)
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -208,7 +128,7 @@ def render_page(content: dict, config: dict) -> str:
     {body}
     <p class="back"><a href="index.html">← 返回目录</a></p>
   </article>
-  <footer class="site-footer">由 DeepSeek + GitHub Actions 自动生成</footer>
+  <footer class="site-footer">{_e(footer)}</footer>
 </main>
 </body>
 </html>
@@ -220,7 +140,11 @@ def build_site(
     site_dir: Path,
     config: dict,
     limit: int = 0,
+    body_renderer=None,
+    site_css: str = "",
 ) -> dict[str, Path]:
+    if body_renderer is None:
+        raise ValueError("build_site 需要 body_renderer")
     site_dir = Path(site_dir)
     site_dir.mkdir(parents=True, exist_ok=True)
 
@@ -233,13 +157,16 @@ def build_site(
         items = items[:limit]
 
     style_path = site_dir / "style.css"
-    style_path.write_text(WEB_CSS, encoding="utf-8")
+    style_path.write_text(site_css, encoding="utf-8")
 
     paths: dict[str, Path] = {"style": style_path}
     for content in items:
         date_text = str(content["date"])
         page_path = site_dir / f"{date_text}.html"
-        page_path.write_text(render_page(content, config), encoding="utf-8")
+        page_path.write_text(
+            render_page(content, config, body_renderer),
+            encoding="utf-8",
+        )
         paths[date_text] = page_path
 
     index_path = site_dir / "index.html"
@@ -248,9 +175,57 @@ def build_site(
     return paths
 
 
+def build_hub(site_root: Path) -> Path:
+    site_root = Path(site_root)
+    site_root.mkdir(parents=True, exist_ok=True)
+    entries = []
+    for index_path in sorted(site_root.glob("*/index.html")):
+        task = index_path.parent.name
+        try:
+            config = common.load_config(task)
+        except (OSError, ValueError):
+            config = {}
+        title = str(config.get("site_title") or config.get("name") or task)
+        description = str(config.get("site_description", ""))
+        entries.append(
+            f'<li><a href="{_e(task)}/index.html"><strong>{_e(title)}</strong>'
+            f"<span>{_e(description)}</span></a></li>"
+        )
+    body = (
+        f'<ul class="tasks">{"".join(entries)}</ul>'
+        if entries
+        else '<p class="empty">还没有构建任何任务。</p>'
+    )
+    hub_path = site_root / "index.html"
+    hub_path.write_text(
+        f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Hub</title>
+<meta name="description" content="每天一点，长期积累。">
+<style>{HUB_CSS}</style>
+</head>
+<body>
+<main class="container">
+  <h1>Learning Hub</h1>
+  <p class="tagline">每天一点，长期积累。</p>
+  {body}
+  <footer class="site-footer">由 DeepSeek + GitHub Actions 自动生成</footer>
+</main>
+</body>
+</html>
+""",
+        encoding="utf-8",
+    )
+    return hub_path
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="构建每日英语的静态归档站。")
-    parser.add_argument("--site-dir", default="", help="输出目录，默认 config 的 site_dir")
+    parser = argparse.ArgumentParser(description="构建任务归档站和 Learning Hub 入口。")
+    parser.add_argument("--task", default="", help="任务名，例如 english（默认）")
+    parser.add_argument("--site-dir", default="", help="输出目录，默认 site/<task>")
     parser.add_argument("--limit", type=int, default=0, help="只保留最近 N 天的页面，0 表示全部")
     return parser.parse_args(argv)
 
@@ -258,20 +233,31 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
-        config = common.load_config()
-        contents = common.load_all_contents(config)
+        task = common.normalize_task(args.task)
+        config = common.load_config(task)
+        contents = common.load_all_contents(task, config)
+        renderer = common.load_renderer(task)
         site_dir = (
             Path(args.site_dir).expanduser()
             if args.site_dir
-            else common.ROOT / config.get("site_dir", "site")
+            else common.site_dir(task, config)
         )
         if not site_dir.is_absolute():
             site_dir = Path.cwd() / site_dir
-        paths = build_site(contents, site_dir, config, args.limit)
+        paths = build_site(
+            contents,
+            site_dir,
+            config,
+            args.limit,
+            body_renderer=renderer.content_to_body_html,
+            site_css=getattr(renderer, "SITE_CSS", ""),
+        )
+        hub_path = build_hub(site_dir.parent)
         print(f"已构建 {len([key for key in paths if key not in {'index', 'style'}])} 篇内容")
-        print(f"首页：{paths['index']}")
+        print(f"任务首页：{paths['index']}")
+        print(f"站点入口：{hub_path}")
         return 0
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, ImportError) as exc:
         print(f"错误：{exc}", file=sys.stderr)
         return 1
 

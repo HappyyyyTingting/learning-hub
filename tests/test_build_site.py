@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "daily-english"))
 
 import build_site  # noqa: E402
 import common  # noqa: E402
@@ -15,16 +16,24 @@ import render  # noqa: E402
 class BuildSiteTests(unittest.TestCase):
     def setUp(self):
         self.config = {
+            "name": "每日英语",
             "site_title": "Daily English",
             "site_description": "每天 5 分钟。",
         }
-        self.content = common.load_json(ROOT / "tasks" / "english" / "fixture.json")
+        self.content = common.load_json(ROOT / "daily-english" / "fixture.json")
 
     def _build(self, contents, limit=0):
         temp_dir = tempfile.TemporaryDirectory()
         self.addCleanup(temp_dir.cleanup)
         site_dir = Path(temp_dir.name)
-        paths = build_site.build_site(contents, site_dir, self.config, limit)
+        paths = build_site.build_site(
+            contents,
+            site_dir,
+            self.config,
+            limit,
+            body_renderer=render.content_to_body_html,
+            site_css=render.SITE_CSS,
+        )
         return site_dir, paths
 
     def test_builds_index_and_pages(self):
@@ -60,6 +69,21 @@ class BuildSiteTests(unittest.TestCase):
         page_text = (site_dir / f"{content['date']}.html").read_text(encoding="utf-8")
         self.assertNotIn("<script>alert(1)</script>", page_text)
         self.assertIn("&lt;script&gt;", page_text)
+
+
+    def test_hub_lists_built_tasks(self):
+        temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(temp_dir.cleanup)
+        site_root = Path(temp_dir.name)
+        task_site = site_root / "english"
+        task_site.mkdir()
+        (task_site / "index.html").write_text("x", encoding="utf-8")
+
+        hub_path = build_site.build_hub(site_root)
+        hub = hub_path.read_text(encoding="utf-8")
+        self.assertIn("Learning Hub", hub)
+        self.assertIn('href="english/index.html"', hub)
+        self.assertIn("Daily English", hub)
 
 
 if __name__ == "__main__":
