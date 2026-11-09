@@ -1,0 +1,393 @@
+{
+  "date": "2026-11-09",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "work",
+  "title": "Work: Tackling Monotonous Tasks and Sharing the Load",
+  "words": [
+    {
+      "term": "address",
+      "ipa_us": "/əˈdres/",
+      "ipa_uk": "/əˈdres/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读里常见 address the issue / address a problem 表示“处理问题”，是 tackle、deal with 的同义替换；听力填空注意拼写是双 d、双 s。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "着手处理，解决（问题、需求）",
+          "definition_en": "to deal with a problem or a need"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "向……讲话，致辞",
+          "definition_en": "to speak formally to a group of people"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "地址；（正式）演说",
+          "definition_en": "the details of where someone lives; a formal speech"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "tackle",
+          "pos": "v.",
+          "definition_zh": "应对、处理（难题）",
+          "nuance_zh": "比 address 更口语、更有“正面迎上去解决”的意味，常与 problem、issue、challenge 搭配。",
+          "collocation": "tackle a problem head-on（正面解决问题）"
+        },
+        {
+          "term": "resolve",
+          "pos": "v.",
+          "definition_zh": "解决（分歧、问题）",
+          "nuance_zh": "强调问题最终被彻底解决、有了结果；address 只强调着手处理，不保证解决。",
+          "collocation": "resolve a dispute（解决争端）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "address a concern",
+          "meaning_zh": "回应、处理某一担忧"
+        },
+        {
+          "phrase": "address the audience",
+          "meaning_zh": "向听众讲话"
+        }
+      ],
+      "word_forms": [],
+      "examples": [
+        {
+          "sentence": "The report recommends that local councils address the shortage of affordable housing before the situation worsens.",
+          "translation_zh": "该报告建议地方议会在情况恶化之前解决经济适用房短缺的问题。",
+          "note_zh": "address + 负面名词（shortage、problem）是阅读和写作的高频组合。"
+        },
+        {
+          "sentence": "The mayor will address the conference on the second day, focusing on transport policy.",
+          "translation_zh": "市长将在第二天的大会上致辞，重点谈交通政策。",
+          "note_zh": "此处 address 是“向……讲话”，不要理解成“地址”。"
+        }
+      ]
+    },
+    {
+      "term": "incentive",
+      "ipa_us": "/ɪnˈsentɪv/",
+      "ipa_uk": "/ɪnˈsentɪv/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作 Task 2 讨论政策、动机时的核心名词，常与 financial、tax、offer 搭配；阅读中与 motivation、reward 互为同义替换。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "激励措施，奖励（促使人行动的外部因素）",
+          "definition_en": "something that encourages a person to do something"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "动机，诱因",
+          "definition_en": "a reason for doing something"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "motivation",
+          "pos": "n.",
+          "definition_zh": "动力，积极性",
+          "nuance_zh": "多指内在的心理驱动力；incentive 多指外部给出的奖励或优惠条件。",
+          "collocation": "lack motivation（缺乏动力）"
+        },
+        {
+          "term": "reward",
+          "pos": "n.",
+          "definition_zh": "奖励，回报",
+          "nuance_zh": "指实际给出的回报本身；incentive 强调它起到的“促使人行动”的作用。",
+          "collocation": "a financial reward（金钱回报）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "offer an incentive",
+          "meaning_zh": "提供激励、给出优惠"
+        },
+        {
+          "phrase": "a tax incentive",
+          "meaning_zh": "税收优惠（激励）"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "incentivize",
+          "pos": "v.",
+          "meaning_zh": "激励，用奖励促使"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Tax incentives have been introduced to encourage companies to invest in cleaner technology.",
+          "translation_zh": "政府出台了税收优惠政策，鼓励企业投资更清洁的技术。",
+          "note_zh": "写作中谈政府措施时，introduce / offer incentives 是很实用的搭配。"
+        },
+        {
+          "sentence": "For many employees, the main incentive to stay is not salary but a sense of being valued.",
+          "translation_zh": "对许多员工来说，留下来的主要动因不是薪水，而是被重视的感觉。",
+          "note_zh": "the incentive to do sth 是常见结构，注意用不定式。"
+        }
+      ]
+    },
+    {
+      "term": "delegate",
+      "ipa_us": "/ˈdeləɡeɪt/",
+      "ipa_uk": "/ˈdelɪɡeɪt/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "动词“委派”与名词“代表”同形但读音不同（名词读 /ˈdelɪɡət/），听力中常靠词尾元音辨别；写作谈管理时 delegate tasks 是常用搭配。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "把（任务、权力）交给下属，委派",
+          "definition_en": "to give part of your work or authority to someone else"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "代表（参会者）",
+          "definition_en": "a person chosen to attend a meeting or speak for a group"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "assign",
+          "pos": "v.",
+          "definition_zh": "分派（任务）",
+          "nuance_zh": "只强调把任务分给某人，不一定交出权力；delegate 还含“授权、放手让别人做”的意思。",
+          "collocation": "assign tasks to team members（给团队成员分派任务）"
+        },
+        {
+          "term": "entrust",
+          "pos": "v.",
+          "definition_zh": "委托，托付",
+          "nuance_zh": "更正式，强调基于信任把重要的事交给别人。",
+          "collocation": "entrust somebody with something（把某事托付给某人）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "delegate authority",
+          "meaning_zh": "下放权力，授权"
+        },
+        {
+          "phrase": "delegate tasks",
+          "meaning_zh": "分派任务"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "delegation",
+          "pos": "n.",
+          "meaning_zh": "代表团；授权"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Effective managers know when to delegate routine tasks so that they can concentrate on strategic decisions.",
+          "translation_zh": "高效的管理者知道何时把常规任务分派出去，以便专注于战略性决策。",
+          "note_zh": "delegate 后直接接任务，不接人；要接人需用 delegate sth to sb。"
+        },
+        {
+          "sentence": "Each delegate at the summit received a summary of the proposals in advance.",
+          "translation_zh": "峰会的每位代表都提前收到了一份提案摘要。",
+          "note_zh": "这里 delegate 是名词“代表”，读 /ˈdelɪɡət/。"
+        }
+      ]
+    },
+    {
+      "term": "monotonous",
+      "ipa_us": "/məˈnɑːtənəs/",
+      "ipa_uk": "/məˈnɒtənəs/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "常用于描述工作性质或声音，阅读、听力中与 repetitive、tedious 互为同义替换；拼写注意 mono- + ton-，中间不是 -tonn-。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "单调乏味的（工作、生活）",
+          "definition_en": "boring because it never changes"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "（声音）单调的，无起伏的",
+          "definition_en": "(of a sound) never changing in tone"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "repetitive",
+          "pos": "adj.",
+          "definition_zh": "重复性的",
+          "nuance_zh": "强调反复做同一个动作，中性偏贬；monotonous 更强调“毫无变化、令人厌倦”。",
+          "collocation": "repetitive strain injury（重复性劳损）"
+        },
+        {
+          "term": "tedious",
+          "pos": "adj.",
+          "definition_zh": "冗长乏味的",
+          "nuance_zh": "强调耗时又让人厌倦，多形容过程、讲话或文字，不常形容声音。",
+          "collocation": "a tedious lecture（冗长乏味的讲座）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "monotonous work",
+          "meaning_zh": "单调的工作"
+        },
+        {
+          "phrase": "a monotonous voice",
+          "meaning_zh": "单调的嗓音"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "monotony",
+          "pos": "n.",
+          "meaning_zh": "单调，千篇一律"
+        },
+        {
+          "form": "monotonously",
+          "pos": "adv.",
+          "meaning_zh": "单调地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Although the factory work was monotonous, the steady income allowed him to support his family.",
+          "translation_zh": "虽然工厂的工作很单调，但稳定的收入让他能养家。",
+          "note_zh": "让步状语从句 Although… 是写作中对比利弊的常用结构。"
+        },
+        {
+          "sentence": "Researchers found that monotonous tasks reduce attention spans and increase error rates.",
+          "translation_zh": "研究者发现，单调的任务会缩短注意力持续时间并提高出错率。",
+          "note_zh": "reduce / increase 搭配注意力和出错率，适合 Task 2 论证。"
+        }
+      ]
+    },
+    {
+      "term": "undertake",
+      "ipa_us": "/ˌʌndərˈteɪk/",
+      "ipa_uk": "/ˌʌndəˈteɪk/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常替换 carry out、conduct，后接 research、study、survey、review 等；写作中比 do 更正式，也用于 undertake to do 表示“承诺”。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "着手做，执行（任务、研究）",
+          "definition_en": "to start and carry out a task or piece of work"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "承诺，保证做某事",
+          "definition_en": "to promise that you will do something"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "carry out",
+          "pos": "phrase",
+          "definition_zh": "执行，实施",
+          "nuance_zh": "强调把计划落实到完成，常接 research、survey、experiment。",
+          "collocation": "carry out a survey（开展调查）"
+        },
+        {
+          "term": "take on",
+          "pos": "phrase",
+          "definition_zh": "承担（工作、责任）",
+          "nuance_zh": "更口语，强调接手额外的工作或责任。",
+          "collocation": "take on extra responsibilities（承担额外责任）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "undertake research",
+          "meaning_zh": "开展研究"
+        },
+        {
+          "phrase": "undertake a review",
+          "meaning_zh": "进行审查、评估"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "undertaking",
+          "pos": "n.",
+          "meaning_zh": "任务，事业；承诺"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The university undertook a three-year study into the effects of remote working on productivity.",
+          "translation_zh": "这所大学开展了一项为期三年的研究，考察远程办公对生产率的影响。",
+          "note_zh": "undertake + study / research 是阅读中常见的正式表达。"
+        },
+        {
+          "sentence": "The government has undertaken to review the policy within two years.",
+          "translation_zh": "政府已承诺在两年内重新审视该政策。",
+          "note_zh": "undertake to do sth 意为“承诺做某事”，不要误读成“着手做”。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "Maya",
+      "text": "Hey Daniel, how's the new job going? I heard you're managing a small team now."
+    },
+    {
+      "speaker": "Daniel",
+      "text": "It's good, but honestly the paperwork is pretty monotonous. I spend half my morning copying figures into spreadsheets."
+    },
+    {
+      "speaker": "Maya",
+      "text": "That sounds like something you could delegate. Isn't there a junior colleague who could take it on?"
+    },
+    {
+      "speaker": "Daniel",
+      "text": "There is, but I feel a bit guilty handing over the boring bits."
+    },
+    {
+      "speaker": "Maya",
+      "text": "I get that, but if you never delegate routine tasks, you'll never get to the strategic work — and the company clearly has an incentive for you to do that."
+    },
+    {
+      "speaker": "Daniel",
+      "text": "True. My manager said the same thing. She wants me to address the backlog in our client reports first."
+    },
+    {
+      "speaker": "Maya",
+      "text": "That's a sensible place to start. Once that's sorted, you could undertake a proper review of the whole process."
+    },
+    {
+      "speaker": "Daniel",
+      "text": "I might, yes. I just need to be careful not to overload the new starter. I'll begin with a couple of tasks a week and check in with her regularly."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In the sentence \"The committee was set up to address the growing problem of youth unemployment\", \"address\" is closest in meaning to:",
+      "options": [
+        "write the postal address of",
+        "tackle",
+        "speak formally to",
+        "mention briefly"
+      ],
+      "answer_index": 1,
+      "explanation_zh": "此处 address 后接 problem，意为“着手处理、解决”，与 tackle 同义。speak formally to 是另一个义项，但需要接人（address the audience）。"
+    },
+    {
+      "question": "Which sentence uses \"delegate\" correctly as a noun meaning “代表”?",
+      "options": [
+        "She delegate the report to her assistant yesterday.",
+        "Each delegate was given a name badge at the conference.",
+        "The manager delegate authority to the team regularly.",
+        "He is very delegate when handling complaints."
+      ],
+      "answer_index": 1,
+      "explanation_zh": "B 中 delegate 作名词，指参会“代表”，读音为 /ˈdelɪɡət/。A、C 把动词当成了原形直接接宾语，时态和形式都不对；D 把名词当形容词用，错误。"
+    }
+  ],
+  "review": []
+}
