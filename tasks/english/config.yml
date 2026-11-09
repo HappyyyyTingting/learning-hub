@@ -1,0 +1,27 @@
+id: english
+name: 每日英语
+timezone: Asia/Shanghai
+
+# GitHub Actions 的 cron 在 .github/workflows/daily.yml 里；
+# 这里是给人和脚本看的默认调度（UTC 23:30 = 北京时间次日 07:30）。
+schedule_utc: "30 23 * * *"
+
+level: B1-B2
+model: claude-opus-5-5
+max_tokens: 16000
+effort: medium
+
+prompt: tasks/english/prompts/v1.md
+prompt_version: v1
+schema: tasks/english/schema.json
+content_dir: content/english
+site_dir: site
+
+site_title: Daily English
+site_description: 每天 5 分钟，B1-B2 英语输入、复习与练习。
+
+# Phase 1 先不做音频；需要时再接入 edge-tts + R2。
+audio:
+  enabled: false
+  voice: en-US-AriaNeural
+  rate: "-5%"

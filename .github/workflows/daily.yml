@@ -1,0 +1,181 @@
+name: Daily English push
+
+on:
+  schedule:
+    # 23:30 UTC = 07:30 Asia/Shanghai（GitHub 的 cron 可能延迟几分钟到几十分钟）
+    - cron: "30 23 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "日期 YYYY-MM-DD；留空表示北京时间今天"
+        required: false
+        type: string
+      dry_run:
+        description: "只生成预览，不发送邮件、不提交、不部署"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: learning-hub
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Resolve date
+        id: date
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          set -euo pipefail
+          date_text="${INPUT_DATE:-}"
+          if [ -z "${date_text}" ]; then
+            date_text="$(TZ=Asia/Shanghai date +%F)"
+          fi
+          echo "date=${date_text}" >> "$GITHUB_OUTPUT"
+          echo "本次日期：${date_text}"
+
+      - name: Generate content
+        env:
+          DATE: ${{ steps.date.outputs.date }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          target="content/english/${DATE}.json"
+          if [ "${DRY_RUN}" = "true" ] && [ ! -f "${target}" ]; then
+            echo "dry-run：没有现成内容，使用 fixture。"
+            python scripts/generate.py --date "${DATE}" --fixture
+          else
+            python scripts/generate.py --date "${DATE}"
+          fi
+
+      - name: Send email
+        env:
+          DATE: ${{ steps.date.outputs.date }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_REPLY_TO: ${{ secrets.MAIL_REPLY_TO }}
+          EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_SECURITY: ${{ secrets.SMTP_SECURITY }}
+        run: |
+          set -euo pipefail
+          if [ "${DRY_RUN}" = "true" ]; then
+            python scripts/send_email.py --date "${DATE}" --dry-run --out-dir artifacts
+          else
+            python scripts/send_email.py --date "${DATE}"
+          fi
+
+      - name: Build site
+        run: python scripts/build_site.py
+
+      - name: Commit content and sent state
+        if: inputs.dry_run != true
+        env:
+          DATE: ${{ steps.date.outputs.date }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/english state/sent.json
+          if git diff --cached --quiet; then
+            echo "没有需要提交的变更。"
+            exit 0
+          fi
+          git commit -m "content: ${DATE}"
+          git pull --rebase --autostash
+          git push
+
+      - name: Upload Pages artifact
+        if: inputs.dry_run != true
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+      - name: Upload preview
+        if: ${{ inputs.dry_run }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: email-preview
+          path: artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  deploy:
+    needs: daily
+    if: inputs.dry_run != true
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  alert:
+    needs: [daily, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send failure alert
+        env:
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_REPLY_TO: ${{ secrets.MAIL_REPLY_TO }}
+          EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_SECURITY: ${{ secrets.SMTP_SECURITY }}
+        run: |
+          python scripts/alert.py \
+            --message "Daily English 工作流失败。内容生成、发送或部署没有完成，请查看运行日志。" \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

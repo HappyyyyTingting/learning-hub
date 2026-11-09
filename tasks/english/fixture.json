@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-09",
+  "task": "english",
+  "level": "B1-B2",
+  "prompt_version": "v1",
+  "theme": "work",
+  "title": "A Better Check-in at Work",
+  "words": [
+    {
+      "term": "follow up",
+      "ipa": "/ˈfɑːloʊ ʌp/",
+      "part_of_speech": "phrase",
+      "definition_en": "to take further action on something after an earlier discussion",
+      "definition_zh": "跟进；后续处理",
+      "example": "I'll follow up with the client tomorrow morning."
+    },
+    {
+      "term": "deadline",
+      "ipa": "/ˈdedlaɪn/",
+      "part_of_speech": "noun",
+      "definition_en": "the latest time by which something must be finished",
+      "definition_zh": "截止日期",
+      "example": "The deadline for the report is Friday at noon."
+    },
+    {
+      "term": "touch base",
+      "ipa": "/tʌtʃ beɪs/",
+      "part_of_speech": "idiom",
+      "definition_en": "to talk briefly with someone to share updates",
+      "definition_zh": "简短沟通；碰个头",
+      "example": "Let's touch base after the meeting to align on next steps."
+    },
+    {
+      "term": "run out of",
+      "ipa": "/rʌn aʊt əv/",
+      "part_of_speech": "phrase",
+      "definition_en": "to use all of something so that none is left",
+      "definition_zh": "用完；耗尽",
+      "example": "We ran out of time before we could discuss the budget."
+    },
+    {
+      "term": "figure out",
+      "ipa": "/ˈfɪɡjər aʊt/",
+      "part_of_speech": "phrase",
+      "definition_en": "to understand or solve something after thinking about it",
+      "definition_zh": "弄明白；想出",
+      "example": "I need to figure out why the numbers don't match."
+    }
+  ],
+  "examples": [
+    "Could you follow up on the invoice and let me know when it's approved?",
+    "We need to figure out a realistic deadline before we promise anything to the client.",
+    "Let's touch base on Monday to make sure we haven't run out of budget."
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Hi, do you have a minute to touch base about the launch?"
+    },
+    {
+      "speaker": "B",
+      "text": "Sure. I'm a little worried we might run out of time before the deadline."
+    },
+    {
+      "speaker": "A",
+      "text": "Me too. Can you figure out which tasks are still open?"
+    },
+    {
+      "speaker": "B",
+      "text": "I'll check and follow up with you by lunch."
+    },
+    {
+      "speaker": "A",
+      "text": "Great. Let's also agree on what we can cut if needed."
+    },
+    {
+      "speaker": "B",
+      "text": "Sounds good. I'll send a short summary after we talk."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which sentence uses “follow up” correctly?",
+      "options": [
+        "I will follow up the report tomorrow.",
+        "I will follow up with the client tomorrow.",
+        "I will follow up to the client tomorrow."
+      ],
+      "answer_index": 1,
+      "explanation_zh": "follow up 通常与 with 连用：follow up with someone。"
+    },
+    {
+      "question": "What does “run out of time” mean?",
+      "options": [
+        "To have more time than expected",
+        "To use all the available time",
+        "To arrive early"
+      ],
+      "answer_index": 1,
+      "explanation_zh": "run out of 表示“用完”，run out of time 即“时间不够了”。"
+    }
+  ],
+  "review": [
+    {
+      "term": "reschedule",
+      "first_seen": "2026-11-02",
+      "question": "Complete the sentence: We need to ______ the meeting because the client is unavailable.",
+      "answer": "reschedule"
+    },
+    {
+      "term": "in advance",
+      "first_seen": "2026-10-26",
+      "question": "What does “in advance” mean?",
+      "answer": "Before the expected time; ahead of time."
+    }
+  ]
+}

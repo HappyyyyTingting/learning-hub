@@ -1,0 +1,227 @@
+#!/usr/bin/env python3
+"""Generate one day's English push content with the Claude API.
+
+Examples:
+    python scripts/generate.py --fixture --date 2026-11-09
+    python scripts/generate.py --date 2026-11-09
+    python scripts/generate.py --date 2026-11-09 --dry-run
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from datetime import date as date_cls
+from datetime import datetime
+
+import common
+
+
+def _to_date(value: str) -> date_cls:
+    return datetime.strptime(value, "%Y-%m-%d").date()
+
+
+def build_review_candidates(contents: list[dict], today: date_cls) -> list[dict]:
+    """Pick words first seen 3/7/14 days ago and not reviewed recently."""
+    history: dict[str, dict] = {}
+    for content in contents:
+        date_text = str(content.get("date", ""))
+        try:
+            seen = _to_date(date_text)
+        except ValueError:
+            continue
+        if seen >= today:
+            continue
+        for word in content.get("words", []):
+            term = str(word.get("term", "")).strip()
+            if not term:
+                continue
+            item = history.setdefault(
+                term,
+                {"term": term, "first_seen": date_text, "last_reviewed": ""},
+            )
+            if date_text < item["first_seen"]:
+                item["first_seen"] = date_text
+        for review in content.get("review", []):
+            term = str(review.get("term", "")).strip()
+            if term in history and date_text > history[term]["last_reviewed"]:
+                history[term]["last_reviewed"] = date_text
+
+    candidates = []
+    for item in history.values():
+        try:
+            first_seen = _to_date(item["first_seen"])
+        except ValueError:
+            continue
+        days_since_first = (today - first_seen).days
+        if days_since_first not in (3, 7, 14):
+            continue
+        if item["last_reviewed"]:
+            try:
+                days_since_review = (today - _to_date(item["last_reviewed"])).days
+            except ValueError:
+                days_since_review = 999
+            if days_since_review < 3:
+                continue
+        candidates.append(
+            {
+                "term": item["term"],
+                "first_seen": item["first_seen"],
+                "days_since_first_seen": days_since_first,
+            }
+        )
+    candidates.sort(key=lambda item: (item["days_since_first_seen"], item["term"]))
+    return candidates[:10]
+
+
+def build_context(date_text: str, config: dict, contents: list[dict], today: date_cls) -> dict:
+    recent = [content for content in contents if content.get("date", "") < date_text]
+    recent_themes: list[str] = []
+    recent_words: list[str] = []
+    for content in sorted(recent, key=lambda item: item.get("date", ""), reverse=True)[:14]:
+        theme = str(content.get("theme", "")).strip()
+        if theme and theme not in recent_themes:
+            recent_themes.append(theme)
+        for word in content.get("words", []):
+            term = str(word.get("term", "")).strip()
+            if term and term not in recent_words:
+                recent_words.append(term)
+    return {
+        "date": date_text,
+        "task": "english",
+        "level": config.get("level", "B1-B2"),
+        "prompt_version": config.get("prompt_version", "v1"),
+        "recent_themes": recent_themes[:7],
+        "recent_words": recent_words[:60],
+        "review_candidates": build_review_candidates(recent, today),
+    }
+
+
+def call_model(
+    system_prompt: str,
+    context: dict,
+    config: dict,
+    schema: dict,
+    model: str | None,
+) -> dict:
+    import anthropic
+
+    client = anthropic.Anthropic()
+    # 输出较长，用流式请求避免 HTTP 超时；最终仍拿完整 message。
+    with client.messages.stream(
+        model=model or config.get("model", "claude-opus-5-5"),
+        max_tokens=int(config.get("max_tokens", 16000)),
+        system=system_prompt,
+        messages=[
+            {
+                "role": "user",
+                "content": "今天的生成上下文：\n\n"
+                + json.dumps(context, ensure_ascii=False, indent=2),
+            }
+        ],
+        output_config={
+            "effort": config.get("effort", "medium"),
+            "format": {
+                "type": "json_schema",
+                "schema": common.api_schema(schema),
+            },
+        },
+    ) as stream:
+        response = stream.get_final_message()
+    if response.stop_reason == "refusal":
+        raise RuntimeError(f"模型拒绝生成：{getattr(response, 'stop_details', None)}")
+    if response.stop_reason == "max_tokens":
+        raise RuntimeError("模型输出被 max_tokens 截断，请调大 config.yml 的 max_tokens")
+    text = next((block.text for block in response.content if block.type == "text"), "")
+    if not text.strip():
+        raise RuntimeError("模型没有返回文本内容")
+    return json.loads(text)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="生成一天英语推送内容。")
+    parser.add_argument("--date", help="日期 YYYY-MM-DD；默认按 config 时区取今天")
+    parser.add_argument("--fixture", action="store_true", help="使用 fixture，不调用 API")
+    parser.add_argument("--force", action="store_true", help="覆盖已存在的内容")
+    parser.add_argument("--dry-run", action="store_true", help="只打印 prompt 和上下文")
+    parser.add_argument("--model", help="覆盖 config 中的模型")
+    args = parser.parse_args(argv)
+
+    config = common.load_config()
+    try:
+        date_text = common.resolve_date(args.date, config)
+        target = common.content_path(date_text, config)
+        if target.is_file() and not args.force and not args.dry_run:
+            print(f"内容已存在，跳过生成：{target}")
+            return 0
+
+        if args.fixture:
+            content = common.load_json(common.ROOT / "tasks/english/fixture.json")
+            content["date"] = date_text
+            content["task"] = "english"
+            content["level"] = config.get("level", "B1-B2")
+            content["prompt_version"] = config.get("prompt_version", "v1")
+            errors = common.validate_content(content)
+            if errors:
+                print("fixture 不符合 schema：", file=sys.stderr)
+                for error in errors:
+                    print(f"  - {error}", file=sys.stderr)
+                return 1
+            if args.dry_run:
+                print(f"dry-run：fixture 校验通过，将写入 {target}")
+                return 0
+            common.write_json(target, content)
+            print(f"已写入 fixture 内容：{target}")
+            return 0
+
+        prompt_path = common.ROOT / config.get("prompt", "tasks/english/prompts/v1.md")
+        system_prompt = prompt_path.read_text(encoding="utf-8")
+        contents = common.load_all_contents(config)
+        today = _to_date(date_text)
+        context = build_context(date_text, config, contents, today)
+
+        if args.dry_run:
+            print("=== system prompt ===")
+            print(system_prompt)
+            print("\n=== context ===")
+            print(json.dumps(context, ensure_ascii=False, indent=2))
+            return 0
+
+        schema = common.load_schema(config)
+        content = call_model(system_prompt, context, config, schema, args.model)
+
+        # 权威字段由脚本覆盖，避免模型写错日期或版本。
+        content["date"] = date_text
+        content["task"] = "english"
+        content["level"] = config.get("level", "B1-B2")
+        content["prompt_version"] = config.get("prompt_version", "v1")
+
+        errors = common.validate_content(content, schema)
+        if errors:
+            print("生成内容不符合 schema：", file=sys.stderr)
+            for error in errors:
+                print(f"  - {error}", file=sys.stderr)
+            return 1
+
+        recent_terms = set(context["recent_words"])
+        duplicates = [
+            word.get("term")
+            for word in content.get("words", [])
+            if word.get("term") in recent_terms
+        ]
+        if duplicates:
+            print(f"提示：今天有词在最近 14 天出现过：{', '.join(duplicates)}")
+
+        common.write_json(target, content)
+        print(f"已生成：{target}")
+        print(f"主题：{content.get('theme')}｜标题：{content.get('title')}")
+        print(f"词汇：{len(content.get('words', []))}｜复习：{len(content.get('review', []))}")
+        return 0
+    except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
+        print(f"错误：{exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
