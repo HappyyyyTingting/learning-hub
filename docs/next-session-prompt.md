@@ -18,9 +18,10 @@
 当前状态（2026-11-09）：
 
 - 脚手架已完成，35 个单元测试通过。
-- 初始 commit `e6886ed` 已 push 到私有仓库 `HappyyyyTingting/learning-hub`（分支 `main`）。
-- 本地已有一批尚未 push 的 commit：`5e16c08` 完成从 Claude 到 DeepSeek、从通用英语到雅思词汇卡片的切换；之后是目录重构（任务收进顶层 `daily-english/`，公共脚本支持 `--task`，站点改为 `site/english/` + 根入口 `site/index.html`）。
-- 还没有配置 Secrets，没有启用 Pages。
+- 初始 commit `e6886ed` 已 push 到 `HappyyyyTingting/learning-hub`；仓库已于 2026-11-09 转为公开。
+- 本地还有两个已 push 的 commit：`5e16c08`（DeepSeek / 雅思 v2）和 `826bd22`（目录重构）。
+- Pages 已启用（Source = GitHub Actions），站点地址 `https://happyyyytingting.github.io/learning-hub/`；还没跑过部署，所以暂时打不开。
+- GitHub Secrets 还没有配置。
 - 没有调用过真实 DeepSeek API，也没有发过真实邮件。
 - `preview/english/2026-11-09/email.html` 是 fixture 生成的示例预览；`daily-english/content/` 里的示例内容已删除，避免第一次真实运行误发 fixture。
 - `.venv` 已存在；如果环境有问题，按 README 重建。
@@ -39,11 +40,9 @@
 请按这个顺序继续：
 
 1. 先检查项目状态和测试，确认没有遗漏。
-2. 给我看 `git status` 和 diff，确认后把 DeepSeek / 雅思 v2 / 目录重构这批改动 commit 并 push。不要在未经我确认的情况下 push。
-3. 指导配置 GitHub Secrets：`DEEPSEEK_API_KEY`、`MAIL_TO`、`MAIL_FROM`、`EMAIL_PROVIDER`，以及 SMTP 或 Resend 对应字段。不要把密钥贴进对话。
-4. 指导我把 Pages 的 Source 设为 GitHub Actions。
-5. 先跑一次 `dry_run=true`，检查 `email-preview`；确认排版和内容后，再跑一次真实发送。
-6. 检查邮件、Pages 和 `daily-english/state/sent.json`，报告结果和下一步。
+2. 指导配置 GitHub Secrets：`DEEPSEEK_API_KEY`、`MAIL_TO`、`MAIL_FROM`、`EMAIL_PROVIDER`，以及 SMTP 或 Resend 对应字段。不要把密钥贴进对话。
+3. 先跑一次 `dry_run=true`，检查 `email-preview`；确认排版和内容后，再跑一次真实发送。
+4. 检查邮件、Pages 和 `daily-english/state/sent.json`，报告结果和下一步。
 
 约束：
 

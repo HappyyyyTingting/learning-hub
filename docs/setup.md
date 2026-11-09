@@ -13,7 +13,7 @@ git remote add origin git@github.com:<你的账号>/learning-hub.git
 git push -u origin main
 ```
 
-私有仓库即可。工作流需要写权限，把 `daily-english/` 下的当天内容和发送状态提交回仓库。
+公开仓库即可免费使用 GitHub Pages；私有仓库需要 GitHub Pro。工作流需要写权限，把 `daily-english/` 下的当天内容和发送状态提交回仓库。
 
 ## 2. 配置 Secrets
 
@@ -126,5 +126,5 @@ model: deepseek-v4-pro
 ## 7. 安全与隐私
 
 - API key、邮箱密码只放在 GitHub Secrets，不写进仓库。
-- 内容会提交到仓库；如果仓库公开，每天的学习内容也会公开。介意的话用私有仓库。
+- 内容会提交到仓库；仓库公开时，每天的学习内容也会公开。当前仓库已公开。
 - 邮件里的外链只有往期归档地址；内容本身由模型生成，渲染时全部做了 HTML 转义。
