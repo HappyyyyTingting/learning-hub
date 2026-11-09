@@ -1,6 +1,6 @@
 # Learning Hub
 
-日常学习推送平台。Phase 1 先做 **Daily English**：每天北京时间早上 7:30，用 Claude 生成一份 B1–B2 英语学习内容，发到邮箱，并归档到 GitHub Pages。
+日常学习推送平台。Phase 1 先做 **Daily English**：每天北京时间早上 7:30，用 DeepSeek 生成一份雅思词汇学习内容（B2–C1），发到邮箱，并归档到 GitHub Pages。
 
 仓库名不绑定单一任务；以后加资讯、基础知识等任务时，继续用这一套生成、发送、归档流程。
 
@@ -11,7 +11,7 @@ Phase 1 只做一件事：跑通 **定时 → 生成 → 发送 → 归档** 的
 ```
 GitHub Actions（cron 23:30 UTC / 北京 07:30）
   └─ scripts/generate.py
-       Claude API + JSON Schema
+       DeepSeek API + JSON Schema
        → content/english/YYYY-MM-DD.json
   └─ scripts/send_email.py
        SMTP 或 Resend → 邮箱
@@ -23,11 +23,11 @@ GitHub Actions（cron 23:30 UTC / 北京 07:30）
 
 每天的内容结构固定：
 
-- 5 个词或短语：音标、词性、英文释义、中文释义、例句
-- 3 个额外例句
+- 5 个雅思高频词：美/英音标、多词性释义、考点提示、同义替换（含辨析和搭配）、高频搭配、词形变化、2 个雅思风格例句
 - 1 段 6–8 轮情景对话
-- 2 道选择题（含答案解析）
+- 2 道选择题（词义辨析 / 同义替换 / 搭配，含答案解析）
 - 0–2 个复习项：从 3 / 7 / 14 天前首次出现的词里选
+- 考频只用 high / medium / low 标签，不写具体出现次数，也不冒充剑桥真题原句
 
 字段定义见 `tasks/english/schema.json`，示例见 `tasks/english/fixture.json`。
 
@@ -36,14 +36,14 @@ GitHub Actions（cron 23:30 UTC / 北京 07:30）
 ```
 tasks/english/
   config.yml        任务配置（时区、模型、prompt、输出目录）
-  prompts/v1.md     生成 prompt（可版本化迭代）
+  prompts/v2.md     生成 prompt（可版本化迭代）
   schema.json       内容 JSON Schema
   fixture.json      本地预览用的样例内容
 content/english/    每天生成的内容（工作流自动提交）
 state/sent.json     已发送日期，防止重复发送
 scripts/
   common.py         配置、日期、内容读写、校验
-  generate.py       调用 Claude 生成内容
+  generate.py       调用 DeepSeek 生成内容
   render.py         渲染邮件 HTML / 纯文本
   send_email.py     发送邮件（SMTP / Resend）
   build_site.py     构建静态归档站
@@ -65,7 +65,7 @@ pip install -r requirements.txt
 
 ```bash
 cp .env.example .env
-# 编辑 .env，至少填 ANTHROPIC_API_KEY、MAIL_TO、MAIL_FROM 和 SMTP / Resend 配置
+# 编辑 .env，至少填 DEEPSEEK_API_KEY、MAIL_TO、MAIL_FROM 和 SMTP / Resend 配置
 set -a; source .env; set +a
 ```
 
@@ -89,7 +89,7 @@ python scripts/generate.py --date 2026-11-09
 想换模型可以临时覆盖，或直接改 `tasks/english/config.yml`：
 
 ```bash
-python scripts/generate.py --date 2026-11-09 --model claude-sonnet-5-5
+python scripts/generate.py --date 2026-11-09 --model deepseek-v4-pro
 ```
 
 跑测试：
@@ -105,7 +105,7 @@ python -m unittest discover -s tests -v
 完整步骤见 [`docs/setup.md`](docs/setup.md)。最短路径：
 
 1. 新建仓库并 push 本目录。
-2. 在 **Settings → Secrets and variables → Actions** 配置 `ANTHROPIC_API_KEY` 和邮件相关 secrets。
+2. 在 **Settings → Secrets and variables → Actions** 配置 `DEEPSEEK_API_KEY` 和邮件相关 secrets。
 3. 在 **Settings → Pages** 把 Source 设为 **GitHub Actions**。
 4. 在 **Actions → Daily English push → Run workflow** 先跑一次 `dry_run = true`，下载 `email-preview` 检查排版。
 5. 再跑一次 `dry_run = false`，确认收到邮件、Pages 有归档。
@@ -124,8 +124,8 @@ Phase 1 的选择与备选，方便以后调整：
 
 | 部分 | 当前选择 | 备选 | 说明 |
 | --- | --- | --- | --- |
-| 调度 | GitHub Actions cron | 本地 launchd / cron；Cloudflare Workers Cron；Anthropic Managed Agents scheduled deployments | Actions 免费额度够用、零服务器；本地方案要求电脑开机；Managed Agents 省调度代码但会把运行绑定到平台 |
-| 模型 | `claude-opus-5-5` | `claude-sonnet-5-5`、`claude-haiku-5-5` | 先质量优先；稳定后可降级省钱，改 `config.yml` 一行即可 |
+| 调度 | GitHub Actions cron | 本地 launchd / cron；Cloudflare Workers Cron；云函数定时触发 | Actions 免费额度够用、零服务器；本地方案要求电脑开机；云函数省调度代码但会把运行绑定到平台 |
+| 模型 | `deepseek-flash` | `deepseek-v4-pro` | 先用 flash 控制成本；需要更细的语义辨析时切 v4-pro，改 `config.yml` 一行即可 |
 | 内容格式 | 结构化 JSON | Markdown | JSON 便于稳定渲染、复习追踪和以后做 App |
 | 存储 | 仓库内 JSON 文件 | SQLite、外部数据库 | Phase 1 不需要数据库，Git 本身就是版本记录 |
 | 投递 | 邮件 + GitHub Pages | Telegram Bot、RSS、微信 | 邮件适合每天固定阅读；Pages 负责归档和分享 |
@@ -133,13 +133,13 @@ Phase 1 的选择与备选，方便以后调整：
 | 反馈 | 手动记录 | 邮件一键评分、每周 meta 任务 | Phase 2 再做闭环 |
 | 失败告警 | 邮件（已内置） | — | 避免像早期 tech-digest 一样静默失败 |
 
-成本量级：每天一次模型调用，输入输出各几千 token，具体以 Anthropic 官方价格为准；GitHub Actions 私有仓库每月 2000 分钟免费额度，本工作流每天约 2–4 分钟，远低于额度。
+成本量级：每天一次模型调用，输入输出各几千 token，具体以 DeepSeek 官方价格为准；GitHub Actions 私有仓库每月 2000 分钟免费额度，本工作流每天约 2–4 分钟，远低于额度。
 
 ## Prompt 迭代
 
-- 当前 prompt 在 `tasks/english/prompts/v1.md`，每篇内容会记录 `prompt_version`。
-- 修改方式：复制成 `v2.md` → 改 `config.yml` 的 `prompt` 和 `prompt_version` → 提交。下一班任务自动使用新版本，历史内容仍可追溯是哪个版本生成的。
-- 不要在多天内容之间直接静默改 `v1.md`，否则出问题时无法判断是 prompt 还是模型波动。
+- 当前 prompt 在 `tasks/english/prompts/v2.md`，每篇内容会记录 `prompt_version`。
+- 修改方式：复制成 `v3.md` → 改 `config.yml` 的 `prompt` 和 `prompt_version` → 提交。下一班任务自动使用新版本，历史内容仍可追溯是哪个版本生成的。
+- 不要在多天内容之间直接静默改 `v2.md`，否则出问题时无法判断是 prompt 还是模型波动。
 
 ## 下一步（Phase 2）
 

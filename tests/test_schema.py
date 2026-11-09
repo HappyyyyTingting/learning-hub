@@ -42,6 +42,18 @@ class SchemaTests(unittest.TestCase):
         errors = common.validate_content(content, self.schema)
         self.assertTrue(any("extra" in error for error in errors))
 
+    def test_word_requires_senses(self):
+        content = copy.deepcopy(self.fixture)
+        del content["words"][0]["senses"]
+        errors = common.validate_content(content, self.schema)
+        self.assertTrue(any("senses" in error for error in errors))
+
+    def test_exam_frequency_must_be_known_label(self):
+        content = copy.deepcopy(self.fixture)
+        content["words"][0]["exam_frequency"] = "very high"
+        errors = common.validate_content(content, self.schema)
+        self.assertTrue(any("exam_frequency" in error for error in errors))
+
     def test_api_schema_strips_unsupported_keywords(self):
         cleaned = common.api_schema(self.schema)
         dumped = json.dumps(cleaned)

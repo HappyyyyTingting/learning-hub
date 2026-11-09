@@ -80,7 +80,7 @@ class ReviewCandidateTests(unittest.TestCase):
 class ContextTests(unittest.TestCase):
     def setUp(self):
         self.today = date(2026, 11, 9)
-        self.config = {"level": "B1-B2", "prompt_version": "v1"}
+        self.config = {"level": "IELTS (B2-C1)", "prompt_version": "v2"}
 
     def test_context_excludes_today_and_dedupes(self):
         contents = [
@@ -109,6 +109,19 @@ class ContextTests(unittest.TestCase):
         ]
         context = generate.build_context("2026-11-09", self.config, contents, self.today)
         self.assertEqual(len(context["recent_themes"]), 7)
+
+
+class ModelJsonTests(unittest.TestCase):
+    def test_blank_content_is_rejected(self):
+        with self.assertRaises(ValueError):
+            generate._parse_json_object("   ")
+
+    def test_non_object_is_rejected(self):
+        with self.assertRaises(ValueError):
+            generate._parse_json_object("[1, 2]")
+
+    def test_object_is_parsed(self):
+        self.assertEqual(generate._parse_json_object('{"a": 1}'), {"a": 1})
 
 
 if __name__ == "__main__":

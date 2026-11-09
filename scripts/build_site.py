@@ -73,6 +73,35 @@ a { color: var(--brand); }
 }
 .definition-zh { color: #44505f; font-size: 14px; }
 .example { margin-top: 6px; color: var(--brand); font-style: italic; }
+.exam-focus {
+  margin: 6px 0 10px; padding: 8px 10px; background: #f4f8fd;
+  border-radius: 8px; color: #44505f; font-size: 14px;
+}
+.freq {
+  margin-left: 8px; padding: 1px 7px; border-radius: 999px;
+  font-size: 12px; font-weight: 700;
+}
+.freq-high { background: #e6f4ea; color: #1e7b3c; }
+.freq-medium { background: #fff4e5; color: #a15c00; }
+.freq-low { background: #eef1f4; color: #667085; }
+.senses { margin: 8px 0 10px; }
+.sense { margin: 0 0 8px; }
+.sense .pos { margin-left: 0; }
+.word-block { margin: 12px 0 0; }
+.block-title { margin-bottom: 6px; color: #0b4f91; font-size: 14px; font-weight: 700; }
+.synonym {
+  margin: 0 0 8px; padding: 10px 12px; background: #f8fafc; border-radius: 8px;
+}
+.syn-head { margin-bottom: 4px; }
+.syn-term { color: #0b4f91; font-weight: 700; }
+.syn-pos { margin-left: 6px; color: var(--muted); font-size: 13px; }
+.syn-def { margin-left: 6px; color: var(--ink); }
+.nuance { color: #44505f; font-size: 14px; }
+.collocation { color: var(--accent); font-size: 14px; }
+.collocations, .word-forms { margin: 0; padding-left: 20px; }
+.example-item { margin: 0 0 10px; }
+.translation { color: #44505f; font-size: 14px; }
+.note { color: var(--muted); font-size: 13px; }
 .dialogue { margin: 0 0 16px; }
 .line { margin: 0 0 10px; }
 .speaker { display: inline-block; min-width: 26px; font-weight: 700; color: #0b4f91; }
@@ -147,7 +176,7 @@ def render_index(contents: list[dict], config: dict) -> str:
     <p class="tagline">{_e(description)}</p>
   </header>
   <section class="card">{body}</section>
-  <footer class="site-footer">由 Claude + GitHub Actions 自动生成</footer>
+  <footer class="site-footer">由 DeepSeek + GitHub Actions 自动生成</footer>
 </main>
 </body>
 </html>
@@ -179,7 +208,7 @@ def render_page(content: dict, config: dict) -> str:
     {body}
     <p class="back"><a href="index.html">← 返回目录</a></p>
   </article>
-  <footer class="site-footer">由 Claude + GitHub Actions 自动生成</footer>
+  <footer class="site-footer">由 DeepSeek + GitHub Actions 自动生成</footer>
 </main>
 </body>
 </html>

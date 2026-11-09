@@ -1,117 +1,391 @@
 {
   "date": "2026-11-09",
   "task": "english",
-  "level": "B1-B2",
-  "prompt_version": "v1",
-  "theme": "work",
-  "title": "A Better Check-in at Work",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "environment",
+  "title": "Building a More Sustainable City",
   "words": [
     {
-      "term": "follow up",
-      "ipa": "/ˈfɑːloʊ ʌp/",
-      "part_of_speech": "phrase",
-      "definition_en": "to take further action on something after an earlier discussion",
-      "definition_zh": "跟进；后续处理",
-      "example": "I'll follow up with the client tomorrow morning."
+      "term": "float",
+      "ipa_us": "/floʊt/",
+      "ipa_uk": "/fləʊt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常考“漂浮/浮现”的引申义，注意与 drift 的语义差别。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "漂浮；飘浮；浮现",
+          "definition_en": "to stay on or near the surface of a liquid"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "浮标；漂浮物",
+          "definition_en": "an object that floats on water"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "drift",
+          "pos": "v.",
+          "definition_zh": "漂流；飘动",
+          "nuance_zh": "情感中性，强调被水流或气流推动的无目的移动。",
+          "collocation": "drift with the current（随波逐流）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "float on water",
+          "meaning_zh": "浮在水面"
+        },
+        {
+          "phrase": "float an idea",
+          "meaning_zh": "提出一个想法试探反应"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "flotation",
+          "pos": "n.",
+          "meaning_zh": "漂浮；浮选"
+        },
+        {
+          "form": "floating",
+          "pos": "adj.",
+          "meaning_zh": "漂浮的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "In the flotation tank, a person floats in salt water as a form of deep relaxation.",
+          "translation_zh": "在漂浮舱里，人漂浮在盐水中，以达到深度放松。",
+          "note_zh": "学术语境；float 表示“漂浮”，flotation 是派生名词。"
+        },
+        {
+          "sentence": "The floating plant spreads quickly, and its leaves contain a high ratio of carbon to nitrogen.",
+          "translation_zh": "这种漂浮植物扩散得很快，其叶片含有高比例的碳和氮。",
+          "note_zh": "阅读中 floating 作定语，表示“漂浮的”。"
+        }
+      ]
     },
     {
-      "term": "deadline",
-      "ipa": "/ˈdedlaɪn/",
-      "part_of_speech": "noun",
-      "definition_en": "the latest time by which something must be finished",
-      "definition_zh": "截止日期",
-      "example": "The deadline for the report is Friday at noon."
+      "term": "sustainable",
+      "ipa_us": "/səˈsteɪnəbl/",
+      "ipa_uk": "/səˈsteɪnəbl/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作和阅读高频词；常考“可持续的”以及 sustain / sustainability 的词族辨析。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "可持续的；不破坏环境的",
+          "definition_en": "able to continue without damaging the environment"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "能长期维持的；可持续的",
+          "definition_en": "able to continue over a long period of time"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "viable",
+          "pos": "adj.",
+          "definition_zh": "可行的；能维持下去的",
+          "nuance_zh": "强调在现实条件下能持续运作，常用于经济、方案或商业模式语境。",
+          "collocation": "a viable solution（可行的方案）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "sustainable development",
+          "meaning_zh": "可持续发展"
+        },
+        {
+          "phrase": "sustainable growth",
+          "meaning_zh": "可持续增长"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "sustain",
+          "pos": "v.",
+          "meaning_zh": "维持；支撑"
+        },
+        {
+          "form": "sustainability",
+          "pos": "n.",
+          "meaning_zh": "可持续性"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Cities are investing in sustainable transport to reduce air pollution.",
+          "translation_zh": "城市正在投资可持续交通，以减少空气污染。",
+          "note_zh": "写作常见搭配：sustainable transport。"
+        },
+        {
+          "sentence": "The report questions whether the current rate of growth is sustainable.",
+          "translation_zh": "该报告质疑当前的增长速度是否可持续。",
+          "note_zh": "sustainable 在此表示“能长期维持的”。"
+        }
+      ]
     },
     {
-      "term": "touch base",
-      "ipa": "/tʌtʃ beɪs/",
-      "part_of_speech": "idiom",
-      "definition_en": "to talk briefly with someone to share updates",
-      "definition_zh": "简短沟通；碰个头",
-      "example": "Let's touch base after the meeting to align on next steps."
+      "term": "contribute",
+      "ipa_us": "/kənˈtrɪbjuːt/",
+      "ipa_uk": "/kənˈtrɪbjuːt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读和写作高频；常考 contribute to 的因果用法，注意 to 是介词。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "促成；导致",
+          "definition_en": "to help cause something to happen"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "贡献；捐助",
+          "definition_en": "to give money, ideas, or effort to something"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "give rise to",
+          "pos": "phrase",
+          "definition_zh": "引起；导致",
+          "nuance_zh": "较正式，强调因果关系，常用于书面语和学术写作。",
+          "collocation": "give rise to concerns（引起担忧）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "contribute to",
+          "meaning_zh": "促成；有助于"
+        },
+        {
+          "phrase": "contribute significantly to",
+          "meaning_zh": "对……有显著贡献"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "contribution",
+          "pos": "n.",
+          "meaning_zh": "贡献；稿件"
+        },
+        {
+          "form": "contributor",
+          "pos": "n.",
+          "meaning_zh": "贡献者；投稿人"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Poor diet and lack of exercise both contribute to heart disease.",
+          "translation_zh": "不良饮食和缺乏运动都会导致心脏病。",
+          "note_zh": "contribute to 表示“促成、导致”，to 后接名词或动名词。"
+        },
+        {
+          "sentence": "Local residents contributed ideas for the new park.",
+          "translation_zh": "当地居民为新公园献计献策。",
+          "note_zh": "contribute 也可表示“贡献（想法、资金等）”。"
+        }
+      ]
     },
     {
-      "term": "run out of",
-      "ipa": "/rʌn aʊt əv/",
-      "part_of_speech": "phrase",
-      "definition_en": "to use all of something so that none is left",
-      "definition_zh": "用完；耗尽",
-      "example": "We ran out of time before we could discuss the budget."
+      "term": "significant",
+      "ipa_us": "/sɪɡˈnɪfɪkənt/",
+      "ipa_uk": "/sɪɡˈnɪfɪkənt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "雅思写作和阅读高频形容词；注意与 important 的程度差异，以及数据描述中的“显著”用法。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "重要的；显著的",
+          "definition_en": "large or important enough to be noticed"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "意味深长的；有特殊意义的",
+          "definition_en": "having a particular meaning or importance"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "substantial",
+          "pos": "adj.",
+          "definition_zh": "大量的；实质性的",
+          "nuance_zh": "强调数量或程度大，常用于数据、变化和证据，比 significant 更偏“量大”。",
+          "collocation": "a substantial increase（大幅增长）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a significant increase",
+          "meaning_zh": "显著增长"
+        },
+        {
+          "phrase": "statistically significant",
+          "meaning_zh": "统计上显著的"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "significance",
+          "pos": "n.",
+          "meaning_zh": "重要性；意义"
+        },
+        {
+          "form": "significantly",
+          "pos": "adv.",
+          "meaning_zh": "显著地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "There has been a significant increase in the number of people working from home.",
+          "translation_zh": "在家办公的人数显著增加。",
+          "note_zh": "写作数据描述常用 a significant increase。"
+        },
+        {
+          "sentence": "The study found no significant difference between the two groups.",
+          "translation_zh": "研究发现两组之间没有显著差异。",
+          "note_zh": "significant 在学术语境中常表示“统计上显著的”。"
+        }
+      ]
     },
     {
-      "term": "figure out",
-      "ipa": "/ˈfɪɡjər aʊt/",
-      "part_of_speech": "phrase",
-      "definition_en": "to understand or solve something after thinking about it",
-      "definition_zh": "弄明白；想出",
-      "example": "I need to figure out why the numbers don't match."
+      "term": "adapt",
+      "ipa_us": "/əˈdæpt/",
+      "ipa_uk": "/əˈdæpt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "常考 adapt to 与 adopt 的形近辨析，以及 adaptation 的派生用法。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "适应",
+          "definition_en": "to change your behaviour to deal with a new situation"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "改编；改写",
+          "definition_en": "to change something so it is suitable for a new purpose"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "adjust",
+          "pos": "v.",
+          "definition_zh": "调整；适应",
+          "nuance_zh": "强调做小幅修改以适合新情况，语气比 adapt 更轻。",
+          "collocation": "adjust to a new environment（适应新环境）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "adapt to",
+          "meaning_zh": "适应"
+        },
+        {
+          "phrase": "adapt something for",
+          "meaning_zh": "为……改编某物"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "adaptation",
+          "pos": "n.",
+          "meaning_zh": "适应；改编"
+        },
+        {
+          "form": "adaptable",
+          "pos": "adj.",
+          "meaning_zh": "适应性强的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Animals must adapt to changes in their environment or risk extinction.",
+          "translation_zh": "动物必须适应环境变化，否则就有灭绝的风险。",
+          "note_zh": "adapt to 是固定搭配，to 为介词。"
+        },
+        {
+          "sentence": "The novel was adapted for television last year.",
+          "translation_zh": "这部小说去年被改编成电视剧。",
+          "note_zh": "adapt something for 表示“为……改编”。"
+        }
+      ]
     }
-  ],
-  "examples": [
-    "Could you follow up on the invoice and let me know when it's approved?",
-    "We need to figure out a realistic deadline before we promise anything to the client.",
-    "Let's touch base on Monday to make sure we haven't run out of budget."
   ],
   "dialogue": [
     {
       "speaker": "A",
-      "text": "Hi, do you have a minute to touch base about the launch?"
+      "text": "Have you seen the new plan for the city centre?"
     },
     {
       "speaker": "B",
-      "text": "Sure. I'm a little worried we might run out of time before the deadline."
+      "text": "Yes, they want to make the transport system more sustainable."
     },
     {
       "speaker": "A",
-      "text": "Me too. Can you figure out which tasks are still open?"
+      "text": "That could contribute to cleaner air, but is it affordable?"
     },
     {
       "speaker": "B",
-      "text": "I'll check and follow up with you by lunch."
+      "text": "They say the cost is significant, but the long-term benefits are worth it."
     },
     {
       "speaker": "A",
-      "text": "Great. Let's also agree on what we can cut if needed."
+      "text": "Will residents have to adapt to fewer parking spaces?"
     },
     {
       "speaker": "B",
-      "text": "Sounds good. I'll send a short summary after we talk."
+      "text": "Probably. The council is asking people to float some ideas online first."
+    },
+    {
+      "speaker": "A",
+      "text": "I might contribute a few suggestions myself."
+    },
+    {
+      "speaker": "B",
+      "text": "Let's do it before Friday."
     }
   ],
   "quiz": [
     {
-      "question": "Which sentence uses “follow up” correctly?",
+      "question": "Which word is closest in meaning to “sustainable” in the phrase “sustainable development”?",
       "options": [
-        "I will follow up the report tomorrow.",
-        "I will follow up with the client tomorrow.",
-        "I will follow up to the client tomorrow."
+        "viable",
+        "temporary",
+        "expensive",
+        "rapid"
       ],
-      "answer_index": 1,
-      "explanation_zh": "follow up 通常与 with 连用：follow up with someone。"
+      "answer_index": 0,
+      "explanation_zh": "sustainable development 强调“能长期维持、不破坏环境的发展”，viable 最接近“可持续运作”的含义。"
     },
     {
-      "question": "What does “run out of time” mean?",
+      "question": "Which sentence uses “contribute” correctly?",
       "options": [
-        "To have more time than expected",
-        "To use all the available time",
-        "To arrive early"
+        "Poor diet can contribute to heart disease.",
+        "Poor diet can contribute heart disease.",
+        "Poor diet can contribute in heart disease."
       ],
-      "answer_index": 1,
-      "explanation_zh": "run out of 表示“用完”，run out of time 即“时间不够了”。"
+      "answer_index": 0,
+      "explanation_zh": "contribute to 是固定搭配，表示“促成、导致”，to 后接名词。"
     }
   ],
   "review": [
     {
-      "term": "reschedule",
+      "term": "biodiversity",
       "first_seen": "2026-11-02",
-      "question": "Complete the sentence: We need to ______ the meeting because the client is unavailable.",
-      "answer": "reschedule"
+      "question": "What does “biodiversity” mean?",
+      "answer": "The variety of plant and animal life in a particular habitat."
     },
     {
-      "term": "in advance",
+      "term": "emission",
       "first_seen": "2026-10-26",
-      "question": "What does “in advance” mean?",
-      "answer": "Before the expected time; ahead of time."
+      "question": "Complete the sentence: Governments are trying to reduce carbon ______.",
+      "answer": "emissions"
     }
   ]
 }

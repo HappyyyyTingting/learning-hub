@@ -23,7 +23,7 @@ git push -u origin main
 
 | Secret | 说明 |
 | --- | --- |
-| `ANTHROPIC_API_KEY` | Anthropic API key，需要能访问 `claude-opus-5-5` |
+| `DEEPSEEK_API_KEY` | DeepSeek API key，需要能访问 `deepseek-flash` / `deepseek-v4-pro` |
 | `MAIL_TO` | 收件人，多个用逗号分隔 |
 | `MAIL_FROM` | 发件人，例如 `Daily English <daily@yourdomain.com>` |
 | `EMAIL_PROVIDER` | `smtp` 或 `resend` |
@@ -107,7 +107,7 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 改 `tasks/english/config.yml`：
 
 ```yaml
-model: claude-sonnet-5-5
+model: deepseek-v4-pro
 ```
 
 或本地用 `--model` 覆盖。降级前建议先连续对比几天内容质量。

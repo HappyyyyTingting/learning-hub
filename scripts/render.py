@@ -25,29 +25,97 @@ def _e(value: object) -> str:
     return html.escape(str(value or ""), quote=True)
 
 
+FREQUENCY_LABELS = {"high": "高频", "medium": "中频", "low": "低频"}
+
+
 def _word_html(word: dict) -> str:
-    pos = str(word.get("part_of_speech", "")).strip()
-    pos_label = f'<span class="pos">{_e(pos)}</span>' if pos else ""
+    freq = str(word.get("exam_frequency", "")).strip()
+    freq_label = FREQUENCY_LABELS.get(freq, freq)
+    freq_html = (
+        f'<span class="freq freq-{_e(freq)}">{_e(freq_label)}</span>' if freq else ""
+    )
+
+    senses = "".join(
+        f'<div class="sense">'
+        f'<span class="pos">{_e(item.get("pos"))}</span>'
+        f'<span class="definition-zh">{_e(item.get("definition_zh"))}</span>'
+        f'<div class="definition-en">{_e(item.get("definition_en"))}</div>'
+        f"</div>"
+        for item in word.get("senses", [])
+    )
+
+    synonyms = "".join(
+        f'<div class="synonym">'
+        f'<div class="syn-head"><span class="syn-term">{_e(item.get("term"))}</span>'
+        f'<span class="syn-pos">{_e(item.get("pos"))}</span>'
+        f'<span class="syn-def">{_e(item.get("definition_zh"))}</span></div>'
+        f'<div class="nuance">{_e(item.get("nuance_zh"))}</div>'
+        f'<div class="collocation">{_e(item.get("collocation"))}</div>'
+        f"</div>"
+        for item in word.get("synonyms", [])
+    )
+    synonyms_block = (
+        f'<div class="word-block"><div class="block-title">同义替换</div>{synonyms}</div>'
+        if synonyms
+        else ""
+    )
+
+    collocations = "".join(
+        f'<li><strong>{_e(item.get("phrase"))}</strong> — {_e(item.get("meaning_zh"))}</li>'
+        for item in word.get("collocations", [])
+    )
+    collocations_block = (
+        f'<div class="word-block"><div class="block-title">高频搭配</div>'
+        f'<ul class="collocations">{collocations}</ul></div>'
+        if collocations
+        else ""
+    )
+
+    forms = "".join(
+        f'<li><strong>{_e(item.get("form"))}</strong> {_e(item.get("pos"))} — '
+        f'{_e(item.get("meaning_zh"))}</li>'
+        for item in word.get("word_forms", [])
+    )
+    forms_block = (
+        f'<div class="word-block"><div class="block-title">词形变化</div>'
+        f'<ul class="word-forms">{forms}</ul></div>'
+        if forms
+        else ""
+    )
+
+    examples = "".join(
+        f'<div class="example-item">'
+        f'<div class="example">{_e(item.get("sentence"))}</div>'
+        f'<div class="translation">{_e(item.get("translation_zh"))}</div>'
+        f'<div class="note">{_e(item.get("note_zh"))}</div>'
+        f"</div>"
+        for item in word.get("examples", [])
+    )
+    examples_block = (
+        f'<div class="word-block"><div class="block-title">雅思风格例句</div>{examples}</div>'
+        if examples
+        else ""
+    )
+
     return f"""
     <div class="word-card">
       <div class="word-head">
         <span class="term">{_e(word.get("term"))}</span>
-        <span class="ipa">{_e(word.get("ipa"))}</span>
-        {pos_label}
+        <span class="ipa">美 {_e(word.get("ipa_us"))} · 英 {_e(word.get("ipa_uk"))}</span>
+        {freq_html}
       </div>
-      <div class="definition-en">{_e(word.get("definition_en"))}</div>
-      <div class="definition-zh">{_e(word.get("definition_zh"))}</div>
-      <div class="example">{_e(word.get("example"))}</div>
+      <div class="exam-focus">考点：{_e(word.get("exam_focus_zh"))}</div>
+      <div class="senses">{senses}</div>
+      {synonyms_block}
+      {collocations_block}
+      {forms_block}
+      {examples_block}
     </div>
     """
 
 
 def content_to_body_html(content: dict) -> str:
     words = "".join(_word_html(word) for word in content.get("words", []))
-
-    examples = "".join(
-        f"<li>{_e(item)}</li>" for item in content.get("examples", [])
-    )
 
     dialogue = "".join(
         f'<div class="line"><span class="speaker">{_e(item.get("speaker"))}</span>'
@@ -100,8 +168,6 @@ def content_to_body_html(content: dict) -> str:
     return f"""
 <h2>今日词汇</h2>
 {words}
-<h2>例句</h2>
-<ul class="examples">{examples}</ul>
 <h2>情景对话</h2>
 <div class="dialogue">{dialogue}</div>
 <h2>小练习</h2>
@@ -121,19 +187,57 @@ def content_to_text(content: dict) -> str:
         "【今日词汇】",
     ]
     for index, word in enumerate(content.get("words", []), start=1):
-        lines.append(
-            f"{index}. {word.get('term', '')} {word.get('ipa', '')} "
-            f"({word.get('part_of_speech', '')})"
+        freq = FREQUENCY_LABELS.get(str(word.get("exam_frequency", "")), "")
+        header = (
+            f"{index}. {word.get('term', '')}  美 {word.get('ipa_us', '')} · "
+            f"英 {word.get('ipa_uk', '')}"
         )
-        lines.append(f"   英文释义：{word.get('definition_en', '')}")
-        lines.append(f"   中文释义：{word.get('definition_zh', '')}")
-        lines.append(f"   例句：{word.get('example', '')}")
-        lines.append("")
+        if freq:
+            header += f"  [{freq}]"
+        lines.append(header)
+        lines.append(f"   考点：{word.get('exam_focus_zh', '')}")
+        for sense in word.get("senses", []):
+            lines.append(
+                f"   {sense.get('pos', '')} {sense.get('definition_zh', '')}"
+            )
+            lines.append(f"      {sense.get('definition_en', '')}")
 
-    lines.append("【例句】")
-    for item in content.get("examples", []):
-        lines.append(f"- {item}")
-    lines.append("")
+        synonyms = word.get("synonyms", [])
+        if synonyms:
+            lines.append("   同义替换：")
+            for item in synonyms:
+                lines.append(
+                    f"     - {item.get('term', '')} {item.get('pos', '')} "
+                    f"{item.get('definition_zh', '')}"
+                )
+                lines.append(f"       辨析：{item.get('nuance_zh', '')}")
+                lines.append(f"       搭配：{item.get('collocation', '')}")
+
+        collocations = word.get("collocations", [])
+        if collocations:
+            lines.append("   高频搭配：")
+            for item in collocations:
+                lines.append(
+                    f"     - {item.get('phrase', '')}：{item.get('meaning_zh', '')}"
+                )
+
+        forms = word.get("word_forms", [])
+        if forms:
+            lines.append("   词形变化：")
+            for item in forms:
+                lines.append(
+                    f"     - {item.get('form', '')} {item.get('pos', '')}："
+                    f"{item.get('meaning_zh', '')}"
+                )
+
+        examples = word.get("examples", [])
+        if examples:
+            lines.append("   雅思风格例句：")
+            for item in examples:
+                lines.append(f"     - {item.get('sentence', '')}")
+                lines.append(f"       {item.get('translation_zh', '')}")
+                lines.append(f"       考点：{item.get('note_zh', '')}")
+        lines.append("")
 
     lines.append("【情景对话】")
     for item in content.get("dialogue", []):
@@ -203,7 +307,40 @@ def _email_css() -> str:
     }
     .email-body .definition-en { color: #1f2328; }
     .email-body .definition-zh { color: #44505f; font-size: 14px; }
-    .email-body .example { margin-top: 6px; color: #0b5cad; font-style: italic; }
+    .email-body .exam-focus {
+      margin: 6px 0 10px; padding: 8px 10px; background: #f4f8fd;
+      border-radius: 8px; color: #44505f; font-size: 14px;
+    }
+    .email-body .freq {
+      margin-left: 8px; padding: 1px 7px; border-radius: 999px;
+      font-size: 12px; font-weight: 700;
+    }
+    .email-body .freq-high { background: #e6f4ea; color: #1e7b3c; }
+    .email-body .freq-medium { background: #fff4e5; color: #a15c00; }
+    .email-body .freq-low { background: #eef1f4; color: #667085; }
+    .email-body .senses { margin: 8px 0 10px; }
+    .email-body .sense { margin: 0 0 8px; }
+    .email-body .sense .pos { margin-left: 0; }
+    .email-body .word-block { margin: 12px 0 0; }
+    .email-body .block-title {
+      margin-bottom: 6px; color: #0b4f91; font-size: 14px; font-weight: 700;
+    }
+    .email-body .synonym {
+      margin: 0 0 8px; padding: 10px 12px; background: #f8fafc; border-radius: 8px;
+    }
+    .email-body .syn-head { margin-bottom: 4px; }
+    .email-body .syn-term { color: #0b4f91; font-weight: 700; }
+    .email-body .syn-pos { margin-left: 6px; color: #667085; font-size: 13px; }
+    .email-body .syn-def { margin-left: 6px; color: #1f2328; }
+    .email-body .nuance { color: #44505f; font-size: 14px; }
+    .email-body .collocation { color: #0a7ea4; font-size: 14px; }
+    .email-body .collocations, .email-body .word-forms {
+      margin: 0; padding-left: 20px;
+    }
+    .email-body .example-item { margin: 0 0 10px; }
+    .email-body .example { margin-top: 0; color: #0b5cad; font-style: italic; }
+    .email-body .translation { color: #44505f; font-size: 14px; }
+    .email-body .note { color: #667085; font-size: 13px; }
     .email-body .dialogue { margin: 0 0 16px; }
     .email-body .line { margin: 0 0 10px; }
     .email-body .speaker {
@@ -258,7 +395,7 @@ def wrap_email_html(title: str, date_text: str, meta: str, preheader: str, body_
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="email-card" style="max-width:640px;background:#ffffff;border:1px solid #e1e7ed;border-radius:16px;overflow:hidden;">
         <tr>
           <td class="email-header" style="background-color:#0b5cad;background-image:linear-gradient(135deg,#0b5cad 0%,#0a7ea4 100%);padding:30px 32px;color:#ffffff;">
-            <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:0.82;margin-bottom:8px;">Daily English · B1-B2</div>
+            <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:0.82;margin-bottom:8px;">Daily English · IELTS</div>
             <div class="email-title" style="font-size:26px;line-height:1.35;font-weight:700;color:#ffffff;">{safe_title}</div>
             <div style="font-size:14px;line-height:1.5;opacity:0.86;margin-top:10px;">{safe_date} · {safe_meta}</div>
           </td>
@@ -268,7 +405,7 @@ def wrap_email_html(title: str, date_text: str, meta: str, preheader: str, body_
         </tr>
         <tr>
           <td class="email-footer" style="padding:20px 32px 28px;color:#7a8493;font-size:12px;line-height:1.7;border-top:1px solid #eef1f4;">
-            由 Claude + GitHub Actions 自动生成 · 每天 5 分钟，坚持比一次学很多更重要。
+            由 DeepSeek + GitHub Actions 自动生成 · 每天 5–10 分钟，坚持比一次学很多更重要。
           </td>
         </tr>
       </table>
@@ -285,7 +422,7 @@ def render_content(content: dict, site_url: str = "") -> RenderedContent:
     theme = str(content.get("theme", ""))
     title = str(content.get("title", ""))
     subject = " · ".join(part for part in ["每日英语", date_text, theme] if part)
-    preheader = "5 个词 · 3 个例句 · 1 段对话 · 2 道练习"
+    preheader = "5 个雅思高频词 · 同义替换 · 高频搭配 · 1 段对话 · 2 道练习"
 
     body_html = content_to_body_html(content)
     if site_url:

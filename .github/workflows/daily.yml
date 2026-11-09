@@ -63,7 +63,7 @@ jobs:
         env:
           DATE: ${{ steps.date.outputs.date }}
           DRY_RUN: ${{ inputs.dry_run }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
           set -euo pipefail
           target="content/english/${DATE}.json"

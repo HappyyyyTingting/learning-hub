@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate one day's English push content with the Claude API.
+"""Generate one day's English push content with the DeepSeek API.
 
 Examples:
     python scripts/generate.py --fixture --date 2026-11-09
@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import date as date_cls
 from datetime import datetime
@@ -90,12 +91,22 @@ def build_context(date_text: str, config: dict, contents: list[dict], today: dat
     return {
         "date": date_text,
         "task": "english",
-        "level": config.get("level", "B1-B2"),
+        "level": config.get("level", "IELTS (B2-C1)"),
         "prompt_version": config.get("prompt_version", "v1"),
         "recent_themes": recent_themes[:7],
         "recent_words": recent_words[:60],
         "review_candidates": build_review_candidates(recent, today),
     }
+
+
+def _parse_json_object(text: str) -> dict:
+    text = (text or "").strip()
+    if not text:
+        raise ValueError("模型返回空内容（DeepSeek JSON 模式下通常是模型没有输出合法 JSON）")
+    data = json.loads(text)
+    if not isinstance(data, dict):
+        raise ValueError("模型返回的不是 JSON 对象")
+    return data
 
 
 def call_model(
@@ -105,38 +116,80 @@ def call_model(
     schema: dict,
     model: str | None,
 ) -> dict:
-    import anthropic
+    import openai
 
-    client = anthropic.Anthropic()
-    # 输出较长，用流式请求避免 HTTP 超时；最终仍拿完整 message。
-    with client.messages.stream(
-        model=model or config.get("model", "claude-opus-5-5"),
-        max_tokens=int(config.get("max_tokens", 16000)),
-        system=system_prompt,
-        messages=[
+    provider = str(config.get("provider", "deepseek")).strip().lower()
+    if provider != "deepseek":
+        raise RuntimeError(f"当前只支持 provider=deepseek，收到：{provider}")
+
+    api_key = os.getenv("DEEPSEEK_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("缺少 DEEPSEEK_API_KEY 环境变量")
+
+    client = openai.OpenAI(
+        api_key=api_key,
+        base_url=str(config.get("base_url", "https://api.deepseek.com")),
+    )
+    model_name = model or str(config.get("model", "deepseek-flash"))
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {
+            "role": "user",
+            "content": "今天的生成上下文：\n\n"
+            + json.dumps(context, ensure_ascii=False, indent=2)
+            + "\n\n输出必须符合以下 JSON Schema：\n"
+            + json.dumps(schema, ensure_ascii=False)
+            + "\n\n请只输出一个 JSON 对象，不要加代码块或解释。",
+        },
+    ]
+
+    attempts = 3
+    for attempt in range(1, attempts + 1):
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=messages,
+                response_format={"type": "json_object"},
+                max_tokens=int(config.get("max_tokens", 8000)),
+                temperature=float(config.get("temperature", 1.0)),
+            )
+        except Exception as exc:  # noqa: BLE001 - 把 SDK 异常转成可读错误
+            raise RuntimeError(f"DeepSeek 请求失败：{exc}") from exc
+
+        choice = response.choices[0]
+        if choice.finish_reason == "length":
+            raise RuntimeError("模型输出被 max_tokens 截断，请调大 config.yml 的 max_tokens")
+
+        text = choice.message.content or ""
+        try:
+            content = _parse_json_object(text)
+        except ValueError as exc:
+            if attempt >= attempts:
+                raise RuntimeError(f"模型没有返回有效 JSON：{exc}") from exc
+            messages.append({"role": "assistant", "content": text or "{}"})
+            messages.append(
+                {
+                    "role": "user",
+                    "content": f"上面的输出不是有效 JSON：{exc}。请只输出一个完整的 JSON 对象，不要加代码块或解释。",
+                }
+            )
+            continue
+
+        errors = common.validate_content(content, schema)
+        if not errors:
+            return content
+        if attempt >= attempts:
+            raise RuntimeError("模型输出不符合 schema：" + "; ".join(errors[:5]))
+        messages.append({"role": "assistant", "content": text})
+        messages.append(
             {
                 "role": "user",
-                "content": "今天的生成上下文：\n\n"
-                + json.dumps(context, ensure_ascii=False, indent=2),
+                "content": "上面的 JSON 不符合 schema，请修正后重新输出完整 JSON。错误：\n"
+                + "\n".join(errors[:10]),
             }
-        ],
-        output_config={
-            "effort": config.get("effort", "medium"),
-            "format": {
-                "type": "json_schema",
-                "schema": common.api_schema(schema),
-            },
-        },
-    ) as stream:
-        response = stream.get_final_message()
-    if response.stop_reason == "refusal":
-        raise RuntimeError(f"模型拒绝生成：{getattr(response, 'stop_details', None)}")
-    if response.stop_reason == "max_tokens":
-        raise RuntimeError("模型输出被 max_tokens 截断，请调大 config.yml 的 max_tokens")
-    text = next((block.text for block in response.content if block.type == "text"), "")
-    if not text.strip():
-        raise RuntimeError("模型没有返回文本内容")
-    return json.loads(text)
+        )
+
+    raise RuntimeError("模型调用失败：重试次数已用尽")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -160,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
             content = common.load_json(common.ROOT / "tasks/english/fixture.json")
             content["date"] = date_text
             content["task"] = "english"
-            content["level"] = config.get("level", "B1-B2")
+            content["level"] = config.get("level", "IELTS (B2-C1)")
             content["prompt_version"] = config.get("prompt_version", "v1")
             errors = common.validate_content(content)
             if errors:
@@ -175,7 +228,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"已写入 fixture 内容：{target}")
             return 0
 
-        prompt_path = common.ROOT / config.get("prompt", "tasks/english/prompts/v1.md")
+        prompt_path = common.ROOT / config.get("prompt", "tasks/english/prompts/v2.md")
         system_prompt = prompt_path.read_text(encoding="utf-8")
         contents = common.load_all_contents(config)
         today = _to_date(date_text)
@@ -194,7 +247,7 @@ def main(argv: list[str] | None = None) -> int:
         # 权威字段由脚本覆盖，避免模型写错日期或版本。
         content["date"] = date_text
         content["task"] = "english"
-        content["level"] = config.get("level", "B1-B2")
+        content["level"] = config.get("level", "IELTS (B2-C1)")
         content["prompt_version"] = config.get("prompt_version", "v1")
 
         errors = common.validate_content(content, schema)

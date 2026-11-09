@@ -17,7 +17,17 @@ class RenderTests(unittest.TestCase):
 
     def test_body_html_contains_every_section(self):
         body = render.content_to_body_html(self.content)
-        for heading in ("今日词汇", "例句", "情景对话", "小练习", "复习", "答案与解析"):
+        for heading in (
+            "今日词汇",
+            "同义替换",
+            "高频搭配",
+            "词形变化",
+            "雅思风格例句",
+            "情景对话",
+            "小练习",
+            "复习",
+            "答案与解析",
+        ):
             self.assertIn(heading, body)
         for word in self.content["words"]:
             self.assertIn(render._e(word["term"]), body)
