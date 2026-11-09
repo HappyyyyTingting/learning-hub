@@ -46,7 +46,55 @@ def _extract_email_address(value: str) -> str:
     import re
 
     match = re.search(r"[\w.+-]+@[\w.-]+", value or "")
-    return match.group(0) if match else value
+    return match.group(0) if match else (value or "").strip()
+
+
+def _mailbox(value: str, name: str) -> str:
+    """Return the bare address that goes into the SMTP envelope."""
+    address = _extract_email_address(value).strip().strip("<>").strip()
+    local, sep, domain = address.partition("@")
+    if not sep or not local or not domain:
+        raise ValueError(f"{name} 里的邮箱地址格式不正确")
+    return address
+
+
+def _smtp_response_text(value: object) -> str:
+    if isinstance(value, bytes):
+        value = value.decode("utf-8", "replace")
+    text = " ".join(str(value or "").split())
+    return text or "无详细信息"
+
+
+def _refusal_error(prefix: str, responses: list[tuple[int, object]]) -> Exception:
+    """Build a public-safe error; retry 503/4xx with a fresh connection."""
+    details = "；".join(
+        sorted({f"{code} {_smtp_response_text(text)}" for code, text in responses})
+    )
+    message = f"{prefix}：{details}"
+    if {code for code, _ in responses} & {421, 450, 451, 452, 503}:
+        return RuntimeError(message)
+    return NonRetryableSendError(message)
+
+
+# QQ / Foxmail 个人邮箱要求信封发件人就是登录账号本身。
+QQ_PERSONAL_HOSTS = {"smtp.qq.com", "smtp.foxmail.com"}
+
+
+def _check_sender_matches_login(host: str, sender: str, user: str) -> None:
+    if host.lower().rstrip(".") not in QQ_PERSONAL_HOSTS:
+        return
+    login = _extract_email_address(user).strip()
+    if "@" not in login:
+        # 允许用 QQ 号等非邮箱账号登录，此时无法做一致性检查。
+        return
+    if sender.lower() == login.lower():
+        return
+    raise NonRetryableSendError(
+        "MAIL_FROM 的邮箱地址与 SMTP_USER 不一致。"
+        "QQ / Foxmail 个人邮箱要求发件邮箱必须就是登录账号本身；"
+        "请把 MAIL_FROM 改成 SMTP_USER 那个邮箱，可以保留显示名，"
+        "例如“每日英语 <同一个邮箱>”。"
+    )
 
 
 def build_message(
@@ -119,6 +167,9 @@ def _send_via_smtp(
         raise ValueError("SMTP_SECURITY 只能是 ssl、starttls 或 none")
 
     port = int(port_raw) if port_raw else (465 if security == "ssl" else 587)
+    sender = _mailbox(from_addr, "MAIL_FROM")
+    recipients = [_mailbox(address, "MAIL_TO") for address in to_addrs]
+    _check_sender_matches_login(host, sender, user)
     message = build_message(rendered, from_addr, to_addrs, reply_to)
 
     def attempt() -> str:
@@ -140,9 +191,16 @@ def _send_via_smtp(
                     "SMTP 登录失败，请确认 SMTP_USER 和 SMTP_PASSWORD（QQ/Foxmail 使用的是授权码）"
                 ) from exc
             try:
-                server.send_message(message)
-            except (smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused) as exc:
-                raise NonRetryableSendError(f"SMTP 拒绝收件人或发件人：{exc}") from exc
+                # 显式传信封地址，避免把 “显示名 <邮箱>” 原样塞进 MAIL FROM。
+                server.send_message(message, from_addr=sender, to_addrs=recipients)
+            except smtplib.SMTPRecipientsRefused as exc:
+                raise _refusal_error(
+                    "SMTP 拒绝收件人", list(exc.recipients.values())
+                ) from exc
+            except smtplib.SMTPSenderRefused as exc:
+                raise _refusal_error(
+                    "SMTP 拒绝发件人", [(exc.smtp_code, exc.smtp_error)]
+                ) from exc
         finally:
             try:
                 server.quit()
@@ -286,7 +344,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
 
         to_value = args.to or os.getenv("MAIL_TO", "")
-        from_addr = args.from_addr or os.getenv("MAIL_FROM", "")
+        from_addr = (args.from_addr or os.getenv("MAIL_FROM", "")).strip()
         reply_to = os.getenv("MAIL_REPLY_TO", "").strip()
         message_id = send_email(rendered, to_value, from_addr, reply_to)
         common.mark_sent(task, date_text, config)

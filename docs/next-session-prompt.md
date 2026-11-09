@@ -21,8 +21,10 @@
 - 初始 commit `e6886ed` 已 push 到 `HappyyyyTingting/learning-hub`；仓库已于 2026-11-09 转为公开。
 - 本地还有两个已 push 的 commit：`5e16c08`（DeepSeek / 雅思 v2）和 `826bd22`（目录重构）。
 - Pages 已启用（Source = GitHub Actions），站点地址 `https://happyyyytingting.github.io/learning-hub/`；还没跑过部署，所以暂时打不开。
-- GitHub Secrets 还没有配置。
-- 没有调用过真实 DeepSeek API，也没有发过真实邮件。
+- 9 个 GitHub Secrets 已配置：`DEEPSEEK_API_KEY`、`EMAIL_PROVIDER`、`MAIL_FROM`、`MAIL_TO`、`SMTP_HOST`、`SMTP_PASSWORD`、`SMTP_PORT`、`SMTP_SECURITY`、`SMTP_USER`。
+- 2026-11-09 第一次真实运行（run 42618289646）因 SMTP `503 Send command mailfrom first.` 失败；更新邮箱配置后，重跑 run 42622282409 成功。
+- 当天内容已由工作流提交为 `4c2c9f2`，`daily-english/state/sent.json` 已记录 2026-11-09，Pages 三个地址均返回 200。
+- 本地还有一个尚未 push 的 SMTP 加固 commit：SMTP 信封显式使用纯邮箱地址；QQ / Foxmail 个人邮箱增加 `MAIL_FROM` 与 `SMTP_USER` 一致性检查；503 允许换连接重试；错误信息不再输出邮箱地址。46 个测试通过，是否保留由用户决定。
 - `preview/english/2026-11-09/email.html` 是 fixture 生成的示例预览；`daily-english/content/` 里的示例内容已删除，避免第一次真实运行误发 fixture。
 - `.venv` 已存在；如果环境有问题，按 README 重建。
 
@@ -40,8 +42,8 @@
 请按这个顺序继续：
 
 1. 先检查项目状态和测试，确认没有遗漏。
-2. 指导配置 GitHub Secrets：`DEEPSEEK_API_KEY`、`MAIL_TO`、`MAIL_FROM`、`EMAIL_PROVIDER`，以及 SMTP 或 Resend 对应字段。不要把密钥贴进对话。
-3. 先跑一次 `dry_run=true`，检查 `email-preview`；确认排版和内容后，再跑一次真实发送。
+2. 确认是否 push 本地那个尚未 push 的 SMTP 加固 commit；不需要的话可以丢弃。
+3. 观察下一次北京时间 07:30 的定时运行，确认能自动生成、发送、提交并部署。
 4. 检查邮件、Pages 和 `daily-english/state/sent.json`，报告结果和下一步。
 
 约束：

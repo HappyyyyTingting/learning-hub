@@ -25,7 +25,7 @@ git push -u origin main
 | --- | --- |
 | `DEEPSEEK_API_KEY` | DeepSeek API key，需要能访问 `deepseek-flash` / `deepseek-v4-pro` |
 | `MAIL_TO` | 收件人，多个用逗号分隔 |
-| `MAIL_FROM` | 发件人，例如 `Daily English <daily@yourdomain.com>` |
+| `MAIL_FROM` | 发件人，例如 `Daily English <daily@yourdomain.com>`；用 QQ / Foxmail 个人邮箱时，尖括号里的邮箱必须和 `SMTP_USER` 完全一致 |
 | `EMAIL_PROVIDER` | `smtp` 或 `resend` |
 
 SMTP 方式（`EMAIL_PROVIDER=smtp`）：
@@ -34,7 +34,7 @@ SMTP 方式（`EMAIL_PROVIDER=smtp`）：
 | --- | --- |
 | `SMTP_HOST` | 例如 `smtp.qq.com`、`smtp.resend.com` |
 | `SMTP_PORT` | `465`（SSL）或 `587`（STARTTLS） |
-| `SMTP_USER` | 登录账号 |
+| `SMTP_USER` | 登录账号；QQ / Foxmail 填完整邮箱地址 |
 | `SMTP_PASSWORD` | 密码或授权码；QQ / Foxmail 必须用授权码 |
 | `SMTP_SECURITY` | `ssl`、`starttls` 或 `none`，留空时按端口推断 |
 
@@ -88,6 +88,8 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 
 - 看 Actions 日志里 `Send email` 这一步是否失败。
 - SMTP 登录失败通常是授权码而不是登录密码；QQ 邮箱需要在设置里开启 SMTP 并生成授权码。
+- 登录成功但报 `503 Send command mailfrom first.` 时，先检查 `MAIL_FROM` 尖括号里的邮箱是否和 `SMTP_USER` 完全一致。QQ / Foxmail 个人邮箱不允许用别的地址代发，`MAIL_FROM` 可以写成 `每日英语 <你的QQ邮箱@qq.com>`，但邮箱本身必须是登录账号。
+- 日志里不应出现完整邮箱地址；`send_email.py` 只输出 SMTP 返回码和服务器文案。
 - Resend 需要先验证发件域名；测试阶段只能用 `onboarding@resend.dev` 发给自己的账号邮箱。
 - 检查垃圾邮件目录。
 
