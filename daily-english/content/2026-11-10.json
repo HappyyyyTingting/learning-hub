@@ -1,0 +1,393 @@
+{
+  "date": "2026-11-10",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "travel",
+  "title": "Travel: Planning, Places and Getting Around",
+  "words": [
+    {
+      "term": "itinerary",
+      "ipa_us": "/aɪˈtɪnəreri/",
+      "ipa_uk": "/aɪˈtɪnərəri/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力旅游场景常考行程安排，阅读中也常与 schedule、route 等表达形成同义替换。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "行程表；旅行计划",
+          "definition_en": "a detailed plan of a journey, including the places to visit and the times of travel"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "schedule",
+          "pos": "n.",
+          "definition_zh": "日程安排；时间表",
+          "nuance_zh": "schedule 更强调时间安排，可用于会议、交通等；itinerary 专指旅行路线和景点安排。",
+          "collocation": "a busy schedule（日程繁忙）"
+        },
+        {
+          "term": "travel plan",
+          "pos": "n.",
+          "definition_zh": "旅行计划",
+          "nuance_zh": "travel plan 更笼统、口语化；itinerary 通常指较详细的书面行程。",
+          "collocation": "draw up a travel plan（制定旅行计划）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a detailed itinerary",
+          "meaning_zh": "详细的行程表"
+        },
+        {
+          "phrase": "draw up an itinerary",
+          "meaning_zh": "制定行程"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "itineraries",
+          "pos": "n.",
+          "meaning_zh": "行程表（复数）"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The conference pack includes a detailed itinerary, so delegates know exactly where each session will be held.",
+          "translation_zh": "会议资料包里有详细行程表，因此代表们清楚每场会议将在哪里举行。",
+          "note_zh": "听力或阅读中 itinerary 常与 detailed、proposed 等搭配，注意拼写。"
+        },
+        {
+          "sentence": "Rather than following a fixed itinerary, we preferred to explore the coastal villages at our own pace.",
+          "translation_zh": "我们没有按照固定行程走，而是更喜欢按自己的节奏探索沿海村庄。",
+          "note_zh": "rather than 对比结构可用于表达旅行偏好，适合口语 Part 2。"
+        }
+      ]
+    },
+    {
+      "term": "accommodate",
+      "ipa_us": "/əˈkɑːmədeɪt/",
+      "ipa_uk": "/əˈkɒmədeɪt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常考“容纳、适应、满足需要”等多义辨析，听力住宿场景也常出现 accommodation。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "为……提供住宿；容纳",
+          "definition_en": "to provide someone with a place to stay or enough space for people"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "适应；迁就；满足（需要）",
+          "definition_en": "to change your plans or provide what someone needs"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "house",
+          "pos": "v.",
+          "definition_zh": "为……提供住处；容纳",
+          "nuance_zh": "house 更强调提供建筑或场所居住；accommodate 更正式，也可指容纳人数。",
+          "collocation": "house students（为学生提供住宿）"
+        },
+        {
+          "term": "meet",
+          "pos": "v.",
+          "definition_zh": "满足（需求）",
+          "nuance_zh": "meet 常与 needs、demand 搭配，偏中性；accommodate 更正式，强调通过调整安排来照顾需求。",
+          "collocation": "meet demand（满足需求）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "accommodate guests",
+          "meaning_zh": "接待客人；为客人提供住宿"
+        },
+        {
+          "phrase": "accommodate the needs of...",
+          "meaning_zh": "满足……的需求"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "accommodation",
+          "pos": "n.",
+          "meaning_zh": "住宿；住处"
+        },
+        {
+          "form": "accommodating",
+          "pos": "adj.",
+          "meaning_zh": "乐于助人的；通融的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The hotel can accommodate up to 300 guests, but during peak season rooms must be booked well in advance.",
+          "translation_zh": "这家酒店最多可容纳300位客人，但在旺季必须提前很久订房。",
+          "note_zh": "accommodate 表示“容纳”，听力住宿场景注意数字和预订信息。"
+        },
+        {
+          "sentence": "Good urban design should accommodate the needs of cyclists as well as drivers.",
+          "translation_zh": "良好的城市设计应满足骑行者以及驾驶者的需求。",
+          "note_zh": "写作中可用于城市规划话题，accommodate the needs of 是正式搭配。"
+        }
+      ]
+    },
+    {
+      "term": "remote",
+      "ipa_us": "/rɪˈmoʊt/",
+      "ipa_uk": "/rɪˈməʊt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常考“偏远的”与“远程的”两个义项，注意根据上下文区分，也常与 isolated 同义替换。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "偏远的；遥远的",
+          "definition_en": "far away from towns and cities"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "远程的；通过互联网进行的",
+          "definition_en": "done through a computer network from a distance"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "（机会或可能性）微小的",
+          "definition_en": "very small"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "isolated",
+          "pos": "adj.",
+          "definition_zh": "偏僻的；与世隔绝的",
+          "nuance_zh": "isolated 强调与外界联系少；remote 只强调距离远，不一定完全隔绝。",
+          "collocation": "an isolated village（偏僻的村庄）"
+        },
+        {
+          "term": "distant",
+          "pos": "adj.",
+          "definition_zh": "遥远的",
+          "nuance_zh": "distant 可指空间、时间或关系远；remote 更常修饰地区、地点。",
+          "collocation": "a distant town（遥远的城镇）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "remote areas",
+          "meaning_zh": "偏远地区"
+        },
+        {
+          "phrase": "remote working",
+          "meaning_zh": "远程办公"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "remotely",
+          "pos": "adv.",
+          "meaning_zh": "远程地；稍微（常用于否定）"
+        },
+        {
+          "form": "remoteness",
+          "pos": "n.",
+          "meaning_zh": "偏远；遥远"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "For people in remote areas, access to reliable public transport remains a serious challenge.",
+          "translation_zh": "对偏远地区的人来说，获得可靠的公共交通仍然是个严峻挑战。",
+          "note_zh": "阅读和写作常用 remote areas，注意 access to 的搭配。"
+        },
+        {
+          "sentence": "The survey found that employees who worked remotely at least two days a week reported higher job satisfaction.",
+          "translation_zh": "调查发现，每周至少远程工作两天的员工表示工作满意度更高。",
+          "note_zh": "remotely 是副词，注意与 remote working 的替换关系。"
+        }
+      ]
+    },
+    {
+      "term": "congestion",
+      "ipa_us": "/kənˈdʒestʃən/",
+      "ipa_uk": "/kənˈdʒestʃən/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力和阅读交通场景高频词，常与 traffic jams、crowding 同义替换，写作中常讨论如何解决拥堵。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "（交通）拥堵",
+          "definition_en": "the state of being too full of traffic"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "拥挤；堵塞",
+          "definition_en": "the state of being too full or blocked with people or things"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "overcrowding",
+          "pos": "n.",
+          "definition_zh": "过度拥挤",
+          "nuance_zh": "overcrowding 多指人或空间拥挤，不常指车辆交通；congestion 可指交通或人群。",
+          "collocation": "urban overcrowding（城市过度拥挤）"
+        },
+        {
+          "term": "traffic jam",
+          "pos": "n.",
+          "definition_zh": "交通堵塞",
+          "nuance_zh": "traffic jam 可数，指具体一次堵车；congestion 不可数，指拥堵状态。",
+          "collocation": "be stuck in a traffic jam（遇上堵车）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "traffic congestion",
+          "meaning_zh": "交通拥堵"
+        },
+        {
+          "phrase": "ease congestion",
+          "meaning_zh": "缓解拥堵"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "congested",
+          "pos": "adj.",
+          "meaning_zh": "拥堵的；拥挤的"
+        },
+        {
+          "form": "congest",
+          "pos": "v.",
+          "meaning_zh": "使拥堵；堵塞"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The city introduced a congestion charge to reduce traffic in the historic centre.",
+          "translation_zh": "该市引入了拥堵费，以减少历史城区的交通流量。",
+          "note_zh": "congestion charge 是城市交通话题中的常见表达，听力中注意专有名词。"
+        },
+        {
+          "sentence": "Cycling to work not only cuts congestion but also improves air quality.",
+          "translation_zh": "骑自行车上班不仅能减少拥堵，还能改善空气质量。",
+          "note_zh": "not only... but also 结构适合写作中列举双重好处。"
+        }
+      ]
+    },
+    {
+      "term": "off the beaten track",
+      "ipa_us": "/ˌɔːf ðə ˌbiːtn ˈtræk/",
+      "ipa_uk": "/ˌɒf ðə ˌbiːtn ˈtræk/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "口语 Part 2/3 描述旅行地点时的高分习语，阅读中也常与 remote、less crowded 等表达同义替换。",
+      "senses": [
+        {
+          "pos": "phrase",
+          "definition_zh": "远离常规路线的；小众的",
+          "definition_en": "far from the places most tourists visit; unusual or secluded"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "secluded",
+          "pos": "adj.",
+          "definition_zh": "僻静的；隐蔽的",
+          "nuance_zh": "secluded 强调安静隐蔽，适合描述地点；off the beaten track 强调避开大众旅游路线，不一定完全隐蔽。",
+          "collocation": "a secluded beach（僻静的海滩）"
+        },
+        {
+          "term": "out of the way",
+          "pos": "phrase",
+          "definition_zh": "偏远的；不顺路的",
+          "nuance_zh": "out of the way 强调不方便、需要绕路；off the beaten track 常指避开大众旅游路线，带探索意味。",
+          "collocation": "a bit out of the way（有点偏远或绕路）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "go off the beaten track",
+          "meaning_zh": "走小众路线"
+        },
+        {
+          "phrase": "a place off the beaten track",
+          "meaning_zh": "小众目的地"
+        }
+      ],
+      "word_forms": [],
+      "examples": [
+        {
+          "sentence": "We spent a week exploring villages off the beaten track, where local customs are still very much alive.",
+          "translation_zh": "我们用一周时间探索小众村庄，那里的当地习俗仍然很有活力。",
+          "note_zh": "off the beaten track 可作后置定语，口语中可替换 crowded tourist spots。"
+        },
+        {
+          "sentence": "Although the hotel is slightly off the beaten track, the peaceful surroundings make it well worth the journey.",
+          "translation_zh": "虽然这家酒店位置有点偏，但宁静的环境让它非常值得一去。",
+          "note_zh": "although 让步结构，well worth 是地道表达。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Have you sorted out your trip to Portugal yet?"
+    },
+    {
+      "speaker": "B",
+      "text": "Almost. I've drawn up a rough itinerary, but I'm trying not to plan every hour."
+    },
+    {
+      "speaker": "A",
+      "text": "Good idea. Are you staying in Lisbon the whole time?"
+    },
+    {
+      "speaker": "B",
+      "text": "Only for three nights. The hotel can accommodate four, so my sister and her partner are joining us."
+    },
+    {
+      "speaker": "A",
+      "text": "Nice. Will you hire a car?"
+    },
+    {
+      "speaker": "B",
+      "text": "We thought about it, but driving in the city centre can be a nightmare because of the congestion. We'll take the train to a few remote villages instead."
+    },
+    {
+      "speaker": "A",
+      "text": "That sounds much more interesting. Anywhere in particular?"
+    },
+    {
+      "speaker": "B",
+      "text": "A friend recommended a place off the beaten track near the border—apparently the local market is amazing and there are hardly any tourists."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "The hotel can only ______ up to 80 guests during the conference season.",
+      "options": [
+        "accommodate",
+        "congest",
+        "remote",
+        "itinerary"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "accommodate 表示“容纳”，符合句意；congest 是“使拥堵”，remote 是形容词，itinerary 是名词“行程表”。"
+    },
+    {
+      "question": "Which is closest in meaning to “off the beaten track” in “They chose a village off the beaten track”?",
+      "options": [
+        "close to major tourist attractions",
+        "far from the usual tourist routes",
+        "easy to reach by public transport",
+        "crowded with visitors"
+      ],
+      "answer_index": 1,
+      "explanation_zh": "off the beaten track 指远离大众旅游路线、较为小众的地点，与 far from the usual tourist routes 意思最接近。"
+    }
+  ],
+  "review": []
+}
