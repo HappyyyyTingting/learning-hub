@@ -1,0 +1,383 @@
+{
+  "date": "2026-11-11",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "health",
+  "title": "Health: Small Habits, Stronger Bodies",
+  "words": [
+    {
+      "term": "symptom",
+      "ipa_us": "/ˈsɪmptəm/",
+      "ipa_uk": "/ˈsɪmptəm/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力健康场景常考症状描述；阅读中常与 sign/indication 构成同义替换，注意区分具体病症与泛指迹象。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "症状；病症表现",
+          "definition_en": "a physical or mental change that indicates an illness"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "征兆；迹象",
+          "definition_en": "a sign that something bad exists or is developing"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "sign",
+          "pos": "n.",
+          "definition_zh": "迹象；征兆",
+          "nuance_zh": "比 symptom 更宽泛，可指任何可观察的迹象，不限于疾病。",
+          "collocation": "a warning sign（警示信号）"
+        },
+        {
+          "term": "indication",
+          "pos": "n.",
+          "definition_zh": "迹象；表明",
+          "nuance_zh": "较正式，常指某情况存在的间接证据，不一定用于医学症状。",
+          "collocation": "a clear indication of（……的明确迹象）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "develop symptoms",
+          "meaning_zh": "出现症状"
+        },
+        {
+          "phrase": "mild symptoms",
+          "meaning_zh": "轻微症状"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "symptomatic",
+          "pos": "adj.",
+          "meaning_zh": "有症状的；表明……的"
+        },
+        {
+          "form": "symptomless",
+          "pos": "adj.",
+          "meaning_zh": "无症状的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Students who develop symptoms such as a persistent cough should avoid crowded lectures and seek advice.",
+          "translation_zh": "出现持续咳嗽等症状的学生应避免去拥挤的讲座，并寻求建议。",
+          "note_zh": "develop 与 symptoms 搭配，听力/阅读健康场景常见。"
+        },
+        {
+          "sentence": "A sudden drop in attendance may be a symptom of a wider problem within the school.",
+          "translation_zh": "出勤率突然下降可能是学校内部更大问题的一个征兆。",
+          "note_zh": "此处 symptom 不是身体症状，而是“问题的征兆”，阅读中常考引申义。"
+        }
+      ]
+    },
+    {
+      "term": "chronic",
+      "ipa_us": "/ˈkrɑːnɪk/",
+      "ipa_uk": "/ˈkrɒnɪk/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读健康类文章高频，常与 acute 对比；写作中用于描述长期问题，注意搭配 chronic illness/disease。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "（疾病）慢性的",
+          "definition_en": "lasting for a long time and difficult to cure"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "（问题）长期的，积习难改的",
+          "definition_en": "continuing for a long time and hard to solve"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "persistent",
+          "pos": "adj.",
+          "definition_zh": "持续的；顽固的",
+          "nuance_zh": "强调反复出现、难以消除，可用于问题或症状，但不专属疾病。",
+          "collocation": "persistent pain（持续疼痛）"
+        },
+        {
+          "term": "long-term",
+          "pos": "adj.",
+          "definition_zh": "长期的",
+          "nuance_zh": "更中性、通用，强调时间跨度，不暗示难以治愈。",
+          "collocation": "long-term condition（长期病症）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "chronic illness",
+          "meaning_zh": "慢性病"
+        },
+        {
+          "phrase": "chronic stress",
+          "meaning_zh": "长期压力"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "chronically",
+          "pos": "adv.",
+          "meaning_zh": "长期地；慢性地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Chronic conditions such as diabetes require ongoing management rather than a one-off cure.",
+          "translation_zh": "糖尿病等慢性病需要持续管理，而不是一次性治愈。",
+          "note_zh": "chronic 修饰 conditions/illness，阅读健康类高频。"
+        },
+        {
+          "sentence": "The report warns that chronic underfunding has left many rural clinics short of staff.",
+          "translation_zh": "报告警告称，长期资金不足已使许多农村诊所人手短缺。",
+          "note_zh": "chronic 可引申为“长期存在的”，常修饰 problem/shortage/underfunding。"
+        }
+      ]
+    },
+    {
+      "term": "sedentary",
+      "ipa_us": "/ˈsedənteri/",
+      "ipa_uk": "/ˈsedəntri/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读和写作健康/生活方式话题常考，修饰 lifestyle/behaviour，常与 physical activity 对比。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "久坐的；缺少身体活动的",
+          "definition_en": "involving a lot of sitting and little physical activity"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "inactive",
+          "pos": "adj.",
+          "definition_zh": "不活跃的",
+          "nuance_zh": "更宽泛，可指人不运动或事物不运作；不一定强调久坐。",
+          "collocation": "physically inactive（缺乏身体活动的）"
+        },
+        {
+          "term": "desk-bound",
+          "pos": "adj.",
+          "definition_zh": "久坐办公的",
+          "nuance_zh": "更具体、略非正式，强调因工作被困在桌前。",
+          "collocation": "a desk-bound job（久坐办公的工作）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a sedentary lifestyle",
+          "meaning_zh": "久坐不动的生活方式"
+        },
+        {
+          "phrase": "sedentary behaviour",
+          "meaning_zh": "久坐行为"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "sedentariness",
+          "pos": "n.",
+          "meaning_zh": "久坐不动的状态"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "People with sedentary jobs are often advised to stand up and move around every hour.",
+          "translation_zh": "从事久坐工作的人常被建议每小时站起来活动一下。",
+          "note_zh": "sedentary 常修饰 job/lifestyle，听力生活建议场景可见。"
+        },
+        {
+          "sentence": "Surveys suggest that sedentary behaviour among teenagers has risen alongside screen time.",
+          "translation_zh": "调查表明，青少年的久坐行为随着屏幕使用时间增加而上升。",
+          "note_zh": "与 screen time 并现，阅读图表/健康话题常见。"
+        }
+      ]
+    },
+    {
+      "term": "immune",
+      "ipa_us": "/ɪˈmjuːn/",
+      "ipa_uk": "/ɪˈmjuːn/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读健康/科学类常考 immune system/response；也考引申义 immune to，注意介词 to。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "免疫的；有免疫力的",
+          "definition_en": "protected from a disease by the body's natural defences or by vaccination"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "不受影响的；免于……的",
+          "definition_en": "not affected by something unpleasant or harmful"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "resistant",
+          "pos": "adj.",
+          "definition_zh": "有抵抗力的；不受影响的",
+          "nuance_zh": "强调抵抗能力，常与 to 连用；可指疾病或变化影响。",
+          "collocation": "resistant to infection（对感染有抵抗力）"
+        },
+        {
+          "term": "protected",
+          "pos": "adj.",
+          "definition_zh": "受到保护的",
+          "nuance_zh": "更通用，强调外界保护，不特指免疫系统。",
+          "collocation": "protected against disease（免受疾病侵害）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "the immune system",
+          "meaning_zh": "免疫系统"
+        },
+        {
+          "phrase": "immune response",
+          "meaning_zh": "免疫反应"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "immunity",
+          "pos": "n.",
+          "meaning_zh": "免疫力；豁免"
+        },
+        {
+          "form": "immunize",
+          "pos": "v.",
+          "meaning_zh": "使接种疫苗；使免疫"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Regular exercise may support the immune system, although the evidence is not entirely consistent.",
+          "translation_zh": "经常锻炼可能有助于免疫系统，尽管证据并不完全一致。",
+          "note_zh": "immune system 是健康类阅读高频搭配。"
+        },
+        {
+          "sentence": "No country is immune to the effects of a global recession.",
+          "translation_zh": "没有哪个国家能免受全球经济衰退的影响。",
+          "note_zh": "immune to 表示“不受……影响”，写作中可用于经济/社会话题。"
+        }
+      ]
+    },
+    {
+      "term": "well-being",
+      "ipa_us": "/ˌwelˈbiːɪŋ/",
+      "ipa_uk": "/ˌwelˈbiːɪŋ/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作和阅读健康/社会话题高频，常与 mental/physical 搭配；注意不可数。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "健康幸福；福祉",
+          "definition_en": "the state of being healthy, comfortable and happy"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "welfare",
+          "pos": "n.",
+          "definition_zh": "福祉；福利",
+          "nuance_zh": "更常指社会或群体层面的福利与保障，也可指个人安康，语体较正式。",
+          "collocation": "social welfare（社会福利）"
+        },
+        {
+          "term": "wellness",
+          "pos": "n.",
+          "definition_zh": "健康；身心健康",
+          "nuance_zh": "更偏健康生活和保健产业，强调主动维护健康，不如 well-being 全面。",
+          "collocation": "health and wellness（健康与保健）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "mental well-being",
+          "meaning_zh": "心理健康"
+        },
+        {
+          "phrase": "promote well-being",
+          "meaning_zh": "促进健康幸福"
+        }
+      ],
+      "word_forms": [],
+      "examples": [
+        {
+          "sentence": "Employers are increasingly aware that flexible working can improve staff well-being.",
+          "translation_zh": "雇主越来越意识到，弹性工作制可以改善员工的身心健康。",
+          "note_zh": "写作工作/健康话题可用 improve well-being。"
+        },
+        {
+          "sentence": "The survey measures physical and mental well-being rather than income alone.",
+          "translation_zh": "这项调查衡量的是身体和心理健康，而不仅仅是收入。",
+          "note_zh": "与 physical/mental 搭配，阅读数据类文章常见。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "I've been feeling tired all the time lately, but I can't really point to any specific symptom."
+    },
+    {
+      "speaker": "B",
+      "text": "Could it be your lifestyle? If you're sedentary most of the day, that can affect your energy levels."
+    },
+    {
+      "speaker": "A",
+      "text": "Probably. I sit at a desk for eight hours, and I rarely exercise."
+    },
+    {
+      "speaker": "B",
+      "text": "That's a common pattern. Some people develop chronic stress without realizing it."
+    },
+    {
+      "speaker": "A",
+      "text": "True. I also wonder whether my immune system is weaker because I'm indoors so much."
+    },
+    {
+      "speaker": "B",
+      "text": "Maybe. Small changes—walking at lunch, eating better—can improve your overall well-being."
+    },
+    {
+      "speaker": "A",
+      "text": "I might start with a short walk every day. Nothing too ambitious."
+    },
+    {
+      "speaker": "B",
+      "text": "That sounds sensible. And if the tiredness continues, it's worth seeing a doctor."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In the sentence 'A sedentary lifestyle can affect your health', which word is the closest replacement for 'sedentary'?",
+      "options": [
+        "inactive",
+        "temporary",
+        "expensive",
+        "crowded"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "sedentary 指久坐、缺少身体活动，inactive 最接近；temporary 是暂时的，expensive 昂贵，crowded 拥挤。"
+    },
+    {
+      "question": "Which phrase is the most natural collocation in a health context?",
+      "options": [
+        "chronic illness",
+        "chronic holiday",
+        "chronic suitcase",
+        "chronic breakfast"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "chronic 常与 illness/disease/condition/problem 搭配，表示慢性的、长期的；其他搭配不自然。"
+    }
+  ],
+  "review": []
+}
