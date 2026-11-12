@@ -1,0 +1,381 @@
+{
+  "date": "2026-11-12",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "technology",
+  "title": "Technology in Everyday Life: Five Words for the Digital Age",
+  "words": [
+    {
+      "term": "harness",
+      "ipa_us": "/ˈhɑːrnɪs/",
+      "ipa_uk": "/ˈhɑːnɪs/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作 Task 2 谈技术、能源时的高分动词；阅读中常与 exploit、make use of、tap into 构成同义替换。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "利用（某种资源、力量或技术）以取得好处",
+          "definition_en": "to control and use the power or potential of something in order to achieve a particular result"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "马具，挽具；安全带、保护带",
+          "definition_en": "a set of straps used to control a horse or to fasten a person to something"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "exploit",
+          "pos": "v.",
+          "definition_zh": "利用，开发（资源、机会）",
+          "nuance_zh": "与 harness 接近，但常带“为自己获利”甚至“剥削”的意味，用于资源、机会、劳动力。",
+          "collocation": "exploit natural resources（开发自然资源）"
+        },
+        {
+          "term": "utilise",
+          "pos": "v.",
+          "definition_zh": "利用，使用",
+          "nuance_zh": "比 harness 更中性、更正式，只强调“加以使用”，不含“驾驭力量”的比喻色彩。",
+          "collocation": "utilise existing data（利用现有数据）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "harness the potential of sth",
+          "meaning_zh": "发挥某事物的潜力"
+        },
+        {
+          "phrase": "harness technology",
+          "meaning_zh": "利用技术"
+        }
+      ],
+      "word_forms": [],
+      "examples": [
+        {
+          "sentence": "Rather than treating automation as a threat, employers could harness it to free staff from repetitive tasks.",
+          "translation_zh": "雇主与其把自动化视为威胁，不如利用它把员工从重复性工作中解放出来。",
+          "note_zh": "写作 Task 2 高分句型：Rather than treating X as a threat, ... could harness it to do ...。"
+        },
+        {
+          "sentence": "Early farmers learned to harness the seasonal floods to irrigate their fields.",
+          "translation_zh": "早期农民学会了利用季节性洪水灌溉田地。",
+          "note_zh": "阅读中 harness 常接自然力（floods, wind, sunlight），可替换 make use of。"
+        }
+      ]
+    },
+    {
+      "term": "obsolete",
+      "ipa_us": "/ˌɑːbsəˈliːt/",
+      "ipa_uk": "/ˈɒbsəliːt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中讨论技术更替、就业变化时常出现，常与 out of date、no longer used 同义替换；拼写易错（-ete 结尾）。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "过时的，不再使用的，被淘汰的",
+          "definition_en": "no longer used or useful because something newer has been invented or developed"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "outdated",
+          "pos": "adj.",
+          "definition_zh": "过时的，老旧的",
+          "nuance_zh": "更口语、更通用，可指观念、设备、信息；比 obsolete 语气轻，不一定“完全弃用”。",
+          "collocation": "outdated equipment（过时的设备）"
+        },
+        {
+          "term": "outmoded",
+          "pos": "adj.",
+          "definition_zh": "陈旧的，（观念、方法）不合时宜的",
+          "nuance_zh": "更正式，多形容做法、观念、制度，少见用于具体机器。",
+          "collocation": "outmoded working practices（陈旧的工作方式）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "become / go obsolete",
+          "meaning_zh": "变得过时，被淘汰"
+        },
+        {
+          "phrase": "render sth obsolete",
+          "meaning_zh": "使某事物被淘汰"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "obsolescence",
+          "pos": "n.",
+          "meaning_zh": "过时，淘汰（常指产品被 newer models 取代）"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Within a decade, the software had become obsolete and was no longer supported by its developers.",
+          "translation_zh": "不到十年，这款软件就已过时，开发者也不再提供支持。",
+          "note_zh": "become obsolete 是听力与阅读里的固定搭配，注意与 obsolete 连用的时态变化。"
+        },
+        {
+          "sentence": "Some economists argue that automation does not simply render jobs obsolete but changes the skills they require.",
+          "translation_zh": "一些经济学家认为，自动化并不只是让工作被淘汰，而是改变了这些工作所需的技能。",
+          "note_zh": "render sth obsolete 为写作高分结构，注意 render 后接宾语再接形容词。"
+        }
+      ]
+    },
+    {
+      "term": "proliferate",
+      "ipa_us": "/prəˈlɪfəreɪt/",
+      "ipa_uk": "/prəˈlɪfəreɪt/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读中描述数量迅速增长时的替换词（increase rapidly、mushroom）；其名词 proliferation 在写作趋势描述中很常用。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "激增，迅速增多；（生物）迅速繁殖",
+          "definition_en": "to increase rapidly in number or amount; to reproduce quickly"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "mushroom",
+          "pos": "v.",
+          "definition_zh": "迅速增多，雨后春笋般涌现",
+          "nuance_zh": "更形象、略口语，多用于新闻报道式描述，正式论文中不如 proliferate 稳妥。",
+          "collocation": "mushroom into a major industry（迅速发展成一大产业）"
+        },
+        {
+          "term": "multiply",
+          "pos": "v.",
+          "definition_zh": "成倍增加；繁殖",
+          "nuance_zh": "中性，既可指数目成倍增长，也可指生物繁殖，语气不如 proliferate 强调“数量之多”。",
+          "collocation": "multiply rapidly（迅速成倍增加）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "proliferate rapidly",
+          "meaning_zh": "迅速激增"
+        },
+        {
+          "phrase": "the proliferation of sth",
+          "meaning_zh": "某事物的激增、泛滥"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "proliferation",
+          "pos": "n.",
+          "meaning_zh": "激增，扩散"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Online learning platforms have proliferated in recent years, offering courses to students who cannot attend campus.",
+          "translation_zh": "近年来在线学习平台激增，为无法到校上课的学生提供课程。",
+          "note_zh": "现在完成时 + proliferate 是描述近年趋势的常用组合，可替换 have increased rapidly。"
+        },
+        {
+          "sentence": "The proliferation of cheap sensors has made it possible to monitor air quality street by street.",
+          "translation_zh": "廉价传感器的普及使逐条街道监测空气质量成为可能。",
+          "note_zh": "The proliferation of X has made it possible to ... 是阅读与写作中常见的因果句式。"
+        }
+      ]
+    },
+    {
+      "term": "streamline",
+      "ipa_us": "/ˈstriːmlaɪn/",
+      "ipa_uk": "/ˈstriːmlaɪn/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "听力 Section 3/4 谈流程改进、企业管理时的高频动词；写作建议段中常用来替代 make ... simpler and faster。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "简化（流程、机构）以提高效率",
+          "definition_en": "to make a process or organization simpler and more efficient by removing unnecessary parts"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "使呈流线型",
+          "definition_en": "to design something so that it has a smooth shape that reduces resistance to air or water"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "simplify",
+          "pos": "v.",
+          "definition_zh": "简化，使易懂",
+          "nuance_zh": "只强调“变得简单”，不含“提高效率、精简环节”的含义，可用于说明、解释等场景。",
+          "collocation": "simplify the application process（简化申请流程）"
+        },
+        {
+          "term": "rationalise",
+          "pos": "v.",
+          "definition_zh": "对……作合理化改革，精简",
+          "nuance_zh": "更正式，多用于机构、产业重组，强调去掉重复与低效部分；英式拼写常作 rationalise。",
+          "collocation": "rationalise the workforce（精简员工队伍）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "streamline the process",
+          "meaning_zh": "简化流程"
+        },
+        {
+          "phrase": "streamline operations",
+          "meaning_zh": "精简运营环节"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "streamlined",
+          "pos": "adj.",
+          "meaning_zh": "精简高效的；流线型的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The council streamlined its planning procedure, cutting the average waiting time from twelve weeks to four.",
+          "translation_zh": "该委员会简化了规划审批程序，把平均等待时间从十二周缩短到四周。",
+          "note_zh": "听力中常与 process、procedure、system 搭配，后接结果状语说明效率提升。"
+        },
+        {
+          "sentence": "Businesses often adopt new software in the hope of streamlining routine administration.",
+          "translation_zh": "企业常常采用新软件，希望简化日常行政工作。",
+          "note_zh": "in the hope of doing sth 是写作中表达目的的常用结构，注意后接动名词。"
+        }
+      ]
+    },
+    {
+      "term": "platform",
+      "ipa_us": "/ˈplætfɔːrm/",
+      "ipa_uk": "/ˈplætfɔːm/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中的多义辨析词，需根据上下文判断是“数字平台”“站台”还是“表达渠道”；听力旅行场景常考 railway platform 的拼写。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "（数字）平台，在线服务系统",
+          "definition_en": "a website or app that provides a service or allows users to share content"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "站台，月台",
+          "definition_en": "the flat area next to a railway track where passengers get on and off trains"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "（表达观点、展示才能的）机会，渠道",
+          "definition_en": "an opportunity or medium for expressing ideas or showing talent"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "portal",
+          "pos": "n.",
+          "definition_zh": "门户网站，入口网站",
+          "nuance_zh": "范围更窄，特指汇集信息与入口的网站，不能泛指社交平台或表达机会。",
+          "collocation": "an online news portal（在线新闻门户）"
+        },
+        {
+          "term": "outlet",
+          "pos": "n.",
+          "definition_zh": "表达途径，宣泄渠道",
+          "nuance_zh": "只对应“表达渠道”这一义项，强调释放想法或情绪，不能指数字平台或站台。",
+          "collocation": "an outlet for creative energy（释放创造力的途径）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "social media platform",
+          "meaning_zh": "社交媒体平台"
+        },
+        {
+          "phrase": "provide a platform for sb",
+          "meaning_zh": "为某人提供展示或表达的机会"
+        }
+      ],
+      "word_forms": [],
+      "examples": [
+        {
+          "sentence": "The survey found that most users under thirty get their news from social media platforms rather than newspapers.",
+          "translation_zh": "调查发现，三十岁以下用户大多从社交媒体平台而非报纸获取新闻。",
+          "note_zh": "此处 platform 指数字平台，阅读中要靠上下文排除“站台”义。"
+        },
+        {
+          "sentence": "The festival gives young musicians a platform to perform in front of a large audience.",
+          "translation_zh": "这个音乐节为年轻音乐人提供了在大量观众面前演出的机会。",
+          "note_zh": "give sb a platform to do sth 可用于文化、教育类写作话题。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Did you see that the library has replaced its old catalogue with an app?"
+    },
+    {
+      "speaker": "B",
+      "text": "I did. The idea is to streamline borrowing, but I couldn't work out how to renew a book."
+    },
+    {
+      "speaker": "A",
+      "text": "It's not exactly user-friendly. Still, those paper cards were becoming obsolete — half the entries were for books that had moved years ago."
+    },
+    {
+      "speaker": "B",
+      "text": "True. And once you get used to it, the search function is fast. The university says it wants to harness the data to see which subjects students actually borrow."
+    },
+    {
+      "speaker": "A",
+      "text": "That's the part that worries me. Once they start tracking borrowing habits, similar apps may proliferate across every department."
+    },
+    {
+      "speaker": "B",
+      "text": "I doubt it. Most students just want a platform where they can check a due date in ten seconds."
+    },
+    {
+      "speaker": "A",
+      "text": "Fair enough. Give it a month and we'll probably wonder how we ever managed without it."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In the sentence \"Employers could harness automation to free staff from repetitive tasks\", which option is closest in meaning to \"harness\"?",
+      "options": [
+        "restrain",
+        "make practical use of",
+        "predict the effects of",
+        "replace completely"
+      ],
+      "answer_index": 1,
+      "explanation_zh": "harness 在此意为“利用（以取得好处）”，相当于 make practical use of。restrain 是“限制”，意思相反；其余两项与词义无关。"
+    },
+    {
+      "question": "The report warns that the rapid ________ of unregulated apps may undermine public trust.",
+      "options": [
+        "proliferate",
+        "proliferation",
+        "proliferating",
+        "proliferated"
+      ],
+      "answer_index": 1,
+      "explanation_zh": "空格前有 the 和形容词 rapid，后接 of 短语，需要名词，故用 proliferation。proliferate 是动词，其余为分词形式，均不能作名词中心词。"
+    }
+  ],
+  "review": [
+    {
+      "term": "address",
+      "first_seen": "2026-11-09",
+      "question": "In academic writing, what does \"address\" mean in \"the report addresses the issue of youth unemployment\"?",
+      "answer": "Here \"address\" is a verb meaning to deal with or tackle a problem. It does not mean a postal address; the report discusses and tries to respond to the issue."
+    },
+    {
+      "term": "incentive",
+      "first_seen": "2026-11-09",
+      "question": "Give one synonym and one typical collocation for \"incentive\" as used in \"tax incentives for electric cars\".",
+      "answer": "Synonym: motivation (or inducement). Collocation: provide / offer an incentive for sb to do sth. In this context an incentive is a financial or other reward that encourages a particular action."
+    }
+  ]
+}
