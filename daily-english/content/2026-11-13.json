@@ -1,0 +1,397 @@
+{
+  "date": "2026-11-13",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "environment",
+  "title": "Environment: Conserving Resources, Cutting Emissions",
+  "words": [
+    {
+      "term": "conserve",
+      "ipa_us": "/kənˈsɜːrv/",
+      "ipa_uk": "/kənˈsɜːv/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常与 preserve / protect 构成同义替换；写作环境类题目里 conserve energy / resources 是高频搭配；注意 conserve（节约使用、合理利用）与 preserve（保护原状）的辨析。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "节约使用（能源、资源等），避免浪费",
+          "definition_en": "to use a supply of something such as energy, water or materials carefully so that it lasts"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "保护、维护（自然区域、物种等）",
+          "definition_en": "to protect something, especially a natural area or a species, from harm or change"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "preserve",
+          "pos": "v.",
+          "definition_zh": "保护、维持（原状）",
+          "nuance_zh": "强调保持原有状态、防止损坏，多用于文物、建筑、自然区域；conserve 更强调合理使用、避免浪费。",
+          "collocation": "preserve historic buildings（保护历史建筑）"
+        },
+        {
+          "term": "protect",
+          "pos": "v.",
+          "definition_zh": "保护（免受伤害）",
+          "nuance_zh": "强调使某人或某物免受具体伤害或威胁，常与 from 连用；conserve 不突出外部威胁。",
+          "collocation": "protect endangered species（保护濒危物种）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "conserve energy",
+          "meaning_zh": "节约能源"
+        },
+        {
+          "phrase": "conserve natural resources",
+          "meaning_zh": "保护自然资源"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "conservation",
+          "pos": "n.",
+          "meaning_zh": "保护；（资源的）节约使用"
+        },
+        {
+          "form": "conservationist",
+          "pos": "n.",
+          "meaning_zh": "自然保护主义者"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Simple changes at home, such as insulating the roof, can help households conserve energy and cut their bills.",
+          "translation_zh": "在家里做一些简单改动，比如给屋顶加隔热层，就能帮助家庭节约能源、减少开支。",
+          "note_zh": "写作 Task 2 环境话题常用搭配 conserve energy，可替代 save energy。"
+        },
+        {
+          "sentence": "The trust was set up to conserve a stretch of coastline that is home to several rare birds.",
+          "translation_zh": "该基金会成立的目的是保护一段海岸线，那里是几种珍稀鸟类的栖息地。",
+          "note_zh": "阅读中 conserve 常与 preserve、protect 形成同义替换。"
+        }
+      ]
+    },
+    {
+      "term": "emit",
+      "ipa_us": "/ɪˈmɪt/",
+      "ipa_uk": "/ɪˈmɪt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读和听力中常出现在排放与污染的数据描述里；写作中注意 emit 后接 greenhouse gases、carbon dioxide 等宾语；名词 emission 常用于 cut emissions。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "排放（气体、热量、光、声音等）",
+          "definition_en": "to send out gas, heat, light or sound into the air"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "release",
+          "pos": "v.",
+          "definition_zh": "释放、排放",
+          "nuance_zh": "语体中性，可指气体、能量、压力甚至情绪；emit 更偏技术性，多指光、热、气体、声音的散发。",
+          "collocation": "release carbon dioxide into the atmosphere（向大气排放二氧化碳）"
+        },
+        {
+          "term": "give off",
+          "pos": "phrase",
+          "definition_zh": "散发出（气味、热、光）",
+          "nuance_zh": "偏口语和非正式，多指气味、热、光；学术写作中通常用 emit。",
+          "collocation": "give off a strange smell（散发出奇怪的气味）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "emit greenhouse gases",
+          "meaning_zh": "排放温室气体"
+        },
+        {
+          "phrase": "emit carbon dioxide",
+          "meaning_zh": "排放二氧化碳"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "emission",
+          "pos": "n.",
+          "meaning_zh": "排放；排放物（常用复数 emissions）"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Older buses emit far higher levels of nitrogen dioxide than the electric models now being introduced.",
+          "translation_zh": "老公交车排放的二氧化氮水平远高于目前正在引入的电动车型。",
+          "note_zh": "emit 的主语是排放源，宾语是气体、光、热或声音，这是听力和阅读判断句意时的关键。"
+        },
+        {
+          "sentence": "Certain plants emit chemicals that can affect the behaviour of insects nearby.",
+          "translation_zh": "某些植物会释放化学物质，从而影响附近昆虫的行为。",
+          "note_zh": "注意 emit 不只用于污染话题，自然科学类阅读中也常见。"
+        }
+      ]
+    },
+    {
+      "term": "contaminate",
+      "ipa_us": "/kənˈtæmɪneɪt/",
+      "ipa_uk": "/kənˈtæmɪneɪt/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读中常与 pollute 构成同义替换，并多以被动形式 be contaminated with 出现；听力填空要注意拼写和 -ed 形容词形式 contaminated。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "使（水、土壤、食物等）受污染，使含有害物质",
+          "definition_en": "to make something such as water, soil or food dirty or harmful by adding a dangerous substance"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "pollute",
+          "pos": "v.",
+          "definition_zh": "污染（环境）",
+          "nuance_zh": "范围更广，常指空气、水、土壤被有害物质污染；contaminate 更强调有害物进入某物内部，使其不能安全使用。",
+          "collocation": "pollute the air（污染空气）"
+        },
+        {
+          "term": "taint",
+          "pos": "v.",
+          "definition_zh": "使（食物）变质；败坏（名声）",
+          "nuance_zh": "语体偏文学，多用于食物或名誉受损，一般不用于大规模环境污染。",
+          "collocation": "taint the reputation of the industry（败坏该行业的名声）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "contaminated water",
+          "meaning_zh": "受污染的水"
+        },
+        {
+          "phrase": "be contaminated with chemicals",
+          "meaning_zh": "被化学品污染"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "contamination",
+          "pos": "n.",
+          "meaning_zh": "污染"
+        },
+        {
+          "form": "contaminated",
+          "pos": "adj.",
+          "meaning_zh": "受污染的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Runoff from the farmland has contaminated the river, making it unsafe for swimming.",
+          "translation_zh": "农田径流污染了这条河，导致河水不适于游泳。",
+          "note_zh": "阅读中常见同义替换：be contaminated = be polluted。"
+        },
+        {
+          "sentence": "Tests showed that the soil around the site was contaminated with heavy metals.",
+          "translation_zh": "检测显示该场地周围的土壤受到了重金属污染。",
+          "note_zh": "记住被动搭配 be contaminated with，听力填空题常考介词。"
+        }
+      ]
+    },
+    {
+      "term": "deteriorate",
+      "ipa_us": "/dɪˈtɪriəreɪt/",
+      "ipa_uk": "/dɪˈtɪəriəreɪt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读和写作中描述环境、健康、设施变差的高频动词，常与 quality、conditions、health 搭配；注意派生名词 deterioration 可用于写作替换。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "恶化，变坏（质量、状况、健康等）",
+          "definition_en": "to become worse in quality, condition or state"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "worsen",
+          "pos": "v.",
+          "definition_zh": "使恶化，变得更糟",
+          "nuance_zh": "通用词，口语书面皆可，主观评价色彩较强；deteriorate 更正式，强调状况逐步变差的过程。",
+          "collocation": "worsen the situation（使情况恶化）"
+        },
+        {
+          "term": "decline",
+          "pos": "v.",
+          "definition_zh": "下降，衰退",
+          "nuance_zh": "强调数量或质量的下降，常用于数据、健康和经济；deteriorate 更强调状况本身变坏，而非数值减少。",
+          "collocation": "decline sharply in recent years（近年来急剧下降）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "deteriorating air quality",
+          "meaning_zh": "不断恶化的空气质量"
+        },
+        {
+          "phrase": "deteriorate rapidly",
+          "meaning_zh": "迅速恶化"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "deterioration",
+          "pos": "n.",
+          "meaning_zh": "恶化，退化"
+        },
+        {
+          "form": "deteriorating",
+          "pos": "adj.",
+          "meaning_zh": "日益恶化的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Air quality in the capital has deteriorated sharply over the past decade, according to the report.",
+          "translation_zh": "报告指出，过去十年首都的空气质量急剧恶化。",
+          "note_zh": "写作中可用 has deteriorated sharply 替换 has become much worse。"
+        },
+        {
+          "sentence": "Without regular maintenance, the city's drainage system will continue to deteriorate.",
+          "translation_zh": "如果缺乏定期维护，城市的排水系统将继续老化。",
+          "note_zh": "主语可以是抽象事物（系统、关系、健康），这是雅思阅读中的常见用法。"
+        }
+      ]
+    },
+    {
+      "term": "scarcity",
+      "ipa_us": "/ˈskersəti/",
+      "ipa_uk": "/ˈskeəsəti/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读中常与 shortage 构成同义替换，多用于资源和环境话题；写作中 water scarcity、housing scarcity 是常见搭配；注意形容词 scarce 与名词 scarcity 的词形转换。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "稀缺，匮乏（尤指资源不足）",
+          "definition_en": "a situation in which there is not enough of something, especially a natural resource"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "shortage",
+          "pos": "n.",
+          "definition_zh": "短缺，不足",
+          "nuance_zh": "常指暂时的供应不足，多与 of 连用；scarcity 更正式，常指长期性资源匮乏，是经济学常用词。",
+          "collocation": "a shortage of skilled workers（技术工人短缺）"
+        },
+        {
+          "term": "deficiency",
+          "pos": "n.",
+          "definition_zh": "缺乏，不足",
+          "nuance_zh": "多用于营养、维生素或能力方面的不足，一般不用于资源供应。",
+          "collocation": "iron deficiency（缺铁）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "water scarcity",
+          "meaning_zh": "水资源短缺"
+        },
+        {
+          "phrase": "resource scarcity",
+          "meaning_zh": "资源匮乏"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "scarce",
+          "pos": "adj.",
+          "meaning_zh": "稀缺的，不足的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Water scarcity is likely to become one of the most pressing issues in the region within twenty years.",
+          "translation_zh": "二十年内，水资源短缺很可能成为该地区最紧迫的问题之一。",
+          "note_zh": "写作环境类题目可直接用 water scarcity 作为主题词。"
+        },
+        {
+          "sentence": "The scarcity of affordable housing has forced many young people to move to the outskirts.",
+          "translation_zh": "经济适用房稀缺，迫使许多年轻人搬到郊区居住。",
+          "note_zh": "scarcity of + 名词 是阅读中常见的同义替换结构，对应 not enough。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Have you noticed how much the air quality has deteriorated downtown since they started building that new road?"
+    },
+    {
+      "speaker": "B",
+      "text": "Definitely. On still days you can almost see the exhaust fumes hanging over the junction. Apparently the older buses emit far more nitrogen dioxide than the electric ones."
+    },
+    {
+      "speaker": "A",
+      "text": "That's what a friend of mine said. He works for a group that's trying to conserve the wetland just outside the city."
+    },
+    {
+      "speaker": "B",
+      "text": "The one near the industrial estate? I heard the water there was contaminated with chemicals a few years ago."
+    },
+    {
+      "speaker": "A",
+      "text": "It was, yes. They spent a fortune cleaning it up, and now they're worried about water scarcity as well, because the summers keep getting drier."
+    },
+    {
+      "speaker": "B",
+      "text": "That seems odd — building more factories in an area where water is already scarce."
+    },
+    {
+      "speaker": "A",
+      "text": "Exactly. The group argues that if the council wants to attract industry, it should first make sure the local infrastructure can cope."
+    },
+    {
+      "speaker": "B",
+      "text": "That makes sense. Maybe I should come along to one of their meetings."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In the sentence \"Water quality in the river has deteriorated since the factory opened\", which word is closest in meaning to \"deteriorated\"?",
+      "options": [
+        "worsened",
+        "expanded",
+        "stabilised",
+        "improved"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "deteriorate 表示状况“变坏、恶化”，与 worsen 最接近；expand 是扩张，stabilise 是稳定，improve 是改善，方向相反。"
+    },
+    {
+      "question": "Farmers living near the river were warned that the water had been ______ by waste from the factory.",
+      "options": [
+        "contaminated",
+        "conserved",
+        "emitted",
+        "deteriorated"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "contaminate 指有害物质进入水、土壤或食物，使其不能安全使用，be contaminated by/with 是常见搭配。conserve 是节约、保护；emit 的主语是排放源而不是被污染的对象；deteriorate 是不及物动词，表示“恶化”，不能这样用被动结构。"
+    }
+  ],
+  "review": [
+    {
+      "term": "congestion",
+      "first_seen": "2026-11-10",
+      "question": "Rewrite the sentence using the noun \"congestion\": \"Traffic in the city centre is getting much worse during rush hour.\"",
+      "answer": "Traffic congestion in the city centre is getting much worse during rush hour."
+    },
+    {
+      "term": "off the beaten track",
+      "first_seen": "2026-11-10",
+      "question": "Complete the sentence with the missing phrase: \"We spent a week in a small village ______ ______ ______ ______, where few tourists ever go.\"",
+      "answer": "off the beaten track"
+    }
+  ]
+}
