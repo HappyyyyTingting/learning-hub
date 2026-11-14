@@ -1,0 +1,390 @@
+{
+  "date": "2026-11-14",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "education",
+  "title": "Education Pathways: Curriculum, Assessment and Vocational Choices",
+  "words": [
+    {
+      "term": "curriculum",
+      "ipa_us": "/kəˈrɪkjələm/",
+      "ipa_uk": "/kəˈrɪkjələm/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常与 syllabus、course content 同义替换；写作教育类题目常考“课程设置是否应更实用”。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "课程体系；学校或教育项目所教授的全部课程与内容",
+          "definition_en": "the subjects and content taught in a school or educational programme"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "syllabus",
+          "pos": "n.",
+          "definition_zh": "课程大纲；教学纲要",
+          "nuance_zh": "syllabus 通常指单门课的教学提纲或进度安排，curriculum 指一个学校或项目的整体课程体系。",
+          "collocation": "design a syllabus（设计课程大纲）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "national curriculum",
+          "meaning_zh": "国家课程体系"
+        },
+        {
+          "phrase": "curriculum design",
+          "meaning_zh": "课程设计"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "curricular",
+          "pos": "adj.",
+          "meaning_zh": "课程的；与课程相关的"
+        },
+        {
+          "form": "curricula",
+          "pos": "n.",
+          "meaning_zh": "curriculum 的复数，指多套课程体系"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Critics argue that the national curriculum should place greater emphasis on financial literacy and practical skills.",
+          "translation_zh": "批评者认为国家课程应更加重视金融素养和实用技能。",
+          "note_zh": "写作教育类常用 should place emphasis on 表达建议。"
+        },
+        {
+          "sentence": "Researchers compared the curriculum in Finland with that in Japan to identify differences in teaching priorities.",
+          "translation_zh": "研究人员比较了芬兰和日本的课程体系，以找出教学重点的差异。",
+          "note_zh": "阅读比较研究常见 compare A with B；that 指代 curriculum。"
+        }
+      ]
+    },
+    {
+      "term": "assess",
+      "ipa_us": "/əˈses/",
+      "ipa_uk": "/əˈses/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力、阅读中常与 evaluate、measure 同义替换；写作中用于“评估影响、效果或进步”。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "评估，评价质量、价值或重要性",
+          "definition_en": "to judge the quality, value, or importance of something"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "估算数量、成本或影响",
+          "definition_en": "to calculate or estimate the amount or effect of something"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "evaluate",
+          "pos": "v.",
+          "definition_zh": "评估；评价",
+          "nuance_zh": "evaluate 更强调按标准判断价值或效果，常用于研究、政策；assess 更通用，也可指估算影响或损失。",
+          "collocation": "evaluate the effectiveness（评估有效性）"
+        },
+        {
+          "term": "appraise",
+          "pos": "v.",
+          "definition_zh": "评价；估价",
+          "nuance_zh": "appraise 更正式，常用于绩效、财产价值，雅思日常语境中不如 evaluate 常见。",
+          "collocation": "appraise performance（评估表现）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "assess the impact",
+          "meaning_zh": "评估影响"
+        },
+        {
+          "phrase": "assess students' progress",
+          "meaning_zh": "评估学生的进步"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "assessment",
+          "pos": "n.",
+          "meaning_zh": "评估；评价"
+        },
+        {
+          "form": "assessor",
+          "pos": "n.",
+          "meaning_zh": "评估员；考官"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Teachers are increasingly expected to assess not only final answers but also the process students use to reach them.",
+          "translation_zh": "人们日益期望教师不仅评估最终答案，还评估学生得出答案的过程。",
+          "note_zh": "not only... but also 是阅读和写作常见结构。"
+        },
+        {
+          "sentence": "Before introducing the new policy, the council commissioned a team to assess its likely impact on local schools.",
+          "translation_zh": "在推行新政策之前，委员会委托一个团队评估其可能对当地学校造成的影响。",
+          "note_zh": "assess the impact 是写作高频搭配；commission a team 表示委托团队。"
+        }
+      ]
+    },
+    {
+      "term": "compulsory",
+      "ipa_us": "/kəmˈpʌlsəri/",
+      "ipa_uk": "/kəmˈpʌlsəri/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "教育类阅读常见 compulsory education/attendance；听力填空中注意拼写及与 optional 的反义关系。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "义务的；强制性的，依法或按规定必须做的",
+          "definition_en": "required by law or a rule; not optional"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "mandatory",
+          "pos": "adj.",
+          "definition_zh": "强制性的；法定的",
+          "nuance_zh": "mandatory 更常用于官方规定、法律或安全要求，语气正式；compulsory 与教育、兵役等制度搭配更固定。",
+          "collocation": "mandatory training（强制培训）"
+        },
+        {
+          "term": "obligatory",
+          "pos": "adj.",
+          "definition_zh": "有义务的；必须的",
+          "nuance_zh": "obligatory 更正式，强调道德或法律义务，日常口语少用；compulsory 更直接指规定要求。",
+          "collocation": "obligatory attendance（必须出席）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "compulsory education",
+          "meaning_zh": "义务教育"
+        },
+        {
+          "phrase": "compulsory course",
+          "meaning_zh": "必修课"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "compel",
+          "pos": "v.",
+          "meaning_zh": "强迫；迫使"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "In many countries, schooling is compulsory until the age of sixteen, although the exact leaving age varies.",
+          "translation_zh": "在许多国家，孩子十六岁前必须上学，不过具体的离校年龄各不相同。",
+          "note_zh": "until the age of 是听力和阅读常见时间表达。"
+        },
+        {
+          "sentence": "Some universities make foreign-language study compulsory, while others offer it only as an optional module.",
+          "translation_zh": "有些大学把外语学习设为必修，而另一些大学只将其作为选修模块。",
+          "note_zh": "compulsory 与 optional 对比，是阅读同义反义常考点。"
+        }
+      ]
+    },
+    {
+      "term": "vocational",
+      "ipa_us": "/voʊˈkeɪʃənəl/",
+      "ipa_uk": "/vəʊˈkeɪʃənəl/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读和写作教育类常讨论 vocational education/training 与 academic study 的对比；注意拼写和词性。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "职业的；职业培训的，为特定工作做准备的",
+          "definition_en": "relating to the skills and training needed for a particular job"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "occupational",
+          "pos": "adj.",
+          "definition_zh": "职业的；与工作相关的",
+          "nuance_zh": "occupational 更正式，偏研究或健康语境（如 occupational health）；vocational 更强调教育培训通向职业。",
+          "collocation": "occupational health（职业健康）"
+        },
+        {
+          "term": "professional",
+          "pos": "adj.",
+          "definition_zh": "职业的；专业的",
+          "nuance_zh": "professional 指专业水准或从事某职业，不等同于 vocational training；vocational 常与技能培训、非学术路径搭配。",
+          "collocation": "professional development（专业发展）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "vocational training",
+          "meaning_zh": "职业培训"
+        },
+        {
+          "phrase": "vocational education",
+          "meaning_zh": "职业教育"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "vocation",
+          "pos": "n.",
+          "meaning_zh": "职业；使命感"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Governments often promote vocational training as a way of reducing youth unemployment.",
+          "translation_zh": "政府常常推广职业培训，以此作为降低青年失业率的一种方式。",
+          "note_zh": "promote ... as a way of 是写作常见结构。"
+        },
+        {
+          "sentence": "The report suggests that vocational courses should be valued as highly as academic degrees.",
+          "translation_zh": "该报告建议，职业课程应与学术学位受到同等重视。",
+          "note_zh": "as highly as 比较结构常用于教育公平话题。"
+        }
+      ]
+    },
+    {
+      "term": "cognitive",
+      "ipa_us": "/ˈkɑːɡnətɪv/",
+      "ipa_uk": "/ˈkɒɡnətɪv/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常与 mental、thinking 相关表达同义替换；教育、健康话题讨论 cognitive development/skills。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "认知的；与思维、理解、学习和记忆有关的",
+          "definition_en": "relating to mental processes such as thinking, understanding, learning and remembering"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "mental",
+          "pos": "adj.",
+          "definition_zh": "心理的；精神的；智力的",
+          "nuance_zh": "mental 范围更广，可指情绪或心理健康；cognitive 更学术，特指思维和知识加工过程。",
+          "collocation": "mental health（心理健康）"
+        },
+        {
+          "term": "intellectual",
+          "pos": "adj.",
+          "definition_zh": "智力的；知识分子的",
+          "nuance_zh": "intellectual 强调高级思维或学术能力；cognitive 是心理学和教育学术语，较中性。",
+          "collocation": "intellectual development（智力发展）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "cognitive development",
+          "meaning_zh": "认知发展"
+        },
+        {
+          "phrase": "cognitive skills",
+          "meaning_zh": "认知技能"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "cognition",
+          "pos": "n.",
+          "meaning_zh": "认知；认识过程"
+        },
+        {
+          "form": "cognitively",
+          "pos": "adv.",
+          "meaning_zh": "认知上地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Research indicates that bilingual children may develop stronger cognitive skills in areas such as attention and problem-solving.",
+          "translation_zh": "研究表明，双语儿童可能在注意力和解决问题等方面发展出更强的认知技能。",
+          "note_zh": "may develop 是学术写作中的谨慎语气；such as 用于举例。"
+        },
+        {
+          "sentence": "Sleep deprivation can affect cognitive performance, making it harder for students to concentrate in class.",
+          "translation_zh": "睡眠不足会影响认知表现，使学生更难在课堂上集中注意力。",
+          "note_zh": "affect + 名词是写作高频搭配；making it harder 作结果状语。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "I read that some schools are changing their curriculum to include more practical subjects. Do you think that's a good idea?"
+    },
+    {
+      "speaker": "B",
+      "text": "Definitely. When I was at school, most lessons were academic, and vocational courses were seen as less valuable. But not everyone needs a university degree."
+    },
+    {
+      "speaker": "A",
+      "text": "True. In my country, education is compulsory until sixteen, but after that many students choose vocational training."
+    },
+    {
+      "speaker": "B",
+      "text": "That makes sense. The problem is how schools assess students. Exams often measure memory rather than cognitive skills like problem-solving."
+    },
+    {
+      "speaker": "A",
+      "text": "Exactly. If assessment focused more on projects, students might develop better critical thinking."
+    },
+    {
+      "speaker": "B",
+      "text": "But teachers need training to assess that kind of work fairly."
+    },
+    {
+      "speaker": "A",
+      "text": "Right, and the curriculum should still cover basics like literacy and numeracy."
+    },
+    {
+      "speaker": "B",
+      "text": "Yes, a balance between academic and vocational paths seems best."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which word is closest in meaning to 'mandatory' in the context of school attendance?",
+      "options": [
+        "compulsory",
+        "vocational",
+        "cognitive",
+        "optional"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "compulsory 和 mandatory 都表示“按规定或法律必须做的”；optional 是反义词，vocational 是“职业的”，cognitive 是“认知的”。"
+    },
+    {
+      "question": "In the sentence 'The study aims to assess the impact of class size on learning,' which replacement is most natural?",
+      "options": [
+        "evaluate",
+        "appraise",
+        "ignore",
+        "reduce"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "evaluate the impact 可以自然替换 assess the impact；appraise 更常用于评估价值或表现，和 impact 的搭配不如 evaluate 自然。"
+    }
+  ],
+  "review": [
+    {
+      "term": "chronic",
+      "first_seen": "2026-11-11",
+      "question": "Which adjective describes a health problem that lasts for a long time or keeps returning, and is often used before 'illness' or 'disease'?",
+      "answer": "chronic"
+    },
+    {
+      "term": "immune",
+      "first_seen": "2026-11-11",
+      "question": "Which word means protected from a disease, and is commonly used in the phrase '______ system'?",
+      "answer": "immune"
+    }
+  ]
+}
