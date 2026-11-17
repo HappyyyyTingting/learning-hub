@@ -1,0 +1,412 @@
+{
+  "date": "2026-11-17",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "society",
+  "title": "Building a Cohesive Society",
+  "words": [
+    {
+      "term": "integrate",
+      "ipa_us": "/ˈɪntɪɡreɪt/",
+      "ipa_uk": "/ˈɪntɪɡreɪt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常以 integrate into / be integrated with 的同义替换出现，写作讨论移民、社区或课程融合时也常用。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "使合并；使成为一体",
+          "definition_en": "to combine two or more things so that they form a whole"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "融入（群体、社会）",
+          "definition_en": "to become or help someone become part of a group or society"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "incorporate",
+          "pos": "v.",
+          "definition_zh": "包含；并入",
+          "nuance_zh": "更强调把某物纳入更大整体，常用于正式或学术语境。",
+          "collocation": "incorporate into the design（纳入设计中）"
+        },
+        {
+          "term": "assimilate",
+          "pos": "v.",
+          "definition_zh": "同化；吸收",
+          "nuance_zh": "强调群体或个人逐渐融入并接受主流文化，语体较正式。",
+          "collocation": "assimilate into the local culture（融入当地文化）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "integrate into society",
+          "meaning_zh": "融入社会"
+        },
+        {
+          "phrase": "integrate theory with practice",
+          "meaning_zh": "把理论与实践结合"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "integration",
+          "pos": "n.",
+          "meaning_zh": "整合；融合"
+        },
+        {
+          "form": "integrated",
+          "pos": "adj.",
+          "meaning_zh": "综合的；融合的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Successful integration depends not only on immigrants learning the language but also on local communities being open to newcomers.",
+          "translation_zh": "成功的融合不仅取决于移民学习语言，也取决于当地社区对新来者的接纳。",
+          "note_zh": "写作常用 not only... but also 结构，integration 是 integrate 的名词派生。"
+        },
+        {
+          "sentence": "The city's transport network is designed to integrate buses, trains and bicycle lanes into a single system.",
+          "translation_zh": "该市的交通网络旨在把公交车、火车和自行车道整合为一个系统。",
+          "note_zh": "阅读中 integrate A into B 常被改写为 combine A with B。"
+        }
+      ]
+    },
+    {
+      "term": "cohesive",
+      "ipa_us": "/koʊˈhiːsɪv/",
+      "ipa_uk": "/kəʊˈhiːsɪv/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "写作和阅读中常修饰 community/society，考查与 cohesion 的词族转换及“有凝聚力”这一抽象义。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "有凝聚力的；团结的",
+          "definition_en": "united and working well together as a group"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "连贯的；统一的",
+          "definition_en": "well organized so that the parts form a clear, connected whole"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "united",
+          "pos": "adj.",
+          "definition_zh": "团结的；一致的",
+          "nuance_zh": "更通用，强调一致行动，但不一定强调群体内部的紧密联系。",
+          "collocation": "a united community（团结的社区）"
+        },
+        {
+          "term": "close-knit",
+          "pos": "adj.",
+          "definition_zh": "关系紧密的",
+          "nuance_zh": "多形容小型群体，如家庭、邻里或团队，带有亲近感。",
+          "collocation": "a close-knit neighbourhood（关系紧密的街区）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a cohesive society",
+          "meaning_zh": "有凝聚力的社会"
+        },
+        {
+          "phrase": "socially cohesive",
+          "meaning_zh": "具有社会凝聚力的"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "cohesion",
+          "pos": "n.",
+          "meaning_zh": "凝聚力；连贯性"
+        },
+        {
+          "form": "cohesiveness",
+          "pos": "n.",
+          "meaning_zh": "凝聚力"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "A cohesive community is often built through shared public spaces and regular local events.",
+          "translation_zh": "一个有凝聚力的社区往往通过共享公共空间和定期社区活动建立起来。",
+          "note_zh": "写作中 cohesive 常修饰 community/society，避免只用 united。"
+        },
+        {
+          "sentence": "The essay lacks a cohesive structure because each paragraph introduces a new idea without linking it to the last.",
+          "translation_zh": "这篇文章缺乏连贯的结构，因为每一段都引入新观点却没有与上一段衔接。",
+          "note_zh": "cohesive 也可指文章“连贯”，阅读中对应 coherent。"
+        }
+      ]
+    },
+    {
+      "term": "infrastructure",
+      "ipa_us": "/ˈɪnfrəstrʌktʃər/",
+      "ipa_uk": "/ˈɪnfrəstrʌktʃə/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力和阅读常见搭配 transport/social infrastructure，注意不可数用法及与 facility 的区别。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "基础设施",
+          "definition_en": "the basic systems and services, such as transport and power supplies, that a country or city needs to function"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "facilities",
+          "pos": "n.",
+          "definition_zh": "设施；设备",
+          "nuance_zh": "更具体，常指建筑、设备等，不涵盖交通、能源等整体系统。",
+          "collocation": "sports facilities（体育设施）"
+        },
+        {
+          "term": "amenities",
+          "pos": "n.",
+          "definition_zh": "生活便利设施",
+          "nuance_zh": "多指供人舒适生活的服务或设施，如商店、公园，范围比 infrastructure 窄。",
+          "collocation": "local amenities（本地生活设施）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "transport infrastructure",
+          "meaning_zh": "交通基础设施"
+        },
+        {
+          "phrase": "invest in infrastructure",
+          "meaning_zh": "投资基础设施"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "infrastructural",
+          "pos": "adj.",
+          "meaning_zh": "基础设施的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Governments often argue that spending on infrastructure can stimulate economic growth, especially in rural areas.",
+          "translation_zh": "政府常认为，基础设施支出能够刺激经济增长，尤其是在农村地区。",
+          "note_zh": "听力/阅读中 infrastructure 常与 invest/spend/fund 搭配。"
+        },
+        {
+          "sentence": "Poor infrastructure can discourage companies from setting up factories in remote regions.",
+          "translation_zh": "基础设施薄弱会使企业不愿在偏远地区建厂。",
+          "note_zh": "注意不可数用法，不说 an infrastructure 表示一般概念。"
+        }
+      ]
+    },
+    {
+      "term": "marginalise",
+      "ipa_us": "/ˈmɑːrdʒɪnəlaɪz/",
+      "ipa_uk": "/ˈmɑːdʒɪnəlaɪz/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读社会类文章常以被动语态出现，考查“使边缘化”而非仅“边缘”的字面理解；写作可用于讨论弱势群体。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "使边缘化；使处于次要地位",
+          "definition_en": "to treat a person or group as unimportant and push them to the edge of society or a group"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "sideline",
+          "pos": "v.",
+          "definition_zh": "使靠边；使处于次要地位",
+          "nuance_zh": "更口语，常指把人排除在决策或活动之外。",
+          "collocation": "be sidelined in the discussion（在讨论中被边缘化）"
+        },
+        {
+          "term": "exclude",
+          "pos": "v.",
+          "definition_zh": "排除；排斥",
+          "nuance_zh": "强调不让进入或参与，语义比 marginalise 更直接。",
+          "collocation": "exclude from decision-making（排除在决策之外）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "marginalise minority groups",
+          "meaning_zh": "使少数群体边缘化"
+        },
+        {
+          "phrase": "feel marginalised",
+          "meaning_zh": "感到被边缘化"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "marginalisation",
+          "pos": "n.",
+          "meaning_zh": "边缘化"
+        },
+        {
+          "form": "marginalised",
+          "pos": "adj.",
+          "meaning_zh": "被边缘化的"
+        },
+        {
+          "form": "marginal",
+          "pos": "adj.",
+          "meaning_zh": "边缘的；微小的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Language barriers can marginalise immigrants in the workplace, even when they have relevant qualifications.",
+          "translation_zh": "语言障碍可能使移民在职场中被边缘化，即使他们具备相关资质。",
+          "note_zh": "阅读中常见被动语态 be marginalised，注意与 marginal（边缘的）区分。"
+        },
+        {
+          "sentence": "Critics claim that the new policy will further marginalise low-income families.",
+          "translation_zh": "批评者称，新政策将进一步使低收入家庭边缘化。",
+          "note_zh": "写作中可用 further marginalise 表示“进一步边缘化”。"
+        }
+      ]
+    },
+    {
+      "term": "civic",
+      "ipa_us": "/ˈsɪvɪk/",
+      "ipa_uk": "/ˈsɪvɪk/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读和写作中常与 engagement/responsibility 搭配，注意与 civil（公民的、民事的）辨析。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "公民的；市民的",
+          "definition_en": "relating to a city or town and the duties or activities of its citizens"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "municipal",
+          "pos": "adj.",
+          "definition_zh": "市政的；地方政府的",
+          "nuance_zh": "更正式，主要与政府管理、城市设施搭配。",
+          "collocation": "municipal services（市政服务）"
+        },
+        {
+          "term": "public",
+          "pos": "adj.",
+          "definition_zh": "公共的；公众的",
+          "nuance_zh": "范围更广，不特指公民身份或城市事务。",
+          "collocation": "public transport（公共交通）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "civic engagement",
+          "meaning_zh": "公民参与"
+        },
+        {
+          "phrase": "civic responsibility",
+          "meaning_zh": "公民责任"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "civics",
+          "pos": "n.",
+          "meaning_zh": "公民学"
+        },
+        {
+          "form": "civic-minded",
+          "pos": "adj.",
+          "meaning_zh": "有公民意识的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Schools are increasingly expected to promote civic responsibility by encouraging students to volunteer in their local communities.",
+          "translation_zh": "人们越来越期待学校通过鼓励学生在当地社区做志愿者来培养公民责任。",
+          "note_zh": "写作中 civic responsibility 比 social responsibility 更强调公民角色。"
+        },
+        {
+          "sentence": "The survey measured levels of civic engagement, such as voting and attending public meetings.",
+          "translation_zh": "该调查衡量了公民参与程度，例如投票和参加公开会议。",
+          "note_zh": "阅读中 civic engagement 常与 participation 同义替换。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "I've just moved to a new neighbourhood, and I'm trying to get a sense of what it's like."
+    },
+    {
+      "speaker": "B",
+      "text": "How are you finding it so far?"
+    },
+    {
+      "speaker": "A",
+      "text": "The transport infrastructure is good—there are buses and a train station nearby—but I don't know many people yet."
+    },
+    {
+      "speaker": "B",
+      "text": "That's common. Joining a local club is a good way to integrate into the community."
+    },
+    {
+      "speaker": "A",
+      "text": "I was thinking about volunteering, actually."
+    },
+    {
+      "speaker": "B",
+      "text": "That would help. Places with strong civic engagement tend to feel more cohesive."
+    },
+    {
+      "speaker": "A",
+      "text": "So you mean people look out for each other?"
+    },
+    {
+      "speaker": "B",
+      "text": "Exactly. Even small things, like a community garden, can bring residents together."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "The new transport plan is intended to ___ buses, trains and cycling routes into one network.",
+      "options": [
+        "integrate",
+        "marginalise",
+        "cohesion",
+        "civic"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "integrate A into B 表示“把 A 整合进 B”；marginalise 是“使边缘化”，cohesion 是名词，civic 是形容词，均不符合此处动词和语义要求。"
+    },
+    {
+      "question": "Which phrase is the best synonym for “a cohesive community”?",
+      "options": [
+        "a close-knit community",
+        "a marginalised community",
+        "a civic building",
+        "a transport network"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "cohesive 表示“有凝聚力的、团结的”，close-knit 最接近；marginalised 是“被边缘化的”，civic building 是“市政建筑”，transport network 是“交通网络”。"
+    }
+  ],
+  "review": [
+    {
+      "term": "assess",
+      "first_seen": "2026-11-14",
+      "question": "Complete the sentence with the correct form of assess: Teachers need to ___ students' progress regularly.",
+      "answer": "assess"
+    },
+    {
+      "term": "accommodate",
+      "first_seen": "2026-11-10",
+      "question": "What does accommodate mean in the sentence “The hotel can accommodate up to 300 guests”?",
+      "answer": "It means the hotel has enough space for up to 300 guests."
+    }
+  ]
+}
