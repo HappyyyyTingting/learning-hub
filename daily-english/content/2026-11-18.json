@@ -1,0 +1,418 @@
+{
+  "date": "2026-11-18",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v2",
+  "theme": "science",
+  "title": "Science in Everyday Decisions",
+  "words": [
+    {
+      "term": "hypothesis",
+      "ipa_us": "/haɪˈpɑːθəsɪs/",
+      "ipa_uk": "/haɪˈpɒθəsɪs/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常与 theory、evidence 等词一起出现，写作中用于描述研究假设；听力中要注意复数 hypotheses 的拼写。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "假设；假说",
+          "definition_en": "a proposed explanation that can be tested by evidence"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "assumption",
+          "pos": "n.",
+          "definition_zh": "假定；假设",
+          "nuance_zh": "assumption 是假定认为某事为真，未必经过检验；hypothesis 更正式，强调可被证据检验。",
+          "collocation": "a working assumption（暂定假设）"
+        },
+        {
+          "term": "theory",
+          "pos": "n.",
+          "definition_zh": "理论；学说",
+          "nuance_zh": "theory 指较系统的解释；hypothesis 是待检验的初步假设，不能随意互换。",
+          "collocation": "test a theory（检验理论）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "test a hypothesis",
+          "meaning_zh": "检验假设"
+        },
+        {
+          "phrase": "formulate a hypothesis",
+          "meaning_zh": "提出假设"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "hypotheses",
+          "pos": "n.",
+          "meaning_zh": "hypothesis 的复数形式"
+        },
+        {
+          "form": "hypothesise (UK) / hypothesize (US)",
+          "pos": "v.",
+          "meaning_zh": "假设；假定"
+        },
+        {
+          "form": "hypothetical",
+          "pos": "adj.",
+          "meaning_zh": "假设的；假想的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Rather than treating the first explanation as fact, researchers designed a simple experiment to test the hypothesis.",
+          "translation_zh": "研究人员没有把最初的解释当作事实，而是设计了一个简单实验来检验这个假设。",
+          "note_zh": "注意 test a hypothesis 是常用搭配；rather than 表示对比。"
+        },
+        {
+          "sentence": "A hypothesis that cannot be tested with evidence is of limited value in scientific writing.",
+          "translation_zh": "在科学写作中，无法用证据检验的假设价值有限。",
+          "note_zh": "that 引导定语从句；科学写作中强调 hypothesis 应可检验。"
+        }
+      ]
+    },
+    {
+      "term": "empirical",
+      "ipa_us": "/ɪmˈpɪrɪkəl/",
+      "ipa_uk": "/ɪmˈpɪrɪkəl/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常与 evidence、data、observation 搭配，并与 theoretical 对比；写作中用 empirical evidence 可避免口语化的 real proof。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "以观察或实验为依据的；实证的",
+          "definition_en": "based on observation or experiments rather than theory"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "observational",
+          "pos": "adj.",
+          "definition_zh": "观察的；基于观察的",
+          "nuance_zh": "observational 更具体地指观察方法；empirical 范围更广，可包括观察、实验和数据。",
+          "collocation": "observational data（观察数据）"
+        },
+        {
+          "term": "experimental",
+          "pos": "adj.",
+          "definition_zh": "实验的；基于实验的",
+          "nuance_zh": "experimental 侧重实验方法；empirical 还可指经验或实际数据。",
+          "collocation": "experimental evidence（实验证据）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "empirical evidence",
+          "meaning_zh": "实证证据"
+        },
+        {
+          "phrase": "empirical research",
+          "meaning_zh": "实证研究"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "empirically",
+          "pos": "adv.",
+          "meaning_zh": "以实证方式；经验上"
+        },
+        {
+          "form": "empiricism",
+          "pos": "n.",
+          "meaning_zh": "经验主义；实证方法"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The claim sounds convincing, but there is little empirical evidence to show that the policy actually changes behaviour.",
+          "translation_zh": "这个说法听起来有说服力，但几乎没有实证证据表明该政策确实改变了行为。",
+          "note_zh": "little evidence 表示“几乎没有证据”；写作中常用于质疑观点。"
+        },
+        {
+          "sentence": "Empirical research often begins with careful observation rather than with a general theory.",
+          "translation_zh": "实证研究通常始于细致的观察，而不是始于一般理论。",
+          "note_zh": "rather than 表示对比；research 在此为不可数名词。"
+        }
+      ]
+    },
+    {
+      "term": "plausible",
+      "ipa_us": "/ˈplɔːzəbəl/",
+      "ipa_uk": "/ˈplɔːzəbəl/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读推断题常考“看似合理但未必正确”；写作中用于评价解释或方案，要注意与 possible、probable 区分。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "看似合理的；有道理的",
+          "definition_en": "seeming reasonable or likely to be true"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "可信的；看似真实的",
+          "definition_en": "seeming believable, sometimes without being certain"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "credible",
+          "pos": "adj.",
+          "definition_zh": "可信的；有说服力的",
+          "nuance_zh": "credible 更强调可信、可靠；plausible 强调表面上合理，但不一定正确。",
+          "collocation": "a credible source（可信来源）"
+        },
+        {
+          "term": "believable",
+          "pos": "adj.",
+          "definition_zh": "可相信的；显得真实的",
+          "nuance_zh": "believable 更口语化；plausible 更正式，常用于解释、理论或方案。",
+          "collocation": "a believable explanation（可信的解释）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a plausible explanation",
+          "meaning_zh": "看似合理的解释"
+        },
+        {
+          "phrase": "sound plausible",
+          "meaning_zh": "听起来合理"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "plausibility",
+          "pos": "n.",
+          "meaning_zh": "合理性；可信度"
+        },
+        {
+          "form": "plausibly",
+          "pos": "adv.",
+          "meaning_zh": "看似合理地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The most plausible explanation is not always the one supported by the strongest evidence.",
+          "translation_zh": "最看似合理的解释并不总是得到最强证据支持的那个解释。",
+          "note_zh": "阅读推断中要注意 plausible 不等于 proven。"
+        },
+        {
+          "sentence": "When evaluating a proposal, decision-makers should consider whether the benefits are plausible as well as desirable.",
+          "translation_zh": "评估提案时，决策者应考虑其益处是否既合意又可信。",
+          "note_zh": "whether 引导宾语从句；as well as 连接并列成分。"
+        }
+      ]
+    },
+    {
+      "term": "anomaly",
+      "ipa_us": "/əˈnɑːməli/",
+      "ipa_uk": "/əˈnɒməli/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读科学类文章常指与规律不符的“异常数据或现象”；听力中可能作为具体名词出现，注意复数 anomalies 的拼写。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "异常事物；反常现象",
+          "definition_en": "something that differs from what is standard, normal, or expected"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "irregularity",
+          "pos": "n.",
+          "definition_zh": "不规则；异常",
+          "nuance_zh": "irregularity 更通用，可指规律、行为或数据的不规则；anomaly 更正式，常指单个异常现象。",
+          "collocation": "a minor irregularity（小异常）"
+        },
+        {
+          "term": "exception",
+          "pos": "n.",
+          "definition_zh": "例外",
+          "nuance_zh": "exception 指不符合规则的情况，但不一定异常；anomaly 强调偏离正常规律。",
+          "collocation": "a notable exception（显著例外）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a statistical anomaly",
+          "meaning_zh": "统计异常"
+        },
+        {
+          "phrase": "explain the anomaly",
+          "meaning_zh": "解释这一异常"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "anomalies",
+          "pos": "n.",
+          "meaning_zh": "anomaly 的复数形式"
+        },
+        {
+          "form": "anomalous",
+          "pos": "adj.",
+          "meaning_zh": "异常的；反常的"
+        },
+        {
+          "form": "anomalously",
+          "pos": "adv.",
+          "meaning_zh": "异常地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The satellite readings showed a clear anomaly, prompting scientists to check whether the equipment had failed.",
+          "translation_zh": "卫星读数显示出明显的异常，促使科学家检查设备是否出了故障。",
+          "note_zh": "prompting 表示结果；whether 引导宾语从句。"
+        },
+        {
+          "sentence": "In data analysis, an anomaly may be a sign of error, but it can also reveal an unexpected pattern.",
+          "translation_zh": "在数据分析中，异常可能是错误的迹象，但也可能揭示出人意料的规律。",
+          "note_zh": "may be 与 can also 并列；注意转折后的另一可能。"
+        }
+      ]
+    },
+    {
+      "term": "rigorous",
+      "ipa_us": "/ˈrɪɡərəs/",
+      "ipa_uk": "/ˈrɪɡərəs/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作中常修饰 research、method、testing，表示“严谨的”；阅读中常与 strict、careful 等同义替换。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "严谨的；缜密的",
+          "definition_en": "very careful and thorough"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "严格的；苛刻的",
+          "definition_en": "strict and demanding"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "thorough",
+          "pos": "adj.",
+          "definition_zh": "彻底的；细致的",
+          "nuance_zh": "thorough 强调全面细致；rigorous 还含有严格标准和严密方法的意思。",
+          "collocation": "a thorough investigation（彻底调查）"
+        },
+        {
+          "term": "strict",
+          "pos": "adj.",
+          "definition_zh": "严格的",
+          "nuance_zh": "strict 强调规则执行严格；rigorous 更常修饰方法、测试和研究。",
+          "collocation": "strict rules（严格规则）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "rigorous testing",
+          "meaning_zh": "严格测试"
+        },
+        {
+          "phrase": "rigorous research",
+          "meaning_zh": "严谨研究"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "rigorously",
+          "pos": "adv.",
+          "meaning_zh": "严谨地；严格地"
+        },
+        {
+          "form": "rigour (UK) / rigor (US)",
+          "pos": "n.",
+          "meaning_zh": "严谨；严格"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The report calls for more rigorous testing before the new material is used in public buildings.",
+          "translation_zh": "该报告呼吁在新材料用于公共建筑之前进行更严格的测试。",
+          "note_zh": "call for 表示“呼吁”；before 引导时间从句。"
+        },
+        {
+          "sentence": "A rigorous method does not guarantee important findings, but it makes the results easier to trust.",
+          "translation_zh": "严谨的方法并不能保证得到重要发现，但它使结果更容易被信任。",
+          "note_zh": "does not guarantee 强调否定；make + 宾语 + 形容词。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "I read that drinking coffee before bed affects sleep, but the article looked at only 20 people."
+    },
+    {
+      "speaker": "B",
+      "text": "That's a small sample, so the conclusion may sound plausible, but it isn't very rigorous."
+    },
+    {
+      "speaker": "A",
+      "text": "Exactly. They had a hypothesis that caffeine delays sleep, but they didn't gather much empirical evidence."
+    },
+    {
+      "speaker": "B",
+      "text": "Did they mention any anomaly in the data?"
+    },
+    {
+      "speaker": "A",
+      "text": "Yes, one participant slept better after coffee, which they called an anomaly."
+    },
+    {
+      "speaker": "B",
+      "text": "A single anomaly shouldn't change the main result, but it should make researchers check their method."
+    },
+    {
+      "speaker": "A",
+      "text": "True. I'd rather trust a thorough study than a dramatic headline."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which word is closest in meaning to \"based on observation or experiment\"?",
+      "options": [
+        "empirical",
+        "plausible",
+        "rigorous",
+        "anomalous"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "empirical 表示“以观察或实验为依据的、实证的”，常与 evidence、data 搭配。"
+    },
+    {
+      "question": "Choose the best collocation: Researchers designed an experiment to ___ the hypothesis.",
+      "options": [
+        "test",
+        "do",
+        "make",
+        "prove"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "test a hypothesis 是标准搭配。雅思语境中通常说检验假设，而不是绝对“证明”假设；研究结果可以支持或否定假设。"
+    }
+  ],
+  "review": [
+    {
+      "term": "chronic",
+      "first_seen": "2026-11-11",
+      "question": "Complete the collocation: ___ pain is pain that continues for a long time.",
+      "answer": "chronic"
+    },
+    {
+      "term": "immune",
+      "first_seen": "2026-11-11",
+      "question": "In the phrase \"immune to change\", what does \"immune\" mean?",
+      "answer": "not affected by something"
+    }
+  ]
+}
