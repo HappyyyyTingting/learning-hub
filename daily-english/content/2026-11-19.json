@@ -1,0 +1,121 @@
+{
+  "mode": "review",
+  "date": "2026-11-19",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "review_of": "2026-11-18",
+  "theme": "science",
+  "title": "Science Review: Testing Hypotheses and Explaining Anomalies",
+  "review_words": [
+    {
+      "term": "hypothesis",
+      "meaning_zh": "假设；假说",
+      "key_point_zh": "可数名词，复数为 hypotheses；强调“可被证据检验”，与 assumption（未经检验的假定）、theory（较系统的解释）不能随意互换。",
+      "example": "Before collecting any data, the team wrote down a hypothesis that could be proved wrong.",
+      "translation_zh": "在收集任何数据之前，团队写下一个有可能被证伪的假说。",
+      "note_zh": "搭配 formulate / write down a hypothesis；定语从句说明它“可被证伪”，这正是 hypothesis 的核心特征。"
+    },
+    {
+      "term": "empirical",
+      "meaning_zh": "以观察或实验为依据的；实证的",
+      "key_point_zh": "常与 evidence、data、research 搭配，并与 theoretical 形成对比；写作中用 empirical evidence 代替口语化的 real proof。",
+      "example": "The argument rests on anecdote rather than empirical data, so it is unlikely to persuade a scientific audience.",
+      "translation_zh": "这一论点依靠的是轶事而非实证数据，因此不太可能说服科学界的读者。",
+      "note_zh": "rest on A rather than B 是常见论证句式；empirical 修饰 data/evidence 时最自然。"
+    },
+    {
+      "term": "plausible",
+      "meaning_zh": "看似合理的；可信的",
+      "key_point_zh": "强调“表面上合理但未必正确”，阅读推断题常据此设错；比 credible 弱，比口语化的 believable 正式。",
+      "example": "At first the idea sounded plausible, but a single counter-example was enough to undermine it.",
+      "translation_zh": "起初这个想法听起来颇有道理，但仅仅一个反例就足以动摇它。",
+      "note_zh": "sound / seem plausible 是高频搭配；注意 plausible 不等于“已被证实”。"
+    },
+    {
+      "term": "anomaly",
+      "meaning_zh": "异常事物；反常现象",
+      "key_point_zh": "科学类阅读中常指偏离规律的异常数据或现象，复数为 anomalies；比 exception 更强调“反常”。",
+      "example": "The team noticed an anomaly in the results and spent a week checking whether it was a measurement error.",
+      "translation_zh": "团队在结果中发现了一个异常，并花了一周时间核查它是否是测量误差。",
+      "note_zh": "搭配 notice / explain an anomaly；其后常接 in + 数据或领域。"
+    },
+    {
+      "term": "rigorous",
+      "meaning_zh": "严谨的；缜密的",
+      "key_point_zh": "多修饰 research、method、testing，含“标准严格、方法严密”之意，比 thorough 更强调严格性；阅读中常被 careful、strict 同义替换。",
+      "example": "Before the findings were published, the study went through a rigorous review by independent experts.",
+      "translation_zh": "在研究结果发表之前，该研究经过了独立专家的严谨评审。",
+      "note_zh": "go through a rigorous review / testing 是学术语境中的常用搭配。"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Did you finish reading that paper on how city light affects birdsong?"
+    },
+    {
+      "speaker": "B",
+      "text": "I did, but I'm not convinced. The hypothesis is interesting — that artificial light shifts when birds sing — but the evidence is thin."
+    },
+    {
+      "speaker": "A",
+      "text": "Thin in what sense?"
+    },
+    {
+      "speaker": "B",
+      "text": "Mostly observations from a single park. There's no empirical data from other cities, so the pattern might just be local."
+    },
+    {
+      "speaker": "A",
+      "text": "Still, the explanation sounds plausible. Didn't they also mention some kind of anomaly?"
+    },
+    {
+      "speaker": "B",
+      "text": "Yes — one colony sang at completely different times, and they never explained why. That makes me doubt the method."
+    },
+    {
+      "speaker": "A",
+      "text": "Fair enough. A rigorous study would have checked that before publishing. Maybe we can still use it in our presentation as a warning about jumping to conclusions."
+    },
+    {
+      "speaker": "B",
+      "text": "Agreed. It's a useful lesson in telling a plausible story apart from tested evidence."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which word is closest in meaning to \"plausible\" in the sentence \"The report offers a plausible account of the decline\"?",
+      "options": [
+        "credible",
+        "certain",
+        "precise",
+        "detailed"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "plausible 意为“看似合理、可信”，与 credible 最接近；certain 语气过强，表示确定无疑；precise 和 detailed 谈的是细节的精确与详尽，不涉及可信度。"
+    },
+    {
+      "question": "There is now considerable empirical evidence ___ the link between sleep and memory.",
+      "options": [
+        "for",
+        "to",
+        "at",
+        "with"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "固定搭配 evidence for sth 表示“支持某事的证据”，empirical evidence for 是学术写作中的常见组合；其余介词不与 evidence 构成这一搭配。"
+    },
+    {
+      "question": "The readings from the northern station were so different from every other station that the researchers treated them as a(n) ___ and rechecked the equipment.",
+      "options": [
+        "anomaly",
+        "hypothesis",
+        "assumption",
+        "exception"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "此处指偏离正常规律的异常数据，用 anomaly 最准确；hypothesis 是待检验的假说，assumption 是未经检验的假定，exception 指不符合规则的情况，但不强调“反常数据”。"
+    }
+  ]
+}
