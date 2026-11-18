@@ -21,6 +21,9 @@ class BuildSiteTests(unittest.TestCase):
             "site_description": "每天 5 分钟。",
         }
         self.content = common.load_json(ROOT / "daily-english" / "fixture.json")
+        self.review_content = common.load_json(
+            ROOT / "daily-english" / "fixture-review.json"
+        )
 
     def _build(self, contents, limit=0):
         temp_dir = tempfile.TemporaryDirectory()
@@ -45,6 +48,16 @@ class BuildSiteTests(unittest.TestCase):
         page_text = page.read_text(encoding="utf-8")
         self.assertIn(render._e(self.content["title"]), page_text)
         self.assertIn("今日词汇", page_text)
+
+    def test_builds_review_page_and_labels_it(self):
+        site_dir, paths = self._build([self.review_content])
+        page_text = (
+            site_dir / f"{self.review_content['date']}.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("今日复习", page_text)
+        self.assertIn("复习 ·", page_text)
+        index = paths["index"].read_text(encoding="utf-8")
+        self.assertIn("复习 · environment", index)
 
     def test_index_lists_dates_newest_first(self):
         older = copy.deepcopy(self.content)

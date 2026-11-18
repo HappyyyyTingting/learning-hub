@@ -61,12 +61,12 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 ## 4. 第一次运行
 
 1. 打开 **Actions → Daily English push → Run workflow**。
-2. `date` 留空，`dry_run` 勾选 **true**，运行。
+2. `date` 留空，`mode` 选 **auto**，`dry_run` 勾选 **true**，运行。
 3. 运行结束后在该次运行页面底部下载 `email-preview` artifact，打开 `email.html` 检查排版和内容。
 4. 确认无误后，再运行一次，`dry_run` 不勾选。这次会真实发送邮件、提交内容、部署 Pages。
 5. 检查邮箱和 `https://<owner>.github.io/<repo>/`。
 
-之后每个 UTC 23:30（北京时间 07:30）自动运行。第一次定时可能不会立刻出现，GitHub 对新工作流的 schedule 有短暂延迟。
+之后每个 UTC 18:00（北京时间次日 02:00）自动运行。GitHub 的 schedule 只是“尽力而为”，本项目实测常见延迟是 3–5 小时，所以邮件通常在北京时间 05:00–07:00 到达。第一次定时可能不会立刻出现，GitHub 对新工作流的 schedule 有短暂延迟。
 
 ## 5. 工作流做什么
 
@@ -74,7 +74,7 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 
 1. 跑单元测试。
 2. 按北京时间确定日期。
-3. `generate.py --task english` 生成内容；已存在则跳过。
+3. `generate.py --task english --mode auto` 生成内容；按上一篇自动切换讲解日 / 复习日，已存在则跳过。
 4. `send_email.py --task english` 发邮件；`daily-english/state/sent.json` 已记录则跳过。
 5. `build_site.py --task english` 构建 `site/english/` 和根入口 `site/index.html`。
 6. 提交 `daily-english/` 下的内容和发送状态。
@@ -116,10 +116,11 @@ model: deepseek-v4-pro
 
 **想改发送时间**
 
-改 `.github/workflows/daily.yml` 的 cron。注意 cron 是 UTC：
+改 `.github/workflows/daily.yml` 的 cron。注意 cron 是 UTC，而且 GitHub 可能延迟 3–5 小时：
 
-- 北京 07:30 → `30 23 * * *`（前一天 UTC）
-- 北京 08:00 → `0 0 * * *`
+- 北京 02:00 → `0 18 * * *`（前一天 UTC，当前设置；通常 05:00–07:00 到达）
+- 北京 00:30 → `30 16 * * *`（前一天 UTC，通常 03:30–05:30 到达）
+- 北京 03:00 → `0 19 * * *`（前一天 UTC，通常 06:00–08:00 到达）
 
 **想先不部署 Pages**
 

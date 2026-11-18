@@ -23,6 +23,93 @@ def _to_date(value: str) -> date_cls:
     return datetime.strptime(value, "%Y-%m-%d").date()
 
 
+def _previous_contents(contents: list[dict], date_text: str) -> list[dict]:
+    return sorted(
+        (
+            content
+            for content in contents
+            if common.DATE_RE.match(str(content.get("date", "")))
+            and str(content.get("date", "")) < date_text
+        ),
+        key=lambda content: str(content.get("date", "")),
+    )
+
+
+def detect_mode(contents: list[dict], date_text: str) -> str:
+    """讲解日和复习日交替；漏跑一天也不会打乱顺序。"""
+    previous = _previous_contents(contents, date_text)
+    if not previous:
+        return "lesson"
+    return "review" if common.content_mode(previous[-1]) == "lesson" else "lesson"
+
+
+def build_review_targets(contents: list[dict], date_text: str) -> dict | None:
+    """复习日只复习最近一次讲解日的 5 个词。"""
+    for content in reversed(_previous_contents(contents, date_text)):
+        if common.content_mode(content) != "lesson":
+            continue
+        words = [word for word in (content.get("words") or []) if word.get("term")]
+        if not words:
+            continue
+        targets = []
+        for word in words:
+            targets.append(
+                {
+                    "term": str(word.get("term", "")).strip(),
+                    "first_seen": str(content.get("date", "")),
+                    "exam_focus_zh": str(word.get("exam_focus_zh", "")).strip(),
+                    "senses": [
+                        {
+                            "pos": str(sense.get("pos", "")).strip(),
+                            "definition_zh": str(sense.get("definition_zh", "")).strip(),
+                            "definition_en": str(sense.get("definition_en", "")).strip(),
+                        }
+                        for sense in (word.get("senses") or [])
+                    ],
+                    "synonyms": [
+                        {
+                            "term": str(item.get("term", "")).strip(),
+                            "nuance_zh": str(item.get("nuance_zh", "")).strip(),
+                        }
+                        for item in (word.get("synonyms") or [])
+                    ],
+                    "collocations": [
+                        str(item.get("phrase", "")).strip()
+                        for item in (word.get("collocations") or [])
+                    ],
+                    "examples": [
+                        str(item.get("sentence", "")).strip()
+                        for item in (word.get("examples") or [])
+                    ],
+                }
+            )
+        return {
+            "review_of": str(content.get("date", "")),
+            "theme": str(content.get("theme", "")).strip(),
+            "title": str(content.get("title", "")).strip(),
+            "words": targets,
+        }
+    return None
+
+
+def review_target_errors(content: dict, targets: dict | None) -> list[str]:
+    """复习日只能复习上一讲的 5 个词，防止模型自行换词。"""
+    expected = [
+        str(item.get("term", "")).strip()
+        for item in ((targets or {}).get("words") or [])
+    ]
+    actual = [
+        str(item.get("term", "")).strip()
+        for item in (content.get("review_words") or [])
+    ]
+    if sorted(expected) != sorted(actual):
+        return [
+            "review_words 必须正好是上一讲的 5 个词："
+            + "、".join(expected)
+        ]
+    return []
+
+
 def build_review_candidates(contents: list[dict], today: date_cls) -> list[dict]:
     """Pick words first seen 3/7/14 days ago and not reviewed recently."""
     history: dict[str, dict] = {}
@@ -44,7 +131,10 @@ def build_review_candidates(contents: list[dict], today: date_cls) -> list[dict]
             )
             if date_text < item["first_seen"]:
                 item["first_seen"] = date_text
-        for review in content.get("review", []):
+        reviews = list(content.get("review") or []) + list(
+            content.get("review_words") or []
+        )
+        for review in reviews:
             term = str(review.get("term", "")).strip()
             if term in history and date_text > history[term]["last_reviewed"]:
                 history[term]["last_reviewed"] = date_text
@@ -82,6 +172,8 @@ def build_context(
     config: dict,
     contents: list[dict],
     today: date_cls,
+    mode: str = "lesson",
+    review_targets: dict | None = None,
 ) -> dict:
     recent = [content for content in contents if content.get("date", "") < date_text]
     recent_themes: list[str] = []
@@ -94,15 +186,24 @@ def build_context(
             term = str(word.get("term", "")).strip()
             if term and term not in recent_words:
                 recent_words.append(term)
-    return {
+    context = {
         "date": date_text,
         "task": task,
         "level": config.get("level", ""),
         "prompt_version": config.get("prompt_version", ""),
+        "mode": common.normalize_mode(mode),
         "recent_themes": recent_themes[:7],
         "recent_words": recent_words[:60],
         "review_candidates": build_review_candidates(recent, today),
     }
+    if context["mode"] == "review":
+        context["review_of"] = (review_targets or {}).get("review_of", "")
+        context["theme"] = (review_targets or {}).get("theme", "")
+        context["review_targets"] = (review_targets or {}).get("words", [])
+        # 复习日只围绕上一讲的 5 个词，不需要新词和间隔复习上下文。
+        for key in ("recent_themes", "recent_words", "review_candidates"):
+            context.pop(key, None)
+    return context
 
 
 def _parse_json_object(text: str) -> dict:
@@ -121,6 +222,7 @@ def call_model(
     config: dict,
     schema: dict,
     model: str | None,
+    extra_validator=None,
 ) -> dict:
     import openai
 
@@ -182,6 +284,8 @@ def call_model(
             continue
 
         errors = common.validate_content(content, schema)
+        if not errors and extra_validator is not None:
+            errors = extra_validator(content)
         if not errors:
             return content
         if attempt >= attempts:
@@ -206,6 +310,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--force", action="store_true", help="覆盖已存在的内容")
     parser.add_argument("--dry-run", action="store_true", help="只打印 prompt 和上下文")
     parser.add_argument("--model", help="覆盖 config 中的模型")
+    parser.add_argument(
+        "--mode",
+        choices=("auto", "lesson", "review"),
+        default="auto",
+        help="auto 按上一篇自动切换；lesson 讲解日；review 复习日",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -217,45 +327,87 @@ def main(argv: list[str] | None = None) -> int:
             print(f"内容已存在，跳过生成：{target}")
             return 0
 
+        contents = common.load_all_contents(task, config)
+        mode = (
+            detect_mode(contents, date_text)
+            if args.mode == "auto"
+            else common.normalize_mode(args.mode)
+        )
+        review_targets = (
+            build_review_targets(contents, date_text) if mode == "review" else None
+        )
+        if mode == "review" and not review_targets:
+            raise ValueError(
+                "今天是复习日，但没有找到上一节讲解内容；"
+                "请先用 --mode lesson 生成讲解日，或改用 --mode lesson。"
+            )
+
         if args.fixture:
-            content = common.load_fixture(task)
+            content = common.load_fixture(task, mode)
             content["date"] = date_text
             content["task"] = task
             content["level"] = config.get("level", "")
             content["prompt_version"] = config.get("prompt_version", "")
-            errors = common.validate_content(content, common.load_schema(task, config))
+            content["mode"] = mode
+            # fixture 是自洽的样例，不覆盖 review_of/theme；真实生成才使用上面的 targets。
+            schema = common.load_schema(task, config, mode)
+            errors = common.validate_content(content, schema)
             if errors:
-                print("fixture 不符合 schema：", file=sys.stderr)
+                print(f"fixture 不符合 schema（mode={mode}）：", file=sys.stderr)
                 for error in errors:
                     print(f"  - {error}", file=sys.stderr)
                 return 1
             if args.dry_run:
-                print(f"dry-run：fixture 校验通过，将写入 {target}")
+                print(f"dry-run：fixture 校验通过（mode={mode}），将写入 {target}")
                 return 0
             common.write_json(target, content)
-            print(f"已写入 fixture 内容：{target}")
+            print(f"已写入 fixture 内容（mode={mode}）：{target}")
             return 0
 
-        system_prompt = common.load_prompt(task, config)
-        contents = common.load_all_contents(task, config)
+        system_prompt = common.load_prompt(task, config, mode)
         today = _to_date(date_text)
-        context = build_context(task, date_text, config, contents, today)
+        context = build_context(
+            task,
+            date_text,
+            config,
+            contents,
+            today,
+            mode=mode,
+            review_targets=review_targets,
+        )
 
         if args.dry_run:
+            print(f"=== mode: {mode} ===")
             print("=== system prompt ===")
             print(system_prompt)
             print("\n=== context ===")
             print(json.dumps(context, ensure_ascii=False, indent=2))
             return 0
 
-        schema = common.load_schema(task, config)
-        content = call_model(system_prompt, context, config, schema, args.model)
+        schema = common.load_schema(task, config, mode)
+        extra_validator = (
+            (lambda candidate: review_target_errors(candidate, review_targets))
+            if mode == "review"
+            else None
+        )
+        content = call_model(
+            system_prompt,
+            context,
+            config,
+            schema,
+            args.model,
+            extra_validator,
+        )
 
-        # 权威字段由脚本覆盖，避免模型写错日期或版本。
+        # 权威字段由脚本覆盖，避免模型写错日期、模式或版本。
         content["date"] = date_text
         content["task"] = task
         content["level"] = config.get("level", "")
         content["prompt_version"] = config.get("prompt_version", "")
+        content["mode"] = mode
+        if mode == "review":
+            content["review_of"] = review_targets["review_of"]
+            content["theme"] = review_targets["theme"]
 
         errors = common.validate_content(content, schema)
         if errors:
@@ -264,19 +416,29 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"  - {error}", file=sys.stderr)
             return 1
 
-        recent_terms = set(context["recent_words"])
-        duplicates = [
-            word.get("term")
-            for word in content.get("words", [])
-            if word.get("term") in recent_terms
-        ]
-        if duplicates:
-            print(f"提示：今天有词在最近 14 天出现过：{', '.join(duplicates)}")
+        if mode == "lesson":
+            recent_terms = set(context["recent_words"])
+            duplicates = [
+                word.get("term")
+                for word in content.get("words", [])
+                if word.get("term") in recent_terms
+            ]
+            if duplicates:
+                print(f"提示：今天有词在最近 14 天出现过：{', '.join(duplicates)}")
 
         common.write_json(target, content)
         print(f"已生成：{target}")
-        print(f"主题：{content.get('theme')}｜标题：{content.get('title')}")
-        print(f"词汇：{len(content.get('words', []))}｜复习：{len(content.get('review', []))}")
+        print(f"模式：{mode}｜主题：{content.get('theme')}｜标题：{content.get('title')}")
+        if mode == "review":
+            print(
+                f"复习：{len(content.get('review_words', []))} 个词"
+                f"｜练习：{len(content.get('quiz', []))}"
+            )
+        else:
+            print(
+                f"词汇：{len(content.get('words', []))}"
+                f"｜复习：{len(content.get('review', []))}"
+            )
         return 0
     except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
         print(f"错误：{exc}", file=sys.stderr)

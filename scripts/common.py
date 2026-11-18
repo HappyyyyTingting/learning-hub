@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 DEFAULT_TASK = "english"
 TASK_DIR_PREFIX = "daily-"
+MODES = ("lesson", "review")
 
 
 def normalize_task(task: str | None = None) -> str:
@@ -32,6 +33,18 @@ def normalize_task(task: str | None = None) -> str:
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", value):
         raise ValueError(f"任务名只能包含小写字母、数字和连字符：{value}")
     return value
+
+
+def normalize_mode(mode: str | None = None) -> str:
+    value = (mode or "lesson").strip().lower()
+    if value not in MODES:
+        raise ValueError(f"mode 只能是 lesson 或 review：{value}")
+    return value
+
+
+def content_mode(content: dict) -> str:
+    """旧内容没有 mode 字段，一律按讲解日处理。"""
+    return "review" if str(content.get("mode", "")).strip().lower() == "review" else "lesson"
 
 
 def task_dir(task: str | None = None) -> Path:
@@ -91,20 +104,43 @@ def state_path(task: str | None = None, config: dict | None = None) -> Path:
     return _resolve(task_dir(task_id), str(config.get("state", "state/sent.json")))
 
 
-def schema_path(task: str | None = None, config: dict | None = None) -> Path:
+def schema_path(
+    task: str | None = None,
+    config: dict | None = None,
+    mode: str = "lesson",
+) -> Path:
     task_id = normalize_task(task)
     config = config or load_config(task_id)
-    return _resolve(task_dir(task_id), str(config.get("schema", "schema.json")))
+    review = normalize_mode(mode) == "review"
+    key = "schema_review" if review else "schema"
+    default = "review-schema.json" if review else "schema.json"
+    return _resolve(task_dir(task_id), str(config.get(key, default)))
 
 
-def prompt_path(task: str | None = None, config: dict | None = None) -> Path:
+def prompt_path(
+    task: str | None = None,
+    config: dict | None = None,
+    mode: str = "lesson",
+) -> Path:
     task_id = normalize_task(task)
     config = config or load_config(task_id)
-    return _resolve(task_dir(task_id), str(config.get("prompt", "prompts/v2.md")))
+    review = normalize_mode(mode) == "review"
+    key = "prompt_review" if review else "prompt"
+    default = "prompts/v3-review.md" if review else "prompts/v3-lesson.md"
+    return _resolve(task_dir(task_id), str(config.get(key, default)))
 
 
-def fixture_path(task: str | None = None) -> Path:
-    return task_dir(task) / "fixture.json"
+def fixture_path(
+    task: str | None = None,
+    config: dict | None = None,
+    mode: str = "lesson",
+) -> Path:
+    task_id = normalize_task(task)
+    config = config or load_config(task_id)
+    review = normalize_mode(mode) == "review"
+    key = "fixture_review" if review else "fixture"
+    default = "fixture-review.json" if review else "fixture.json"
+    return _resolve(task_dir(task_id), str(config.get(key, default)))
 
 
 def site_dir(task: str | None = None, config: dict | None = None) -> Path:
@@ -155,16 +191,25 @@ def load_all_contents(task: str | None = None, config: dict | None = None) -> li
     return results
 
 
-def load_schema(task: str | None = None, config: dict | None = None) -> dict:
-    return load_json(schema_path(task, config))
+def load_schema(
+    task: str | None = None,
+    config: dict | None = None,
+    mode: str = "lesson",
+) -> dict:
+    return load_json(schema_path(task, config, mode))
 
 
-def load_fixture(task: str | None = None) -> dict:
-    return load_json(fixture_path(task))
+def load_fixture(task: str | None = None, mode: str = "lesson") -> dict:
+    config = load_config(task)
+    return load_json(fixture_path(task, config, mode))
 
 
-def load_prompt(task: str | None = None, config: dict | None = None) -> str:
-    return prompt_path(task, config).read_text(encoding="utf-8")
+def load_prompt(
+    task: str | None = None,
+    config: dict | None = None,
+    mode: str = "lesson",
+) -> str:
+    return prompt_path(task, config, mode).read_text(encoding="utf-8")
 
 
 def load_renderer(task: str | None = None):

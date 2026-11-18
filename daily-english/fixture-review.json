@@ -1,0 +1,121 @@
+{
+  "mode": "review",
+  "date": "2026-11-10",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "review_of": "2026-11-09",
+  "theme": "environment",
+  "title": "Review: Building a More Sustainable City",
+  "review_words": [
+    {
+      "term": "float",
+      "meaning_zh": "漂浮；试探性提出",
+      "key_point_zh": "float an idea 表示“提出想法试探反应”，与 drift 的无目的漂流不同。",
+      "example": "The mayor floated the idea of a car-free city centre.",
+      "translation_zh": "市长提出了市中心无车化的想法以试探反应。",
+      "note_zh": "float an idea 常用于政治或商业语境，表示试探性提出。"
+    },
+    {
+      "term": "sustainable",
+      "meaning_zh": "可持续的；能长期维持的",
+      "key_point_zh": "常搭配 sustainable development / growth / transport，强调长期维持且不破坏环境。",
+      "example": "The report asks whether the city's rapid expansion is environmentally sustainable.",
+      "translation_zh": "报告质疑这座城市的快速扩张在环境上是否可持续。",
+      "note_zh": "sustainable 可修饰发展、增长、交通等，也可表示“能长期维持的”。"
+    },
+    {
+      "term": "contribute",
+      "meaning_zh": "促成；贡献",
+      "key_point_zh": "contribute to 的 to 是介词，后接名词或动名词，表示“促成、导致”。",
+      "example": "Lack of public transport can contribute to higher car use.",
+      "translation_zh": "公共交通不足会促使更多人使用汽车。",
+      "note_zh": "contribute to + 名词/动名词；不要漏掉 to。"
+    },
+    {
+      "term": "significant",
+      "meaning_zh": "重要的；显著的",
+      "key_point_zh": "a significant increase/decrease 是写作数据描述的常用搭配，强调变化值得注意。",
+      "example": "The city recorded a significant drop in carbon emissions last year.",
+      "translation_zh": "该市去年碳排放显著下降。",
+      "note_zh": "significant 修饰 drop，表示降幅显著；写作中可替换 noticeable。"
+    },
+    {
+      "term": "adapt",
+      "meaning_zh": "适应；改编",
+      "key_point_zh": "adapt to 表示适应新环境；注意与 adopt（采纳、收养）形近。",
+      "example": "Residents are adapting to the new recycling rules.",
+      "translation_zh": "居民正在适应新的回收规定。",
+      "note_zh": "adapt to 后接环境、变化等；adapt something for 表示“为……改编”。"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Did you read the city's new climate plan?"
+    },
+    {
+      "speaker": "B",
+      "text": "Yes. It floats the idea of a congestion charge, but nothing is decided yet."
+    },
+    {
+      "speaker": "A",
+      "text": "That could contribute to cleaner air, though some drivers will find it hard to adapt."
+    },
+    {
+      "speaker": "B",
+      "text": "Exactly. The report says the current level of car use isn't sustainable."
+    },
+    {
+      "speaker": "A",
+      "text": "It also mentions a significant increase in cycling since last year."
+    },
+    {
+      "speaker": "B",
+      "text": "That's encouraging. But the plan needs better public transport, not just charges."
+    },
+    {
+      "speaker": "A",
+      "text": "True. If buses are reliable, more people will adapt quickly."
+    },
+    {
+      "speaker": "B",
+      "text": "Let's see whether the council turns the proposal into a real policy."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which word is closest in meaning to 'sustainable' in the phrase 'sustainable growth'?",
+      "options": [
+        "viable",
+        "temporary",
+        "sudden",
+        "optional"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "viable 强调在现实条件下能持续运作；sustainable 更强调长期维持、不破坏环境。temporary 和 sudden 都与“可持续”相反。"
+    },
+    {
+      "question": "Which sentence uses the correct collocation?",
+      "options": [
+        "Poor waste management contributes to environmental damage.",
+        "Poor waste management contributes environmental damage.",
+        "Poor waste management contributes for environmental damage.",
+        "Poor waste management contributes with environmental damage."
+      ],
+      "answer_index": 0,
+      "explanation_zh": "contribute to 是固定搭配，to 是介词，后面接名词或动名词。其他选项的介词搭配都不正确。"
+    },
+    {
+      "question": "The city had to ___ its transport plan to meet new emissions targets.",
+      "options": [
+        "adapt",
+        "adopt",
+        "float",
+        "contribute"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "adapt 表示“调整、使适应”，符合“修改交通方案以达标”的语境。adopt 是“采纳、收养”，与句意不符；float 和 contribute 也不能这样使用。"
+    }
+  ]
+}

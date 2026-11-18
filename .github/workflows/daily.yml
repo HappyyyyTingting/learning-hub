@@ -2,14 +2,24 @@ name: Daily English push
 
 on:
   schedule:
-    # 23:30 UTC = 07:30 Asia/Shanghai（GitHub 的 cron 可能延迟几分钟到几十分钟）
-    - cron: "30 23 * * *"
+    # 18:00 UTC = 北京时间次日 02:00。
+    # GitHub 的 schedule 实测会延迟 3–5 小时，所以邮件通常在北京时间 05:00–07:00 到达。
+    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       date:
         description: "日期 YYYY-MM-DD；留空表示北京时间今天"
         required: false
         type: string
+      mode:
+        description: "内容模式；auto 按上一篇自动切换讲解/复习"
+        required: false
+        default: auto
+        type: choice
+        options:
+          - auto
+          - lesson
+          - review
       dry_run:
         description: "只生成预览，不发送邮件、不提交、不部署"
         required: false
@@ -62,16 +72,18 @@ jobs:
       - name: Generate content
         env:
           DATE: ${{ steps.date.outputs.date }}
+          MODE: ${{ inputs.mode }}
           DRY_RUN: ${{ inputs.dry_run }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
           set -euo pipefail
+          mode="${MODE:-auto}"
           target="daily-english/content/${DATE}.json"
           if [ "${DRY_RUN}" = "true" ] && [ ! -f "${target}" ]; then
-            echo "dry-run：没有现成内容，使用 fixture。"
-            python scripts/generate.py --task english --date "${DATE}" --fixture
+            echo "dry-run：没有现成内容，使用 fixture（mode=${mode}）。"
+            python scripts/generate.py --task english --date "${DATE}" --mode "${mode}" --fixture
           else
-            python scripts/generate.py --task english --date "${DATE}"
+            python scripts/generate.py --task english --date "${DATE}" --mode "${mode}"
           fi
 
       - name: Send email

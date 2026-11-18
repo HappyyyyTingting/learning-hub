@@ -16,6 +16,9 @@ class RenderTests(unittest.TestCase):
     def setUp(self):
         self.config = common.load_config("english")
         self.content = common.load_json(ROOT / "daily-english" / "fixture.json")
+        self.review_content = common.load_json(
+            ROOT / "daily-english" / "fixture-review.json"
+        )
 
     def test_body_html_contains_every_section(self):
         body = render.content_to_body_html(self.content)
@@ -70,6 +73,37 @@ class RenderTests(unittest.TestCase):
         body = render.content_to_body_html(content)
         expected = f"{chr(65 + 2)}. {render._e(content['quiz'][0]['options'][2])}"
         self.assertIn(expected, body)
+
+    def test_review_body_contains_review_sections(self):
+        body = render.content_to_body_html(self.review_content)
+        for heading in ("今日复习", "情景对话", "小练习", "答案与解析"):
+            self.assertIn(heading, body)
+        self.assertNotIn("今日词汇", body)
+        for word in self.review_content["review_words"]:
+            self.assertIn(render._e(word["term"]), body)
+        self.assertIn(render._e(self.review_content["review_of"]), body)
+
+    def test_review_text_contains_review_words(self):
+        text = render.content_to_text(self.review_content)
+        self.assertIn("【今日复习】", text)
+        self.assertNotIn("【今日词汇】", text)
+        self.assertIn(self.review_content["review_words"][0]["term"], text)
+        self.assertIn("【答案与解析】", text)
+
+    def test_review_subject_and_preheader(self):
+        rendered = render.render_content(self.review_content, self.config)
+        self.assertIn("复习", rendered.subject)
+        self.assertIn(self.review_content["theme"], rendered.subject)
+        self.assertEqual(
+            rendered.preheader, self.config["email_preheader_review"]
+        )
+
+    def test_old_content_without_mode_renders_as_lesson(self):
+        content = copy.deepcopy(self.content)
+        del content["mode"]
+        body = render.content_to_body_html(content)
+        self.assertIn("今日词汇", body)
+        self.assertNotIn("今日复习", body)
 
     def test_build_message_has_text_and_html_parts(self):
         rendered = render.render_content(self.content, self.config)

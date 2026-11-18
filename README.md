@@ -1,6 +1,6 @@
 # Learning Hub
 
-日常学习推送平台。Phase 1 先做 **Daily English**：每天北京时间早上 7:30，用 DeepSeek 生成一份雅思词汇学习内容（B2–C1），发到邮箱，并归档到 GitHub Pages。
+日常学习推送平台。Phase 1 先做 **Daily English**：每天北京时间凌晨触发，用 DeepSeek 生成一份雅思词汇学习内容（B2–C1），发到邮箱，并归档到 GitHub Pages。内容按 **讲解日 → 复习日 → 讲解日** 交替：讲解日学 5 个新词，复习日巩固上一讲的 5 个词。
 
 仓库按任务拆分：每个任务一个顶层目录 `daily-<task>/`，公共流水线在 `scripts/`。以后加资讯、AI 基础、历史等任务时，不需要改公共逻辑。
 
@@ -9,9 +9,9 @@ Phase 1 只做一件事：跑通 **定时 → 生成 → 发送 → 归档** 的
 ## 流水线
 
 ```
-GitHub Actions（cron 23:30 UTC / 北京 07:30）
-  └─ scripts/generate.py --task english
-       DeepSeek API + JSON Schema
+GitHub Actions（cron 18:00 UTC / 北京次日 02:00）
+  └─ scripts/generate.py --task english --mode auto
+       DeepSeek API + JSON Schema（lesson / review）
        → daily-english/content/YYYY-MM-DD.json
   └─ scripts/send_email.py --task english
        SMTP 或 Resend → 邮箱
@@ -21,24 +21,39 @@ GitHub Actions（cron 23:30 UTC / 北京 07:30）
   └─ 任一步失败 → scripts/alert.py 发告警邮件
 ```
 
-每天的内容结构固定：
+内容按天分为两种模式，由 `mode` 字段区分（旧内容没有 `mode` 时按讲解日处理）：
+
+**讲解日 `lesson`**
 
 - 5 个雅思高频词：美/英音标、多词性释义、考点提示、同义替换（含辨析和搭配）、高频搭配、词形变化、2 个雅思风格例句
 - 1 段 6–8 轮情景对话
 - 2 道选择题（词义辨析 / 同义替换 / 搭配，含答案解析）
-- 0–2 个复习项：从 3 / 7 / 14 天前首次出现的词里选
-- 考频只用 high / medium / low 标签，不写具体出现次数，也不冒充剑桥真题原句
+- 0–2 个间隔复习项：从 3 / 7 / 14 天前首次出现的词里选
 
-字段定义见 `daily-english/schema.json`，示例见 `daily-english/fixture.json`。
+**复习日 `review`**
+
+- 只复习上一讲讲解日的 5 个词，不学新词
+- 每个词：核心释义、考点/易错点、1 个全新例句、翻译和提示
+- 1 段 4–8 轮情景对话，至少用到 3 个复习词
+- 3 道选择题（词义辨析 / 固定搭配 / 语境填空，含答案解析）
+
+模式默认按上一篇自动切换：上一篇是讲解日，今天就生成复习日；上一篇是复习日，今天回到讲解日。漏跑一天也不会打乱顺序，需要时可用 `--mode lesson|review` 强制指定。
+
+考频只用 high / medium / low 标签，不写具体出现次数，也不冒充剑桥真题原句。
+
+字段定义见 `daily-english/schema.json`（讲解日）和 `daily-english/review-schema.json`（复习日），示例见 `daily-english/fixture.json` 和 `daily-english/fixture-review.json`。
 
 ## 目录
 
 ```
 daily-english/            一个任务 = 一个顶层目录
   config.yml              任务配置（时区、模型、prompt、站点文案）
-  prompts/v2.md           生成 prompt（可版本化迭代）
-  schema.json             内容 JSON Schema
-  fixture.json            本地预览用的样例内容
+  prompts/v3-lesson.md    讲解日 prompt（可版本化迭代）
+  prompts/v3-review.md    复习日 prompt
+  schema.json             讲解日 JSON Schema
+  review-schema.json      复习日 JSON Schema
+  fixture.json            讲解日本地预览样例
+  fixture-review.json     复习日本地预览样例
   render.py               任务专用渲染（邮件正文 + 站点 CSS）
   content/                每天生成的内容（工作流自动提交）
   state/sent.json         已发送日期，防止重复发送
@@ -76,19 +91,27 @@ set -a; source .env; set +a
 先用 fixture 走一遍，不调用 API、不发邮件：
 
 ```bash
-python scripts/generate.py --task english --fixture --date 2026-11-09
+# 讲解日样例
+python scripts/generate.py --task english --fixture --date 2026-11-09 --mode lesson
 python scripts/send_email.py --task english --date 2026-11-09 --dry-run
 open preview/english/2026-11-09/email.html
+
+# 复习日样例（需要仓库里已有历史讲解内容；没有历史时先跑一次讲解日）
+python scripts/generate.py --task english --fixture --date 2026-11-19 --mode review
+python scripts/send_email.py --task english --date 2026-11-19 --dry-run
+open preview/english/2026-11-19/email.html
 
 python scripts/build_site.py --task english
 open site/english/index.html
 open site/index.html
 ```
 
-真正生成一天内容：
+> 注意：fixture 写入的是样例内容，只用于预览。预览完把 `daily-english/content/<date>.json` 删掉，避免工作流把样例当成真实内容发送。
+
+真正生成一天内容（`--mode auto` 会按上一篇自动选择讲解 / 复习；也可以显式写 `--mode lesson` 或 `--mode review`）：
 
 ```bash
-python scripts/generate.py --task english --date 2026-11-09
+python scripts/generate.py --task english --date 2026-11-09 --mode auto
 ```
 
 想换模型可以临时覆盖，或直接改 `daily-english/config.yml`：
@@ -131,7 +154,7 @@ python -m unittest discover -s tests -v
 - `generate.py` 发现 `daily-english/content/<date>.json` 已存在就跳过；`--force` 可覆盖。
 - `send_email.py` 发现 `daily-english/state/sent.json` 里有当天日期就跳过；`--force` 可重发。
 - 工作流会把 `daily-english/` 提交回仓库，用 `GITHUB_TOKEN` push。**这类提交不会再次触发工作流**，所以不会循环。
-- 只有默认分支上的 `schedule` 会生效；GitHub 的 cron 可能延迟几分钟到几十分钟，属正常现象。
+- 只有默认分支上的 `schedule` 会生效；GitHub 的 cron 可能延迟几分钟到几小时。本项目实测常见延迟是 3–5 小时，所以 cron 设在 UTC 18:00（北京次日 02:00），邮件通常在北京时间 05:00–07:00 到达。
 - 极端情况下：邮件已发出但提交 state 失败，重跑会再发一次。重跑前先看一眼 `daily-english/state/sent.json` 和邮箱。
 
 ## 候选方案与当前选择
@@ -153,9 +176,9 @@ Phase 1 的选择与备选，方便以后调整：
 
 ## Prompt 迭代
 
-- 当前 prompt 在 `daily-english/prompts/v2.md`，每篇内容会记录 `prompt_version`。
-- 修改方式：复制成 `v3.md` → 改 `daily-english/config.yml` 的 `prompt` 和 `prompt_version` → 提交。下一班任务自动使用新版本，历史内容仍可追溯是哪个版本生成的。
-- 不要在多天内容之间直接静默改 `v2.md`，否则出问题时无法判断是 prompt 还是模型波动。
+- 当前讲解日 prompt 在 `daily-english/prompts/v3-lesson.md`，复习日在 `daily-english/prompts/v3-review.md`；每篇内容会记录 `prompt_version`。
+- 修改方式：复制成 `v4-lesson.md` / `v4-review.md` → 改 `daily-english/config.yml` 的 `prompt`、`prompt_review` 和 `prompt_version` → 提交。下一班任务自动使用新版本，历史内容仍可追溯是哪个版本生成的。
+- 不要在多天内容之间直接静默改 `v3-*.md`，否则出问题时无法判断是 prompt 还是模型波动。
 
 ## 下一步（Phase 2）
 

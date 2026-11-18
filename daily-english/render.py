@@ -13,6 +13,11 @@ _e = email_layout.escape
 FREQUENCY_LABELS = {"high": "高频", "medium": "中频", "low": "低频"}
 
 
+def content_mode(content: dict) -> str:
+    """旧内容没有 mode 字段，一律按讲解日渲染。"""
+    return "review" if str(content.get("mode", "")).strip().lower() == "review" else "lesson"
+
+
 def _word_html(word: dict) -> str:
     freq = str(word.get("exam_frequency", "")).strip()
     freq_label = FREQUENCY_LABELS.get(freq, freq)
@@ -99,15 +104,30 @@ def _word_html(word: dict) -> str:
     """
 
 
-def content_to_body_html(content: dict) -> str:
-    words = "".join(_word_html(word) for word in content.get("words", []))
+def _review_word_html(word: dict) -> str:
+    return f"""
+    <div class="word-card review-card">
+      <div class="review-head">
+        <span class="term">{_e(word.get("term"))}</span>
+        <span class="review-meaning">{_e(word.get("meaning_zh"))}</span>
+      </div>
+      <div class="review-point">考点：{_e(word.get("key_point_zh"))}</div>
+      <div class="example">{_e(word.get("example"))}</div>
+      <div class="translation">{_e(word.get("translation_zh"))}</div>
+      <div class="note">{_e(word.get("note_zh"))}</div>
+    </div>
+    """
 
-    dialogue = "".join(
+
+def _dialogue_html(content: dict) -> str:
+    return "".join(
         f'<div class="line"><span class="speaker">{_e(item.get("speaker"))}</span>'
         f'<span class="say">{_e(item.get("text"))}</span></div>'
         for item in content.get("dialogue", [])
     )
 
+
+def _quiz_html(content: dict) -> str:
     quiz_parts = []
     for index, item in enumerate(content.get("quiz", []), start=1):
         options = "".join(
@@ -120,17 +140,10 @@ def content_to_body_html(content: dict) -> str:
             f'<ul class="options">{options}</ul>'
             f"</div>"
         )
+    return "".join(quiz_parts)
 
-    review_parts = []
-    for index, item in enumerate(content.get("review", []), start=1):
-        review_parts.append(
-            f'<div class="review-item">'
-            f'<div class="question">{index}. {_e(item.get("question"))}</div>'
-            f'<div class="review-term">复习词：{_e(item.get("term"))}</div>'
-            f"</div>"
-        )
-    review_html = "".join(review_parts) or '<p class="muted">今天是第一天，没有复习词。</p>'
 
+def _answers_html(content: dict, include_review: bool = True) -> str:
     answers = []
     for index, item in enumerate(content.get("quiz", []), start=1):
         answer_index = item.get("answer_index", -1)
@@ -144,27 +157,72 @@ def content_to_body_html(content: dict) -> str:
             f"<p><strong>练习 {index}：</strong>{answer_text}<br>"
             f'<span class="muted">{_e(item.get("explanation_zh"))}</span></p>'
         )
+    if include_review:
+        for index, item in enumerate(content.get("review", []), start=1):
+            answers.append(
+                f"<p><strong>复习 {index}（{_e(item.get('term'))}）：</strong>"
+                f'{_e(item.get("answer"))}</p>'
+            )
+    return "".join(answers)
+
+
+def _lesson_body_html(content: dict) -> str:
+    words = "".join(_word_html(word) for word in content.get("words", []))
+
+    review_parts = []
     for index, item in enumerate(content.get("review", []), start=1):
-        answers.append(
-            f"<p><strong>复习 {index}（{_e(item.get('term'))}）：</strong>"
-            f'{_e(item.get("answer"))}</p>'
+        review_parts.append(
+            f'<div class="review-item">'
+            f'<div class="question">{index}. {_e(item.get("question"))}</div>'
+            f'<div class="review-term">复习词：{_e(item.get("term"))}</div>'
+            f"</div>"
         )
+    review_html = "".join(review_parts) or '<p class="muted">今天是第一天，没有复习词。</p>'
 
     return f"""
 <h2>今日词汇</h2>
 {words}
 <h2>情景对话</h2>
-<div class="dialogue">{dialogue}</div>
+<div class="dialogue">{_dialogue_html(content)}</div>
 <h2>小练习</h2>
-{''.join(quiz_parts)}
+{_quiz_html(content)}
 <h2>复习</h2>
 {review_html}
 <h2>答案与解析</h2>
-<div class="answers">{''.join(answers)}</div>
+<div class="answers">{_answers_html(content)}</div>
 """
 
 
-def content_to_text(content: dict, name: str = "每日英语") -> str:
+def _review_body_html(content: dict) -> str:
+    words = "".join(
+        _review_word_html(word) for word in content.get("review_words", [])
+    )
+    review_of = str(content.get("review_of", "")).strip()
+    intro = (
+        f'<p class="muted">复习 {_e(review_of)} 的 5 个词：先看考点，再做练习。</p>'
+        if review_of
+        else ""
+    )
+    return f"""
+<h2>今日复习</h2>
+{intro}
+{words}
+<h2>情景对话</h2>
+<div class="dialogue">{_dialogue_html(content)}</div>
+<h2>小练习</h2>
+{_quiz_html(content)}
+<h2>答案与解析</h2>
+<div class="answers">{_answers_html(content, include_review=False)}</div>
+"""
+
+
+def content_to_body_html(content: dict) -> str:
+    if content_mode(content) == "review":
+        return _review_body_html(content)
+    return _lesson_body_html(content)
+
+
+def _lesson_text(content: dict, name: str = "每日英语") -> str:
     lines = [
         f"{name} · {content.get('date', '')} · {content.get('theme', '')}",
         str(content.get("title", "")),
@@ -263,12 +321,73 @@ def content_to_text(content: dict, name: str = "每日英语") -> str:
     return "\n".join(lines).strip() + "\n"
 
 
+def _review_text(content: dict, name: str = "每日英语") -> str:
+    review_of = str(content.get("review_of", "")).strip()
+    lines = [
+        f"{name} · {content.get('date', '')} · 复习 · {content.get('theme', '')}",
+        str(content.get("title", "")),
+        "",
+        "【今日复习】",
+    ]
+    if review_of:
+        lines.append(f"复习 {review_of} 的 5 个词：先看考点，再做练习。")
+        lines.append("")
+    for index, word in enumerate(content.get("review_words", []), start=1):
+        lines.append(
+            f"{index}. {word.get('term', '')} — {word.get('meaning_zh', '')}"
+        )
+        lines.append(f"   考点：{word.get('key_point_zh', '')}")
+        lines.append(f"   例句：{word.get('example', '')}")
+        lines.append(f"   翻译：{word.get('translation_zh', '')}")
+        lines.append(f"   提示：{word.get('note_zh', '')}")
+        lines.append("")
+
+    lines.append("【情景对话】")
+    for item in content.get("dialogue", []):
+        lines.append(f"{item.get('speaker', '')}: {item.get('text', '')}")
+    lines.append("")
+
+    lines.append("【小练习】")
+    for index, item in enumerate(content.get("quiz", []), start=1):
+        lines.append(f"{index}. {item.get('question', '')}")
+        for option_index, option in enumerate(item.get("options", [])):
+            lines.append(f"   {chr(65 + option_index)}. {option}")
+        lines.append("")
+
+    lines.append("【答案与解析】")
+    for index, item in enumerate(content.get("quiz", []), start=1):
+        answer_index = item.get("answer_index", -1)
+        options = item.get("options", [])
+        if isinstance(answer_index, int) and 0 <= answer_index < len(options):
+            lines.append(f"练习 {index}：{chr(65 + answer_index)}. {options[answer_index]}")
+        else:
+            lines.append(f"练习 {index}：答案缺失")
+        lines.append(f"   {item.get('explanation_zh', '')}")
+
+    return "\n".join(lines).strip() + "\n"
+
+
+def content_to_text(content: dict, name: str = "每日英语") -> str:
+    if content_mode(content) == "review":
+        return _review_text(content, name)
+    return _lesson_text(content, name)
+
+
 EMAIL_CSS = """
     .email-body .word-card {
       margin: 0 0 14px; padding: 14px 16px; background: #f8fafc;
       border-left: 4px solid #0b6bcb; border-radius: 0 10px 10px 0;
     }
     .email-body .word-head { margin-bottom: 4px; }
+    .email-body .review-card { border-left-color: #0a7ea4; }
+    .email-body .review-head { margin-bottom: 6px; }
+    .email-body .review-meaning {
+      margin-left: 8px; color: #0a7ea4; font-weight: 700;
+    }
+    .email-body .review-point {
+      margin: 6px 0 8px; padding: 8px 10px; background: #eef8fb;
+      border-radius: 8px; color: #44505f; font-size: 14px;
+    }
     .email-body .term { font-size: 18px; font-weight: 700; color: #0b4f91; }
     .email-body .ipa { margin-left: 8px; color: #667085; font-size: 14px; }
     .email-body .pos {
@@ -380,6 +499,13 @@ a { color: var(--brand); }
   border-left: 4px solid var(--brand); border-radius: 0 10px 10px 0;
 }
 .word-head { margin-bottom: 4px; }
+.review-card { border-left-color: var(--accent); }
+.review-head { margin-bottom: 6px; }
+.review-meaning { margin-left: 8px; color: var(--accent); font-weight: 700; }
+.review-point {
+  margin: 6px 0 8px; padding: 8px 10px; background: #eef8fb;
+  border-radius: 8px; color: #44505f; font-size: 14px;
+}
 .term { font-size: 18px; font-weight: 700; color: #0b4f91; }
 .ipa { margin-left: 8px; color: var(--muted); font-size: 14px; }
 .pos {
@@ -460,8 +586,18 @@ def render_content(content: dict, config: dict, site_url: str = "") -> email_lay
     theme = str(content.get("theme", ""))
     title = str(content.get("title", ""))
     name = str(config.get("name") or config.get("site_title") or "每日英语")
-    subject = " · ".join(part for part in [name, date_text, theme] if part)
-    preheader = str(config.get("email_preheader", ""))
+    review = content_mode(content) == "review"
+    subject = " · ".join(
+        part
+        for part in [name, date_text, "复习" if review else "", theme]
+        if part
+    )
+    preheader = str(
+        config.get(
+            "email_preheader_review" if review else "email_preheader",
+            config.get("email_preheader", ""),
+        )
+    )
 
     body_html = content_to_body_html(content)
     if site_url:

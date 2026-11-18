@@ -67,11 +67,17 @@ def render_index(contents: list[dict], config: dict) -> str:
         date_text = str(content.get("date", ""))
         if not common.DATE_RE.match(date_text):
             continue
+        mode_label = "复习" if common.content_mode(content) == "review" else ""
+        meta = " · ".join(
+            part
+            for part in (mode_label, str(content.get("theme", "")).strip())
+            if part
+        )
         rows.append(
             f'<li><a href="{_e(date_text)}.html">'
             f'<span class="archive-date">{_e(date_text)}</span>'
             f'<span class="archive-title">{_e(content.get("title"))}</span>'
-            f'<span class="archive-theme">{_e(content.get("theme"))}</span>'
+            f'<span class="archive-theme">{_e(meta)}</span>'
             f"</a></li>"
         )
     body = (
@@ -107,6 +113,17 @@ def render_page(content: dict, config: dict, body_renderer) -> str:
     footer = str(config.get("site_footer", "由 DeepSeek + GitHub Actions 自动生成"))
     date_text = str(content.get("date", ""))
     page_title = str(content.get("title", ""))
+    mode_label = "复习" if common.content_mode(content) == "review" else ""
+    meta = " · ".join(
+        part
+        for part in [
+            date_text,
+            mode_label,
+            str(content.get("theme", "")),
+            str(content.get("level", "")),
+        ]
+        if part
+    )
     body = body_renderer(content)
     return f"""<!doctype html>
 <html lang="zh-CN">
@@ -124,7 +141,7 @@ def render_page(content: dict, config: dict, body_renderer) -> str:
   </header>
   <article class="card content">
     <h1>{_e(page_title)}</h1>
-    <p class="meta">{_e(date_text)} · {_e(content.get("theme"))} · {_e(content.get("level"))}</p>
+    <p class="meta">{_e(meta)}</p>
     {body}
     <p class="back"><a href="index.html">← 返回目录</a></p>
   </article>

@@ -13,10 +13,44 @@ import common  # noqa: E402
 class SchemaTests(unittest.TestCase):
     def setUp(self):
         self.schema = common.load_schema("english")
+        self.review_schema = common.load_schema("english", mode="review")
         self.fixture = common.load_json(ROOT / "daily-english" / "fixture.json")
+        self.review_fixture = common.load_json(
+            ROOT / "daily-english" / "fixture-review.json"
+        )
 
     def test_fixture_is_valid(self):
         self.assertEqual(common.validate_content(self.fixture, self.schema), [])
+
+    def test_old_lesson_content_without_mode_is_valid(self):
+        content = copy.deepcopy(self.fixture)
+        del content["mode"]
+        self.assertEqual(common.validate_content(content, self.schema), [])
+
+    def test_review_fixture_is_valid(self):
+        self.assertEqual(
+            common.validate_content(self.review_fixture, self.review_schema), []
+        )
+
+    def test_lesson_fixture_is_not_valid_as_review(self):
+        errors = common.validate_content(self.fixture, self.review_schema)
+        self.assertTrue(errors)
+
+    def test_review_fixture_is_not_valid_as_lesson(self):
+        errors = common.validate_content(self.review_fixture, self.schema)
+        self.assertTrue(errors)
+
+    def test_review_requires_five_words(self):
+        content = copy.deepcopy(self.review_fixture)
+        content["review_words"] = content["review_words"][:4]
+        errors = common.validate_content(content, self.review_schema)
+        self.assertTrue(any("review_words" in error for error in errors))
+
+    def test_review_requires_three_quiz_items(self):
+        content = copy.deepcopy(self.review_fixture)
+        content["quiz"] = content["quiz"][:2]
+        errors = common.validate_content(content, self.review_schema)
+        self.assertTrue(any("quiz" in error for error in errors))
 
     def test_missing_word_is_rejected(self):
         content = copy.deepcopy(self.fixture)

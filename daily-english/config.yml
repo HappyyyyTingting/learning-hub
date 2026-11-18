@@ -3,8 +3,9 @@ name: 每日英语
 timezone: Asia/Shanghai
 
 # GitHub Actions 的 cron 在 .github/workflows/daily.yml 里；
-# 这里是给人和脚本看的默认调度（UTC 23:30 = 北京时间次日 07:30）。
-schedule_utc: "30 23 * * *"
+# 这里是给人和脚本看的默认调度（UTC 18:00 = 北京时间次日 02:00）。
+# GitHub 的 schedule 实测会延迟 3–5 小时，所以邮件通常在北京时间 05:00–07:00 到达。
+schedule_utc: "0 18 * * *"
 
 level: IELTS (B2-C1)
 provider: deepseek
@@ -14,15 +15,22 @@ max_tokens: 8000
 temperature: 1.0
 
 # 相对路径以本任务目录 daily-english/ 为基准。
-prompt: prompts/v2.md
-prompt_version: v2
+# 讲解日和复习日使用不同的 prompt 与 schema；旧内容没有 mode 字段时按 lesson 处理。
+prompt: prompts/v3-lesson.md
+prompt_review: prompts/v3-review.md
+prompt_version: v3
+schema: schema.json
+schema_review: review-schema.json
+fixture: fixture.json
+fixture_review: fixture-review.json
 
 site_title: Daily English
-site_description: 每天 5–10 分钟，雅思高频词精讲、同义替换、搭配与练习。
+site_description: 一天精讲 5 个雅思高频词，一天复习巩固；每天 5–10 分钟。
 site_footer: 由 DeepSeek + GitHub Actions 自动生成
 
 email_header: Daily English · IELTS
 email_preheader: 5 个雅思高频词 · 同义替换 · 高频搭配 · 1 段对话 · 2 道练习
+email_preheader_review: 5 个词回顾 · 易错点 · 新例句 · 1 段对话 · 3 道练习
 email_footer: 由 DeepSeek + GitHub Actions 自动生成 · 每天 5–10 分钟，坚持比一次学很多更重要。
 
 # Phase 1 先不做音频；需要时再接入 edge-tts + R2。
