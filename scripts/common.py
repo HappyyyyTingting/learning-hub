@@ -143,6 +143,17 @@ def fixture_path(
     return _resolve(task_dir(task_id), str(config.get(key, default)))
 
 
+def audio_dir(task: str | None = None, config: dict | None = None) -> Path:
+    task_id = normalize_task(task)
+    config = config or load_config(task_id)
+    audio = (config.get("audio") or {})
+    return _resolve(task_dir(task_id), str(audio.get("dir", "audio")))
+
+
+def audio_enabled(config: dict | None = None) -> bool:
+    return bool(((config or {}).get("audio") or {}).get("enabled"))
+
+
 def site_dir(task: str | None = None, config: dict | None = None) -> Path:
     task_id = normalize_task(task)
     config = config or load_config(task_id)

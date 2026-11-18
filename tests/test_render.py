@@ -44,6 +44,30 @@ class RenderTests(unittest.TestCase):
         first_word = self.content["words"][0]["term"]
         self.assertIn(first_word, text)
 
+    def test_audio_script_covers_words_and_dialogue(self):
+        segments = render.content_to_audio_segments(self.content, "每日英语")
+        self.assertTrue(segments)
+        self.assertEqual(segments[0][0], "zh")
+        spoken = "\n".join(text for _, text in segments)
+        for word in self.content["words"]:
+            self.assertIn(word["term"], spoken)
+        self.assertIn(self.content["words"][0]["examples"][0]["sentence"], spoken)
+        self.assertIn(self.content["dialogue"][0]["text"], spoken)
+        self.assertNotIn("【答案与解析】", spoken)
+
+    def test_review_day_has_no_audio_script(self):
+        self.assertEqual(render.content_to_audio_segments(self.review_content), [])
+
+    def test_email_links_audio_when_given(self):
+        rendered = render.render_content(
+            self.content,
+            self.config,
+            "https://example.com/english/",
+            audio_url="https://example.com/english/audio/2026-11-09.mp3",
+        )
+        self.assertIn("audio/2026-11-09.mp3", rendered.html)
+        self.assertIn("audio/2026-11-09.mp3", rendered.text)
+
     def test_render_content_subject_and_preheader(self):
         rendered = render.render_content(self.content, self.config, "https://example.com/")
         self.assertIn(self.content["date"], rendered.subject)

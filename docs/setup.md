@@ -75,10 +75,11 @@ Resend 方式（`EMAIL_PROVIDER=resend`）：
 1. 跑单元测试。
 2. 按北京时间确定日期。
 3. `generate.py --task english --mode auto` 生成内容；按上一篇自动切换讲解日 / 复习日，已存在则跳过。
-4. `send_email.py --task english` 发邮件；`daily-english/state/sent.json` 已记录则跳过。
-5. `build_site.py --task english` 构建 `site/english/` 和根入口 `site/index.html`。
-6. 提交 `daily-english/` 下的内容和发送状态。
-7. 上传 Pages artifact。
+4. 恢复 `actions/cache` 里的 `daily-english/audio/`，再由 `make_audio.py --task english` 生成当天讲解音频并清理 7 天前的文件；音频步骤失败不阻断后续步骤。
+5. `send_email.py --task english` 发邮件；`daily-english/state/sent.json` 已记录则跳过。
+6. `build_site.py --task english` 构建 `site/english/` 和根入口 `site/index.html`，并把这周的音 mp3 一起放进站点。
+7. 提交 `daily-english/` 下的内容和发送状态（音频不进 git）。
+8. 上传 Pages artifact。
 
 `deploy` job 部署 Pages；`alert` job 在任一环节失败时发告警邮件。
 

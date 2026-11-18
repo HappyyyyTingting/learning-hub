@@ -4,7 +4,7 @@
 
 仓库按任务拆分：每个任务一个顶层目录 `daily-<task>/`，公共流水线在 `scripts/`。以后加资讯、AI 基础、历史等任务时，不需要改公共逻辑。
 
-Phase 1 只做一件事：跑通 **定时 → 生成 → 发送 → 归档** 的最小闭环。先不接搜索、音频和反馈系统，等内容质量稳定后再加。
+Phase 1 只做一件事：跑通 **定时 → 生成 → 发送 → 归档** 的最小闭环。先不接搜索和反馈系统，等内容质量稳定后再加。
 
 ## 流水线
 
@@ -13,6 +13,9 @@ GitHub Actions（cron 18:00 UTC / 北京次日 02:00）
   └─ scripts/generate.py --task english --mode auto
        DeepSeek API + JSON Schema（lesson / review）
        → daily-english/content/YYYY-MM-DD.json
+  └─ scripts/make_audio.py --task english
+       edge-tts 中英双音色 → daily-english/audio/YYYY-MM-DD.mp3
+       （不进 git，用 actions/cache 在运行之间保留最近 7 天）
   └─ scripts/send_email.py --task english
        SMTP 或 Resend → 邮箱
        → daily-english/state/sent.json 记录已发送
@@ -29,10 +32,11 @@ GitHub Actions（cron 18:00 UTC / 北京次日 02:00）
 - 1 段 6–8 轮情景对话
 - 2 道选择题（词义辨析 / 同义替换 / 搭配，含答案解析）
 - 0–2 个间隔复习项：从 3 / 7 / 14 天前首次出现的词里选
+- 音频讲解：5 个单词卡 + 情景对话，英文用英文音色、中文释义和考点用中文音色，约 5 分钟；练习和答案不读，避免剧透
 
 **复习日 `review`**
 
-- 只复习上一讲讲解日的 5 个词，不学新词
+- 只复习上一讲讲解日的 5 个词，不学新词（复习日暂时没有音频）
 - 每个词：核心释义、考点/易错点、1 个全新例句、翻译和提示
 - 1 段 4–8 轮情景对话，至少用到 3 个复习词
 - 3 道选择题（词义辨析 / 固定搭配 / 语境填空，含答案解析）
@@ -54,12 +58,14 @@ daily-english/            一个任务 = 一个顶层目录
   review-schema.json      复习日 JSON Schema
   fixture.json            讲解日本地预览样例
   fixture-review.json     复习日本地预览样例
-  render.py               任务专用渲染（邮件正文 + 站点 CSS）
+  render.py               任务专用渲染（邮件正文 + 站点 CSS + 朗读稿）
   content/                每天生成的内容（工作流自动提交）
+  audio/                  每天生成的 mp3（不进 git，本地和 CI 缓存保留 7 天）
   state/sent.json         已发送日期，防止重复发送
 scripts/                  公共流水线，不写死具体任务
   common.py               任务路径解析、配置、日期、内容读写、校验
   generate.py             调用 DeepSeek 生成内容
+  make_audio.py           edge-tts 生成讲解音频，并清理 7 天前的文件
   send_email.py           发送邮件（SMTP / Resend）
   email_layout.py         公共邮件外壳与预览输出
   build_site.py           构建任务归档站和 Learning Hub 入口
@@ -101,6 +107,11 @@ python scripts/generate.py --task english --fixture --date 2026-11-19 --mode rev
 python scripts/send_email.py --task english --date 2026-11-19 --dry-run
 open preview/english/2026-11-19/email.html
 
+# 讲解日音频（会调用免费的 edge-tts，不需要密钥；约 2–3 分钟）
+python scripts/make_audio.py --task english --date 2026-11-09 --dry-run   # 先看朗读稿
+python scripts/make_audio.py --task english --date 2026-11-09
+open daily-english/audio/2026-11-09.mp3
+
 python scripts/build_site.py --task english
 open site/english/index.html
 open site/index.html
@@ -132,10 +143,11 @@ python -m unittest discover -s tests -v
 
 1. 复制 `daily-english/` 为 `daily-<task>/`，改 `config.yml` 里的 `name`、`prompt`、`site_title`、`site_description` 和邮件文案。
 2. 写该任务的 `schema.json`、`prompts/v1.md`、`fixture.json` 和 `render.py`。
-3. `render.py` 至少提供三个东西：
+3. `render.py` 提供这几个接口：
    - `content_to_body_html(content) -> str`：邮件和站点共用的正文 HTML
-   - `render_content(content, config, site_url="") -> email_layout.RenderedContent`：邮件主题、preheader、HTML、纯文本
+   - `render_content(content, config, site_url="", audio_url="") -> email_layout.RenderedContent`：邮件主题、preheader、HTML、纯文本
    - `SITE_CSS: str`：任务归档站的样式
+   - 需要音频时再加 `content_to_audio_segments(content, name) -> list[tuple[str, str]]`，返回 `(语言, 文本)` 列表，`make_audio.py` 会按语言选音色并拼接
 4. 在 workflow 里加一个 job（或复制一份 `daily.yml`），把命令里的 `--task` 换成新任务名。公共脚本不需要改。
 5. 跑 `python scripts/build_site.py --task <task>`，任务会自动出现在 `site/index.html` 的入口页。
 
@@ -156,6 +168,8 @@ python -m unittest discover -s tests -v
 - 工作流会把 `daily-english/` 提交回仓库，用 `GITHUB_TOKEN` push。**这类提交不会再次触发工作流**，所以不会循环。
 - 只有默认分支上的 `schedule` 会生效；GitHub 的 cron 可能延迟几分钟到几小时。本项目实测常见延迟是 3–5 小时，所以 cron 设在 UTC 18:00（北京次日 02:00），邮件通常在北京时间 05:00–07:00 到达。
 - 极端情况下：邮件已发出但提交 state 失败，重跑会再发一次。重跑前先看一眼 `daily-english/state/sent.json` 和邮箱。
+- 音频不进 git：workflow 用 `actions/cache` 在两次运行之间传递 `daily-english/audio/`，每次生成后清理 `audio.retention_days`（默认 7）天前的文件，站点只带最近一周的 mp3。音频步骤失败不影响当天的文字推送。
+- 音频生成会调用免费的 edge-tts，不需要密钥；34 段左右、5–6 分钟的内容大约耗时 2–3 分钟。
 
 ## 候选方案与当前选择
 
@@ -168,7 +182,7 @@ Phase 1 的选择与备选，方便以后调整：
 | 内容格式 | 结构化 JSON | Markdown | JSON 便于稳定渲染、复习追踪和以后做 App |
 | 存储 | 仓库内 JSON 文件 | SQLite、外部数据库 | Phase 1 不需要数据库，Git 本身就是版本记录 |
 | 投递 | 邮件 + GitHub Pages | Telegram Bot、RSS、微信 | 邮件适合每天固定阅读；Pages 负责归档和分享 |
-| 音频 | 暂不开启 | edge-tts + Cloudflare R2 | Phase 2 再复用 tech-digest 的音频方案 |
+| 音频 | edge-tts（中英双音色）+ Pages 托管 | Cloudflare R2；不做音频 | 只在讲解日生成；mp3 不进 git，靠 actions/cache 保留 7 天，避免仓库历史膨胀 |
 | 反馈 | 手动记录 | 邮件一键评分、每周 meta 任务 | Phase 2 再做闭环 |
 | 失败告警 | 邮件（已内置） | — | 避免像早期 tech-digest 一样静默失败 |
 
@@ -185,6 +199,6 @@ Phase 1 的选择与备选，方便以后调整：
 1. 反馈入口：邮件底部加“今天难度如何 / 哪个部分最有用”，或每周发一封简短问卷。
 2. 每周 meta 任务：读最近 7 天内容和反馈，提出 prompt 修改建议（先输出 diff，人工确认后合并）。
 3. 站点阅读模式：章节和单词卡折叠、顶部目录大纲、记住展开状态；邮件保持线性，不做折叠（客户端兼容性差）。
-4. 音频：edge-tts + R2，复用 tech-digest 的 `make_audio.py`。
+4. 复习日音频：目前只有讲解日有音频，复习日要看需求再补。
 5. 第二类任务（AI 基础、资讯、历史）接入同一套生成/发送/归档流程，`site/` 入口页会自动聚合。
 6. 查看与定制化学习：在 Pages 之上做 PWA / App。

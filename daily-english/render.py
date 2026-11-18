@@ -6,11 +6,27 @@ Task-specific renderer: the shared email shell lives in ``scripts/email_layout.p
 
 from __future__ import annotations
 
+from datetime import datetime
+
 import email_layout
 
 _e = email_layout.escape
 
 FREQUENCY_LABELS = {"high": "高频", "medium": "中频", "low": "低频"}
+
+POS_ZH = {
+    "adj.": "形容词",
+    "adv.": "副词",
+    "n.": "名词",
+    "v.": "动词",
+    "vt.": "及物动词",
+    "vi.": "不及物动词",
+    "prep.": "介词",
+    "conj.": "连词",
+    "pron.": "代词",
+    "phr.": "短语",
+}
+CN_NUMBERS = "一二三四五六七八九十"
 
 
 def content_mode(content: dict) -> str:
@@ -373,7 +389,100 @@ def content_to_text(content: dict, name: str = "每日英语") -> str:
     return _lesson_text(content, name)
 
 
+def _spoken(text: object, end: str = "。") -> str:
+    """补上句末标点，避免 TTS 把几段话连成一句。"""
+    value = " ".join(str(text or "").split())
+    if not value:
+        return ""
+    if value[-1] not in "。！？.!?；;":
+        value += end
+    return value
+
+
+def _zh_date(date_text: str) -> str:
+    try:
+        parsed = datetime.strptime(date_text, "%Y-%m-%d")
+    except ValueError:
+        return date_text
+    return f"{parsed.year}年{parsed.month}月{parsed.day}日"
+
+
+def _senses_text(senses: list[dict]) -> str:
+    """把同词性的释义合并，读起来是“动词，……；……；名词，……”。"""
+    grouped: dict[str, list[str]] = {}
+    for sense in senses:
+        pos = str(sense.get("pos", "")).strip()
+        definition = str(sense.get("definition_zh", "")).strip()
+        if not definition:
+            continue
+        grouped.setdefault(POS_ZH.get(pos, pos), []).append(definition)
+    return "；".join(
+        f"{label}，{'；'.join(definitions)}" if label else "；".join(definitions)
+        for label, definitions in grouped.items()
+    )
+
+
+def content_to_audio_segments(
+    content: dict, name: str = "每日英语"
+) -> list[tuple[str, str]]:
+    """讲解日的朗读稿，按 (语言, 文本) 切分，便于中英分别配音。
+
+    只覆盖单词卡和情景对话，不读练习和答案（避免剧透）。
+    复习日暂时没有音频，返回空列表。
+    """
+    if content_mode(content) != "lesson":
+        return []
+
+    segments: list[tuple[str, str]] = []
+    theme = str(content.get("theme", "")).strip()
+    intro = f"{name}，{_zh_date(str(content.get('date', '')))}。"
+    if theme:
+        intro += f"今天的主题是 {theme}，一共五个词。"
+    segments.append(("zh", intro))
+    segments.append(("en", _spoken(content.get("title"), end=".")))
+
+    for index, word in enumerate(content.get("words", [])):
+        if index == 0:
+            segments.append(("zh", "第一个词。"))
+        elif index < len(CN_NUMBERS):
+            segments.append(("zh", f"第{CN_NUMBERS[index]}个词。"))
+        else:
+            segments.append(("zh", f"第{index + 1}个词。"))
+        segments.append(("en", _spoken(word.get("term"), end=".")))
+
+        explanation = _senses_text(word.get("senses", []))
+        parts = [_spoken(explanation)]
+        exam_focus = str(word.get("exam_focus_zh", "")).strip()
+        if exam_focus:
+            parts.append(_spoken(f"考点：{exam_focus}"))
+        segments.append(("zh", "".join(parts)))
+
+        for example in list(word.get("examples", []))[:2]:
+            sentence = _spoken(example.get("sentence"), end=".")
+            if sentence:
+                segments.append(("en", sentence))
+            translation = _spoken(example.get("translation_zh"))
+            if translation:
+                segments.append(("zh", f"翻译：{translation}"))
+
+    lines = [
+        f"{str(item.get('speaker', '')).strip()}: {str(item.get('text', '')).strip()}"
+        for item in content.get("dialogue", [])
+        if str(item.get("text", "")).strip()
+    ]
+    if lines:
+        segments.append(("zh", "下面是情景对话。"))
+        segments.append(("en", " ".join(lines)))
+
+    return [(lang, text) for lang, text in segments if text.strip()]
+
+
 EMAIL_CSS = """
+    .email-body .audio-box {
+      margin: 0 0 16px; padding: 12px 14px; background: #eef5ff;
+      border: 1px solid #cfe0f7; border-radius: 10px; font-size: 15px;
+    }
+    .email-body .audio-box a { color: #0b5cad; font-weight: 700; }
     .email-body .word-card {
       margin: 0 0 14px; padding: 14px 16px; background: #f8fafc;
       border-left: 4px solid #0b6bcb; border-radius: 0 10px 10px 0;
@@ -492,6 +601,9 @@ a { color: var(--brand); }
   padding-bottom: 8px; border-bottom: 1px solid var(--line);
 }
 .content p { margin: 0 0 14px; }
+.audio-player { margin: 0 0 22px; }
+.audio-player audio { width: 100%; }
+.audio-player .audio-label { margin: 0 0 6px; color: var(--muted); font-size: 14px; }
 .content ul { margin: 0 0 16px; padding-left: 22px; }
 .content li { margin: 0 0 8px; }
 .word-card {
@@ -581,7 +693,12 @@ a { color: var(--brand); }
 """
 
 
-def render_content(content: dict, config: dict, site_url: str = "") -> email_layout.RenderedContent:
+def render_content(
+    content: dict,
+    config: dict,
+    site_url: str = "",
+    audio_url: str = "",
+) -> email_layout.RenderedContent:
     date_text = str(content.get("date", ""))
     theme = str(content.get("theme", ""))
     title = str(content.get("title", ""))
@@ -600,6 +717,12 @@ def render_content(content: dict, config: dict, site_url: str = "") -> email_lay
     )
 
     body_html = content_to_body_html(content)
+    if audio_url:
+        body_html = (
+            '<div class="audio-box">🎧 '
+            f'<a href="{_e(audio_url)}">点这里听今天的讲解</a>'
+            "（约 5 分钟，先听一遍再看文字）</div>"
+        ) + body_html
     if site_url:
         body_html += f'<p class="muted"><a href="{_e(site_url)}">查看往期推送</a></p>'
 
@@ -614,6 +737,8 @@ def render_content(content: dict, config: dict, site_url: str = "") -> email_lay
         extra_css=EMAIL_CSS,
     )
     text = content_to_text(content, name)
+    if audio_url:
+        text = f"音频讲解：{audio_url}\n\n{text}"
     if site_url:
         text += f"\n往期推送：{site_url}\n"
 

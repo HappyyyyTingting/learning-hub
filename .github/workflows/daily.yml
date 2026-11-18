@@ -86,6 +86,20 @@ jobs:
             python scripts/generate.py --task english --date "${DATE}" --mode "${mode}"
           fi
 
+      - name: Restore audio cache
+        uses: actions/cache@v6
+        with:
+          path: daily-english/audio
+          key: daily-english-audio-${{ steps.date.outputs.date }}
+          restore-keys: |
+            daily-english-audio-
+
+      - name: Make audio
+        continue-on-error: true
+        env:
+          DATE: ${{ steps.date.outputs.date }}
+        run: python scripts/make_audio.py --task english --date "${DATE}"
+
       - name: Send email
         env:
           DATE: ${{ steps.date.outputs.date }}

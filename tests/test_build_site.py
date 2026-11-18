@@ -1,4 +1,5 @@
 import copy
+import shutil
 import sys
 import tempfile
 import unittest
@@ -83,6 +84,33 @@ class BuildSiteTests(unittest.TestCase):
         self.assertNotIn("<script>alert(1)</script>", page_text)
         self.assertIn("&lt;script&gt;", page_text)
 
+
+    def test_copies_audio_and_renders_player(self):
+        temp_audio = tempfile.TemporaryDirectory()
+        self.addCleanup(temp_audio.cleanup)
+        audio_dir = Path(temp_audio.name)
+        date_text = self.content["date"]
+        (audio_dir / f"{date_text}.mp3").write_bytes(b"mp3")
+
+        site_dir = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, site_dir, True)
+        build_site.build_site(
+            [self.content],
+            site_dir,
+            self.config,
+            body_renderer=render.content_to_body_html,
+            site_css=render.SITE_CSS,
+            audio_dir=audio_dir,
+        )
+
+        self.assertTrue((site_dir / "audio" / f"{date_text}.mp3").is_file())
+        page_text = (site_dir / f"{date_text}.html").read_text(encoding="utf-8")
+        self.assertIn(f'src="audio/{date_text}.mp3"', page_text)
+
+    def test_page_without_audio_has_no_player(self):
+        site_dir, _ = self._build([self.content])
+        page_text = (site_dir / f"{self.content['date']}.html").read_text(encoding="utf-8")
+        self.assertNotIn("<audio", page_text)
 
     def test_hub_lists_built_tasks(self):
         temp_dir = tempfile.TemporaryDirectory()

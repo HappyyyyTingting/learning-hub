@@ -33,8 +33,13 @@ email_preheader: 5 个雅思高频词 · 同义替换 · 高频搭配 · 1 段�
 email_preheader_review: 5 个词回顾 · 易错点 · 新例句 · 1 段对话 · 3 道练习
 email_footer: 由 DeepSeek + GitHub Actions 自动生成 · 每天 5–10 分钟，坚持比一次学很多更重要。
 
-# Phase 1 先不做音频；需要时再接入 edge-tts + R2。
+# 讲解日生成音频：英文用英文音色，中文释义/考点用中文音色，按顺序拼接。
+# 音频不进 git（见 .gitignore），由 workflow 用 actions/cache 在运行之间保留，
+# 站点上只留最近 retention_days 天。
 audio:
-  enabled: false
-  voice: en-US-AriaNeural
+  enabled: true
+  dir: audio
+  voice_en: en-US-AriaNeural
+  voice_zh: zh-CN-XiaoxiaoNeural
   rate: "-5%"
+  retention_days: 7

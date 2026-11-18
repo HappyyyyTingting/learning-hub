@@ -318,16 +318,26 @@ def main(argv: list[str] | None = None) -> int:
             return 0
 
         renderer = common.load_renderer(task)
+        site_url = args.site_url or common.derive_site_url(task)
+        audio_url = ""
+        if common.audio_enabled(config) and site_url:
+            if common.content_mode(content) == "lesson":
+                mp3_path = common.audio_dir(task, config) / f"{date_text}.mp3"
+                if mp3_path.is_file():
+                    audio_url = f"{site_url.rstrip('/')}/audio/{date_text}.mp3"
         rendered = renderer.render_content(
             content,
             config,
-            args.site_url or common.derive_site_url(task),
+            site_url,
+            audio_url=audio_url,
         )
         if args.subject:
             rendered.subject = args.subject
 
         print(f"内容文件：{_display_path(common.content_path(task, date_text, config))}")
         print(f"邮件主题：{rendered.subject}")
+        if audio_url:
+            print(f"音频链接：{audio_url}")
 
         if args.dry_run:
             out_dir = (

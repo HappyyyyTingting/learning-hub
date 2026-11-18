@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import shutil
 import sys
 from pathlib import Path
 
@@ -108,7 +109,12 @@ def render_index(contents: list[dict], config: dict) -> str:
 """
 
 
-def render_page(content: dict, config: dict, body_renderer) -> str:
+def render_page(
+    content: dict,
+    config: dict,
+    body_renderer,
+    audio_url: str = "",
+) -> str:
     title = str(config.get("site_title") or config.get("name") or "Learning Hub")
     footer = str(config.get("site_footer", "由 DeepSeek + GitHub Actions 自动生成"))
     date_text = str(content.get("date", ""))
@@ -125,6 +131,14 @@ def render_page(content: dict, config: dict, body_renderer) -> str:
         if part
     )
     body = body_renderer(content)
+    audio_html = (
+        f'<div class="audio-player">'
+        f'<p class="audio-label">🎧 音频讲解</p>'
+        f'<audio controls preload="none" src="{_e(audio_url)}"></audio>'
+        f"</div>"
+        if audio_url
+        else ""
+    )
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -142,6 +156,7 @@ def render_page(content: dict, config: dict, body_renderer) -> str:
   <article class="card content">
     <h1>{_e(page_title)}</h1>
     <p class="meta">{_e(meta)}</p>
+    {audio_html}
     {body}
     <p class="back"><a href="index.html">← 返回目录</a></p>
   </article>
@@ -152,6 +167,26 @@ def render_page(content: dict, config: dict, body_renderer) -> str:
 """
 
 
+def copy_audio(audio_dir: Path | None, site_dir: Path) -> set[str]:
+    """Copy available MP3s into the site and return their dates."""
+    if audio_dir is None:
+        return set()
+    audio_dir = Path(audio_dir)
+    if not audio_dir.is_dir():
+        return set()
+    target_dir = Path(site_dir) / "audio"
+    if target_dir.exists():
+        shutil.rmtree(target_dir)
+    dates = set()
+    for source in sorted(audio_dir.glob("*.mp3")):
+        if not common.DATE_RE.match(source.stem):
+            continue
+        target_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target_dir / source.name)
+        dates.add(source.stem)
+    return dates
+
+
 def build_site(
     contents: list[dict],
     site_dir: Path,
@@ -159,11 +194,13 @@ def build_site(
     limit: int = 0,
     body_renderer=None,
     site_css: str = "",
+    audio_dir: Path | None = None,
 ) -> dict[str, Path]:
     if body_renderer is None:
         raise ValueError("build_site 需要 body_renderer")
     site_dir = Path(site_dir)
     site_dir.mkdir(parents=True, exist_ok=True)
+    audio_dates = copy_audio(audio_dir, site_dir)
 
     items = sorted(
         (content for content in contents if common.DATE_RE.match(str(content.get("date", "")))),
@@ -181,7 +218,12 @@ def build_site(
         date_text = str(content["date"])
         page_path = site_dir / f"{date_text}.html"
         page_path.write_text(
-            render_page(content, config, body_renderer),
+            render_page(
+                content,
+                config,
+                body_renderer,
+                audio_url=f"audio/{date_text}.mp3" if date_text in audio_dates else "",
+            ),
             encoding="utf-8",
         )
         paths[date_text] = page_path
@@ -268,6 +310,7 @@ def main(argv: list[str] | None = None) -> int:
             args.limit,
             body_renderer=renderer.content_to_body_html,
             site_css=getattr(renderer, "SITE_CSS", ""),
+            audio_dir=common.audio_dir(task, config),
         )
         hub_path = build_hub(site_dir.parent)
         print(f"已构建 {len([key for key in paths if key not in {'index', 'style'}])} 篇内容")

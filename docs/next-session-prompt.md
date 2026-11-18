@@ -19,7 +19,7 @@
 
 当前状态（2026-11-18）：
 
-- 脚手架已完成；讲解 / 复习交替改动后本地 68 个单元测试通过。
+- 脚手架已完成；讲解 / 复习交替 + 音频改动后本地 79 个单元测试通过。
 - 本次改动前远端 `origin/main` 是 `16faeec`（`content: 2026-11-18`）；提交后以 `git log` 为准。`daily-english/content/` 有 2026-11-09 到 2026-11-18 的内容（11-15、11-16 缺失，属正常漏跑）。
 - SMTP 加固 commit `4adad55` 已 push；2026-11-09 到 2026-11-18 的真实发送均成功，`daily-english/state/sent.json` 有记录。
 - Pages 已启用（Source = GitHub Actions），站点地址 `https://happyyyytingting.github.io/learning-hub/`。
@@ -29,7 +29,10 @@
   - `review`：只复习上一讲讲解日的 5 个词，含 5 张复习卡 + 4–8 轮对话 + 3 道练习。
   - `generate.py --mode auto` 默认按上一篇的 `mode` 翻转；旧内容没有 `mode` 时按 `lesson` 处理。
   - 复习日会把这 5 个词记为已复习，后续间隔复习会跳过 3 天内刚复习过的词。
-- 音频仍未实现，`daily-english/config.yml` 里 `audio.enabled: false`，不要在没有明确需求时接入。
+- 音频：仅讲解日，`scripts/make_audio.py` 用 edge-tts 生成，英文音色 + 中文音色按顺序拼接，读 5 个单词卡和情景对话（不读练习和答案），约 5–6 分钟。
+  - mp3 写在 `daily-english/audio/`，**不提交进 git**（`.gitignore` 已排除），workflow 用 `actions/cache` 在运行之间保留，并清理 `audio.retention_days`（默认 7）天前的文件。
+  - 邮件里给 Pages 链接，站点页面有 `<audio>` 播放器；音频步骤 `continue-on-error`，失败不影响当天文字推送。
+  - 复习日没有音频。
 
 已定方案：
 
@@ -42,7 +45,7 @@
 
 请按这个顺序继续：
 
-1. 先跑 `python -m unittest discover -s tests -v`，确认 68 个测试通过。
+1. 先跑 `python -m unittest discover -s tests -v`，确认 79 个测试通过。
 2. 用 fixture 预览 2026-11-19 的复习日：
    `python scripts/generate.py --task english --date 2026-11-19 --mode auto --fixture`
    `python scripts/send_email.py --task english --date 2026-11-19 --dry-run`
