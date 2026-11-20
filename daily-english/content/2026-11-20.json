@@ -1,0 +1,403 @@
+{
+  "date": "2026-11-20",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "mode": "lesson",
+  "theme": "work",
+  "title": "Talking About Work: Staff, Prospects and Autonomy",
+  "words": [
+    {
+      "term": "retain",
+      "ipa_us": "/rɪˈteɪn/",
+      "ipa_uk": "/rɪˈteɪn/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常作为 keep / maintain 的同义替换出现；写作谈留住人才、保持信息时用 retain staff、retain information 很自然。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "留住、保住（员工、客户、地位）",
+          "definition_en": "to keep someone or something and prevent them from leaving or being lost"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "记住、保留（信息、印象）",
+          "definition_en": "to continue to remember or hold information in the mind"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "maintain",
+          "pos": "v.",
+          "definition_zh": "保持、维持",
+          "nuance_zh": "maintain 强调让某种状态持续下去，多接 standards、quality、contact；retain 强调不让人或物失去，多接 staff、customers、information。",
+          "collocation": "maintain high standards（保持高标准）"
+        },
+        {
+          "term": "preserve",
+          "pos": "v.",
+          "definition_zh": "保存、保护",
+          "nuance_zh": "preserve 强调保护以免损坏或消失，多用于文物、传统、自然环境；retain 只是继续拥有，不含保护意味。",
+          "collocation": "preserve traditional customs（保留传统习俗）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "retain staff",
+          "meaning_zh": "留住员工"
+        },
+        {
+          "phrase": "retain information",
+          "meaning_zh": "记住信息"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "retention",
+          "pos": "n.",
+          "meaning_zh": "保留；员工留任率（staff retention）"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Employers that offer training and flexible hours are far more likely to retain experienced staff.",
+          "translation_zh": "提供培训和弹性工时的雇主更有可能留住有经验的员工。",
+          "note_zh": "写作谈用人策略时的常用句式，retain 与 staff 搭配。"
+        },
+        {
+          "sentence": "Candidates who take notes while listening tend to retain more of the key figures.",
+          "translation_zh": "边听边做笔记的考生往往能记住更多关键数字。",
+          "note_zh": "retain 在此相当于 remember / keep，是听力题常见的同义替换。"
+        }
+      ]
+    },
+    {
+      "term": "prospect",
+      "ipa_us": "/ˈprɑːspekt/",
+      "ipa_uk": "/ˈprɒspekt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力和阅读的求职、经济类文章高频出现；prospects 用复数表示“前途”，写作里 the prospect of doing sth 可用来引出预测。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "（常复数）前途、前景、成功的可能性",
+          "definition_en": "the chances of being successful in the future, especially in a career"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "即将发生的事、前景（the prospect of ...）",
+          "definition_en": "the possibility that something will happen"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "outlook",
+          "pos": "n.",
+          "definition_zh": "前景、形势展望",
+          "nuance_zh": "outlook 多指整体形势或某人的看法，如经济前景、人生观；prospect 指个人或事物的未来机会，常用复数表“前途”。",
+          "collocation": "the economic outlook（经济前景）"
+        },
+        {
+          "term": "likelihood",
+          "pos": "n.",
+          "definition_zh": "可能性",
+          "nuance_zh": "likelihood 是较客观的概率判断，常接 of；prospect 更常暗示“值得期待或担忧的将来”，带评价色彩。",
+          "collocation": "the likelihood of success（成功的可能性）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "job / career prospects",
+          "meaning_zh": "就业/职业前景"
+        },
+        {
+          "phrase": "the prospect of doing something",
+          "meaning_zh": "做某事的可能性、前景"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "prospective",
+          "pos": "adj.",
+          "meaning_zh": "未来的、潜在的（如 prospective students 潜在学生）"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Graduates in engineering and data science generally enjoy stronger job prospects than those in oversubscribed fields.",
+          "translation_zh": "工程和数据科学专业的毕业生通常比热门过度专业的学生拥有更好的就业前景。",
+          "note_zh": "prospects 用复数表“前途”，写作职业类话题可直接套用。"
+        },
+        {
+          "sentence": "The prospect of working from home appeals to many parents with young children.",
+          "translation_zh": "在家办公的前景对许多有幼儿的父母很有吸引力。",
+          "note_zh": "the prospect of doing sth 是高频搭配，常出现在听力对话的动机描述中。"
+        }
+      ]
+    },
+    {
+      "term": "redundant",
+      "ipa_us": "/rɪˈdʌndənt/",
+      "ipa_uk": "/rɪˈdʌndənt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力中 be made redundant 意为“被裁员”，常与 lose one's job 同义替换；写作里也可指论据“多余、累赘”。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "被裁员的、失业的（英式常用 be made redundant）",
+          "definition_en": "no longer needed for a job and therefore losing employment"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "多余的、重复累赘的",
+          "definition_en": "not necessary because it repeats something already said or done"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "superfluous",
+          "pos": "adj.",
+          "definition_zh": "多余的、过剩的",
+          "nuance_zh": "superfluous 更正式、偏书面，强调超出需要；redundant 更中性，且额外有“被裁员”这一英式常用义。",
+          "collocation": "superfluous detail（多余的细节）"
+        },
+        {
+          "term": "surplus",
+          "pos": "adj.",
+          "definition_zh": "剩余的、过剩的",
+          "nuance_zh": "surplus 指数量超出后剩下的，多用于货物、资金、库存；redundant 不能这样用于具体物品数量。",
+          "collocation": "surplus stock（剩余库存）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "be made redundant",
+          "meaning_zh": "被裁员"
+        },
+        {
+          "phrase": "redundant information",
+          "meaning_zh": "冗余信息"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "redundancy",
+          "pos": "n.",
+          "meaning_zh": "裁员；冗余（voluntary redundancy 自愿离职）"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "When the factory closed, more than three hundred workers were made redundant.",
+          "translation_zh": "工厂关闭时，三百多名工人被裁员。",
+          "note_zh": "英式表达 be made redundant 常被 lose one's job 同义替换，注意识别。"
+        },
+        {
+          "sentence": "The final paragraph simply repeats the introduction, so it is largely redundant.",
+          "translation_zh": "最后一段只是重复引言，因此基本是多余的。",
+          "note_zh": "写作自检时常用，指内容可删，不代表“错误”。"
+        }
+      ]
+    },
+    {
+      "term": "autonomy",
+      "ipa_us": "/ɔːˈtɑːnəmi/",
+      "ipa_uk": "/ɔːˈtɒnəmi/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读的教育、心理、管理类文章常考“自主权”，需与 independence 辨析；写作中用 give / grant autonomy 讨论管理或教学方式。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "自主权、自主性（个人或团队自行决定的权利）",
+          "definition_en": "the freedom to decide how to do your own work or life"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "自治（地区、机构自行管理）",
+          "definition_en": "the right of a region or organisation to govern itself"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "independence",
+          "pos": "n.",
+          "definition_zh": "独立、不依赖",
+          "nuance_zh": "independence 泛指不受他人控制的状态，范围更广；autonomy 强调“自己做决定”的权利，多用于工作、学习、政治语境。",
+          "collocation": "gain independence（获得独立）"
+        },
+        {
+          "term": "latitude",
+          "pos": "n.",
+          "definition_zh": "（行动的）自由空间、回旋余地",
+          "nuance_zh": "latitude 侧重“可自行把握的余地”，常用于工作允许变通；autonomy 更像制度上赋予的决策权，更正式。",
+          "collocation": "allow staff some latitude（给员工一些自主空间）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a degree of autonomy",
+          "meaning_zh": "一定程度的自主权"
+        },
+        {
+          "phrase": "professional autonomy",
+          "meaning_zh": "职业自主权"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "autonomous",
+          "pos": "adj.",
+          "meaning_zh": "自主的、自治的（如 autonomous learning 自主学习）"
+        },
+        {
+          "form": "autonomously",
+          "pos": "adv.",
+          "meaning_zh": "自主地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Some educators argue that giving students greater autonomy over what they read improves motivation.",
+          "translation_zh": "一些教育者认为，让学生在阅读内容上有更大自主权能提升积极性。",
+          "note_zh": "give sb autonomy over sth 是写作中讨论教育或管理的实用搭配。"
+        },
+        {
+          "sentence": "Regional governments were granted a degree of autonomy over transport spending.",
+          "translation_zh": "地方政府在交通支出上获得了一定程度的自主权。",
+          "note_zh": "a degree of 表示“一定程度的”，避免绝对化，适合 6.5 分以上的写作。"
+        }
+      ]
+    },
+    {
+      "term": "morale",
+      "ipa_us": "/məˈræl/",
+      "ipa_uk": "/məˈrɑːl/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "听力和写作中谈团队、员工状态时常出现，多与 boost、low、fall 搭配；注意拼写与 moral（道德的）区分。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "士气、斗志（群体在困难中的精神状态）",
+          "definition_en": "the level of confidence and enthusiasm that a group of people feels at a particular time"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "spirit",
+          "pos": "n.",
+          "definition_zh": "精神、干劲",
+          "nuance_zh": "spirit 更泛指态度与干劲，常见于 team spirit、fighting spirit；morale 专指群体在压力或困难下的整体士气，常与 boost、low 搭配。",
+          "collocation": "team spirit（团队精神）"
+        },
+        {
+          "term": "motivation",
+          "pos": "n.",
+          "definition_zh": "动力、积极性",
+          "nuance_zh": "motivation 多指个人做事的驱动力；morale 是群体层面的精神状态，不能用来形容一个人的兴趣原因。",
+          "collocation": "lack motivation（缺乏动力）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "boost / raise morale",
+          "meaning_zh": "提振士气"
+        },
+        {
+          "phrase": "morale is low",
+          "meaning_zh": "士气低落"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "demoralise (BrE) / demoralize (AmE)",
+          "pos": "v.",
+          "meaning_zh": "使士气低落、使失去信心"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Staff morale fell sharply after the company announced regular unpaid overtime.",
+          "translation_zh": "公司宣布经常性无薪加班后，员工士气急剧下降。",
+          "note_zh": "morale + fall / drop / slump 是描述职场状态的常见组合。"
+        },
+        {
+          "sentence": "Small gestures such as public recognition can boost morale at very little cost.",
+          "translation_zh": "公开认可这类小举动能以极低成本提振士气。",
+          "note_zh": "写作建议类段落可用，boost morale 比 make people happy 更地道。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Hi Priya. How's the new job going?"
+    },
+    {
+      "speaker": "B",
+      "text": "Better than I expected, actually. The best part is the autonomy — I decide how to organise my week."
+    },
+    {
+      "speaker": "A",
+      "text": "That's rare. Plenty of companies say they trust their staff, then check every email."
+    },
+    {
+      "speaker": "B",
+      "text": "Exactly. My last employer made half the team redundant, and morale never really recovered."
+    },
+    {
+      "speaker": "A",
+      "text": "I remember. Did you worry about your career prospects after that?"
+    },
+    {
+      "speaker": "B",
+      "text": "A bit. So I took a short course in data analysis, which helped me retain the skills that actually matter."
+    },
+    {
+      "speaker": "A",
+      "text": "Smart move. What would you say to someone starting out?"
+    },
+    {
+      "speaker": "B",
+      "text": "Ask about autonomy in the interview, and don't stay somewhere that treats people as disposable."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which word best completes the sentence? 'The firm introduced flexible hours in order to ___ experienced staff.'",
+      "options": [
+        "retain",
+        "remain",
+        "detain",
+        "sustain"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "retain 表示“留住（员工）”。remain 是不及物动词，意为“仍然是、剩下”；detain 是“拘留、耽搁”；sustain 多指“维持（增长、生命）”，不与 staff 这样搭配。"
+    },
+    {
+      "question": "In the sentence 'The report was criticised for containing redundant information', redundant is closest in meaning to:",
+      "options": [
+        "confidential",
+        "superfluous",
+        "outdated",
+        "essential"
+      ],
+      "answer_index": 1,
+      "explanation_zh": "此处 redundant 指“多余、重复累赘的”，与 superfluous 最接近。outdated 是“过时的”，confidential 是“机密的”，essential 是“必要的”，都不是同义替换。"
+    }
+  ],
+  "review": [
+    {
+      "term": "marginalise",
+      "first_seen": "2026-11-17",
+      "question": "Rewrite the sentence using marginalise: 'Some groups are pushed to the edge of society and have little say in decisions.'",
+      "answer": "Some groups are marginalised and have little say in decisions."
+    },
+    {
+      "term": "deteriorate",
+      "first_seen": "2026-11-13",
+      "question": "Replace 'has got worse' with a single verb: 'Air quality in the city has got worse over the past decade.'",
+      "answer": "Air quality in the city has deteriorated over the past decade."
+    }
+  ]
+}
