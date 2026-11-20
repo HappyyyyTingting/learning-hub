@@ -1,0 +1,121 @@
+{
+  "mode": "review",
+  "date": "2026-11-21",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "review_of": "2026-11-20",
+  "theme": "work",
+  "title": "Work Review: Retaining Talent and Team Spirit",
+  "review_words": [
+    {
+      "term": "retain",
+      "meaning_zh": "留住；记住、保存（信息）",
+      "key_point_zh": "阅读中常作 keep / maintain 的同义替换；谈留住人才用 retain staff，但“保持质量、标准”要说 maintain quality，不用 retain。",
+      "example": "The firm introduced flexible working mainly to retain skilled engineers.",
+      "translation_zh": "这家公司引入弹性工作制，主要就是为了留住熟练工程师。",
+      "note_zh": "retain 后直接接人或信息作宾语：retain staff / employees / information，不加介词。"
+    },
+    {
+      "term": "prospect",
+      "meaning_zh": "（常复数）前途、前景；可能性",
+      "key_point_zh": "表“前途”时多用复数 job / career prospects，听力和经济类阅读高频；the prospect of doing sth 常用来引出对未来的预测。",
+      "example": "Many graduates accept unpaid internships in the hope of better career prospects.",
+      "translation_zh": "许多毕业生接受无薪实习，希望换来更好的职业前景。",
+      "note_zh": "career / job prospects 习惯用复数；若用 prospect of，后面接动名词：the prospect of working abroad。"
+    },
+    {
+      "term": "redundant",
+      "meaning_zh": "被裁员的；多余的、累赘的",
+      "key_point_zh": "听力中 be made redundant 就是 lose one's job 的同义替换；写作中指论据“重复累赘”，与 superfluous 相近，但不说 surplus。",
+      "example": "Several administrative posts became redundant once the new software was installed.",
+      "translation_zh": "新软件装好之后，几个行政岗位变得多余了。",
+      "note_zh": "be made redundant 强调“被裁员”；become redundant 也可指职位本身被撤，主语常是 post、position。"
+    },
+    {
+      "term": "autonomy",
+      "meaning_zh": "自主权、自主性；自治",
+      "key_point_zh": "教育与管理类文章常考，强调“自己做决定的权利”，与 independence 辨析；固定搭配 give / grant sb autonomy over sth。",
+      "example": "Staff who are given autonomy over their schedules often report greater job satisfaction.",
+      "translation_zh": "在时间安排上获得自主权的员工，往往表示工作满意度更高。",
+      "note_zh": "autonomy 不可数，常说 a degree of autonomy；介词用 over 表“对……有决定权”。"
+    },
+    {
+      "term": "morale",
+      "meaning_zh": "士气、斗志（群体的精神状态）",
+      "key_point_zh": "谈团队状态时多与 boost / raise morale、morale is low 搭配；拼写别和 moral（道德的）混淆，也不能用来指个人动力（用 motivation）。",
+      "example": "Morale improved noticeably after managers began holding short weekly team meetings.",
+      "translation_zh": "经理们开始每周开短会之后，士气明显提升。",
+      "note_zh": "morale 不可数，主语常与 rise / fall / improve 连用；动词搭配 boost / raise / lift morale。"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Did you hear the design team lost three people last month?"
+    },
+    {
+      "speaker": "B",
+      "text": "Yes, and two of them weren't made redundant at all — they left for better career prospects elsewhere."
+    },
+    {
+      "speaker": "A",
+      "text": "That's the real problem. We can't retain good designers if they never get a say in what they work on."
+    },
+    {
+      "speaker": "B",
+      "text": "Exactly. Managers talk about efficiency all day, but people are given very little autonomy."
+    },
+    {
+      "speaker": "A",
+      "text": "And morale drops when nobody explains why decisions are made."
+    },
+    {
+      "speaker": "B",
+      "text": "So what would you change if you could?"
+    },
+    {
+      "speaker": "A",
+      "text": "I'd let each team set its own weekly priorities and report back monthly, instead of asking for approval on everything."
+    },
+    {
+      "speaker": "B",
+      "text": "That sounds workable — a degree of autonomy plus clearer communication might stop the exits."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which word is closest in meaning to \"retain\" in: \"Flexible hours help firms retain experienced staff\"?",
+      "options": [
+        "keep",
+        "preserve",
+        "recover",
+        "replace"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "retain 强调“不让人或物失去”，此处最接近 keep。preserve 强调保护以免损坏，多接文物、传统、自然环境；recover 是“找回、恢复”。"
+    },
+    {
+      "question": "New employees are usually given a fair degree of autonomy ___ how they organise their working day.",
+      "options": [
+        "over",
+        "on",
+        "for",
+        "with"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "autonomy over sth 表示“对某事的决定权”，是固定搭配；a degree of autonomy 也是高频组合。"
+    },
+    {
+      "question": "After the merger was announced, ___ in the branch office fell sharply and several experienced staff resigned.",
+      "options": [
+        "morale",
+        "motivation",
+        "spirit",
+        "autonomy"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "此处指群体在压力下的整体精神状态，用 morale，且 morale fell 是常见搭配。motivation 多指个人驱动力；spirit 常见于 team spirit，不用于 fell sharply 这种量化下降。"
+    }
+  ]
+}
