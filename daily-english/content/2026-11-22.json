@@ -1,0 +1,394 @@
+{
+  "date": "2026-11-22",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "mode": "lesson",
+  "theme": "travel and culture",
+  "title": "Travelling with Respect: Authentic Encounters and Heritage",
+  "words": [
+    {
+      "term": "heritage",
+      "ipa_us": "/ˈherɪtɪdʒ/",
+      "ipa_uk": "/ˈherɪtɪdʒ/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读文化、旅游类文章常把 heritage 与 tradition、legacy 做同义替换；写作中常与 preserve、promote 搭配。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "遗产，文化传统",
+          "definition_en": "traditions, buildings, or values passed down from previous generations"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "legacy",
+          "pos": "n.",
+          "definition_zh": "遗产，遗留影响",
+          "nuance_zh": "更强调前人留下并影响后世的东西，可指精神、文化或问题，范围比 heritage 宽；heritage 更常指被社会珍视并加以保护的文化传统。",
+          "collocation": "leave a lasting legacy（留下持久影响）"
+        },
+        {
+          "term": "tradition",
+          "pos": "n.",
+          "definition_zh": "传统，习俗",
+          "nuance_zh": "指长期沿袭的习俗或观念，强调做法本身；heritage 更强调从过去继承下来、值得保护的整体文化财产。",
+          "collocation": "local traditions（当地传统）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "cultural heritage",
+          "meaning_zh": "文化遗产"
+        },
+        {
+          "phrase": "preserve one's heritage",
+          "meaning_zh": "保护某地的遗产"
+        }
+      ],
+      "word_forms": [],
+      "examples": [
+        {
+          "sentence": "Governments increasingly promote cultural heritage as a way of attracting visitors without damaging historic sites.",
+          "translation_zh": "政府越来越多地推广文化遗产，以此吸引游客，同时不破坏历史遗迹。",
+          "note_zh": "写作中 heritage 常作不可数名词，搭配 promote/preserve。"
+        },
+        {
+          "sentence": "Many communities argue that their heritage is best protected by local people rather than outside experts.",
+          "translation_zh": "许多社区认为，他们的遗产最好由当地人而不是外部专家来保护。",
+          "note_zh": "阅读中常考不同主体对遗产保护的态度。"
+        }
+      ]
+    },
+    {
+      "term": "authentic",
+      "ipa_us": "/ɑːˈθentɪk/",
+      "ipa_uk": "/ɔːˈθentɪk/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常与 genuine、real 同义替换；口语 Part 2 描述旅行体验时常考 authentic experience。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "真正的，正宗的，非仿造的",
+          "definition_en": "genuine and not copied or false"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "可信的，真实的",
+          "definition_en": "accurate and sincere; reflecting true feelings"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "genuine",
+          "pos": "adj.",
+          "definition_zh": "真正的，真诚的",
+          "nuance_zh": "最通用，可指感情、物品或意图真实；authentic 更常指文化、食物或体验原汁原味、非为游客伪造。",
+          "collocation": "genuine interest（真正的兴趣）"
+        },
+        {
+          "term": "real",
+          "pos": "adj.",
+          "definition_zh": "真实的",
+          "nuance_zh": "口语常用，范围很广；在学术写作中 authentic 更精确，尤其指文化真实性。",
+          "collocation": "real-life experience（现实生活经历）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "authentic experience",
+          "meaning_zh": "真实的体验"
+        },
+        {
+          "phrase": "authentic local cuisine",
+          "meaning_zh": "地道的当地美食"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "authenticity",
+          "pos": "n.",
+          "meaning_zh": "真实性"
+        },
+        {
+          "form": "authentically",
+          "pos": "adv.",
+          "meaning_zh": "真实地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Travellers often seek authentic experiences, yet what counts as authentic is frequently shaped by tourism marketing.",
+          "translation_zh": "旅行者常常寻求真实体验，但什么才算真实往往受到旅游营销的影响。",
+          "note_zh": "阅读中常出现对“真实性”的批判性讨论。"
+        },
+        {
+          "sentence": "An authentic account of village life may be more valuable to historians than a polished tourist brochure.",
+          "translation_zh": "对乡村生活的真实记述对历史学家来说可能比精美的旅游手册更有价值。",
+          "note_zh": "authentic 也可表示“可信的、真实的记述”。"
+        }
+      ]
+    },
+    {
+      "term": "encounter",
+      "ipa_us": "/ɪnˈkaʊntər/",
+      "ipa_uk": "/ɪnˈkaʊntə/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力、阅读中常作动词表示“遇到问题、困难”，与 come across、face 构成同义替换；名词常指“邂逅、遭遇”。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "遇到，遭遇（尤指困难或意外）",
+          "definition_en": "to experience or meet something, especially unexpectedly or with difficulty"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "邂逅，遭遇",
+          "definition_en": "an unexpected meeting or experience"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "come across",
+          "pos": "phrase",
+          "definition_zh": "偶然遇到",
+          "nuance_zh": "更口语，强调偶然遇到人或物；不常像 encounter 那样用于正式地接 difficulty/problem。",
+          "collocation": "come across an old friend（偶遇老朋友）"
+        },
+        {
+          "term": "face",
+          "pos": "v.",
+          "definition_zh": "面对，面临",
+          "nuance_zh": "强调不得不应对困难，正式且常接 challenge/problem；encounter 更强调意外遇到。",
+          "collocation": "face a challenge（面临挑战）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "encounter difficulties",
+          "meaning_zh": "遇到困难"
+        },
+        {
+          "phrase": "a chance encounter",
+          "meaning_zh": "偶然相遇"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "encounters",
+          "pos": "n.",
+          "meaning_zh": "遭遇，邂逅（复数）"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Students who move abroad may encounter unfamiliar academic expectations as well as language barriers.",
+          "translation_zh": "移居国外的学生可能会遇到不熟悉的学术要求和语言障碍。",
+          "note_zh": "写作中 encounter 比 meet 更正式。"
+        },
+        {
+          "sentence": "Researchers noted that tourists' first encounter with a place can shape their overall impression.",
+          "translation_zh": "研究人员指出，游客对一个地方的初次接触会影响他们的整体印象。",
+          "note_zh": "名词搭配 encounter with 表示“与……的接触”。"
+        }
+      ]
+    },
+    {
+      "term": "preserve",
+      "ipa_us": "/prɪˈzɜːrv/",
+      "ipa_uk": "/prɪˈzɜːv/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "环境与文化类阅读高频，常与 conserve、protect 同义替换；写作中常搭配 preserve traditions / historic buildings。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "保护，保存（使不受损）",
+          "definition_en": "to keep something in its original state or protect it from damage"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "（美式）自然保护区",
+          "definition_en": "an area where animals and plants are protected"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "conserve",
+          "pos": "v.",
+          "definition_zh": "保护，节约",
+          "nuance_zh": "更强调节约资源、避免浪费，常与 energy/water 搭配；preserve 强调保持原状、防止损坏。",
+          "collocation": "conserve energy（节约能源）"
+        },
+        {
+          "term": "protect",
+          "pos": "v.",
+          "definition_zh": "保护",
+          "nuance_zh": "最通用，强调使免受伤害，可直接接人或物；preserve 更正式，强调维持原有状态。",
+          "collocation": "protect wildlife（保护野生动物）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "preserve cultural heritage",
+          "meaning_zh": "保护文化遗产"
+        },
+        {
+          "phrase": "preserve historic buildings",
+          "meaning_zh": "保护历史建筑"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "preservation",
+          "pos": "n.",
+          "meaning_zh": "保护，保存"
+        },
+        {
+          "form": "well-preserved",
+          "pos": "adj.",
+          "meaning_zh": "保存良好的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Preserving historic centres can boost tourism, but it may also raise property prices for local residents.",
+          "translation_zh": "保护历史中心可以促进旅游业，但也可能抬高当地居民的房价。",
+          "note_zh": "写作中可用让步结构讨论保护与发展的矛盾。"
+        },
+        {
+          "sentence": "Traditional crafts are preserved not only in museums but also through apprenticeships.",
+          "translation_zh": "传统手工艺不仅在博物馆中得到保存，也通过学徒制传承下来。",
+          "note_zh": "被动语态中 preserved 常与 through 搭配。"
+        }
+      ]
+    },
+    {
+      "term": "immerse",
+      "ipa_us": "/ɪˈmɜːrs/",
+      "ipa_uk": "/ɪˈmɜːs/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "口语、写作描述语言学习或旅行体验时常用；阅读中常以 be immersed in 表示“沉浸于”。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "使沉浸，使专注",
+          "definition_en": "to involve oneself deeply in an activity or experience"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "浸入（液体）",
+          "definition_en": "to put something completely into a liquid"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "absorb",
+          "pos": "v.",
+          "definition_zh": "使全神贯注",
+          "nuance_zh": "常用被动 be absorbed in，强调注意力被吸引；immerse 强调主动投入环境或活动，常与 oneself in 搭配。",
+          "collocation": "be absorbed in a book（专心读书）"
+        },
+        {
+          "term": "engross",
+          "pos": "v.",
+          "definition_zh": "使全神贯注",
+          "nuance_zh": "更正式，指某事物占据全部注意力；不常表示“沉浸于文化环境”。",
+          "collocation": "be engrossed in conversation（专注于谈话）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "immerse oneself in a culture",
+          "meaning_zh": "让自己沉浸于一种文化"
+        },
+        {
+          "phrase": "be immersed in a language",
+          "meaning_zh": "沉浸在语言环境中"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "immersion",
+          "pos": "n.",
+          "meaning_zh": "沉浸；浸泡"
+        },
+        {
+          "form": "immersive",
+          "pos": "adj.",
+          "meaning_zh": "沉浸式的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Language learners who immerse themselves in local conversation tend to develop fluency faster.",
+          "translation_zh": "让自己沉浸在当地对话中的语言学习者往往更快变得流利。",
+          "note_zh": "注意反身代词搭配 immerse oneself in。"
+        },
+        {
+          "sentence": "Museums increasingly use immersive technology to help visitors understand everyday life in the past.",
+          "translation_zh": "博物馆越来越多地使用沉浸式技术帮助游客理解过去的日常生活。",
+          "note_zh": "immersive 常修饰 technology、exhibition 等。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Have you done much travelling in your own country?"
+    },
+    {
+      "speaker": "B",
+      "text": "A bit. Last summer I visited an old town that's trying to preserve its heritage while still welcoming tourists."
+    },
+    {
+      "speaker": "A",
+      "text": "That sounds like a tricky balance. Did it feel authentic, or was it mostly designed for visitors?"
+    },
+    {
+      "speaker": "B",
+      "text": "Some parts felt genuine, especially the market, but the main street was quite commercial. Still, I had a chance encounter with a local craftsperson, which was the highlight."
+    },
+    {
+      "speaker": "A",
+      "text": "Nice. Do you think tourists can really immerse themselves in a place on a short trip?"
+    },
+    {
+      "speaker": "B",
+      "text": "Probably not fully. But if you slow down and talk to people, you can get a glimpse of everyday life. I'd rather do that than rush around famous sights."
+    },
+    {
+      "speaker": "A",
+      "text": "Me too. I find that even a short walk without a map often leads to the most memorable moments."
+    },
+    {
+      "speaker": "B",
+      "text": "Exactly—those unplanned experiences are often what stay with you."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Which word is closest in meaning to 'authentic' in 'an authentic experience'?",
+      "options": [
+        "genuine",
+        "affordable",
+        "organised",
+        "temporary"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "authentic 在旅游语境中指“真实的、非为游客伪造的”，与 genuine 最接近；affordable 是“负担得起的”，organised 是“有组织的”，temporary 是“暂时的”。"
+    },
+    {
+      "question": "Which sentence uses 'encounter' correctly?",
+      "options": [
+        "Visitors may encounter difficulties when reading local signs.",
+        "We plan to encounter the museum tomorrow morning.",
+        "The town hopes to encounter its heritage for future generations.",
+        "She encountered a delicious meal at the restaurant."
+      ],
+      "answer_index": 0,
+      "explanation_zh": "encounter 作动词常表示“遇到困难、问题”或“偶然遇到”，不能替代 visit 或 protect；a delicious meal 一般用 have/enjoy，不用 encounter。"
+    }
+  ],
+  "review": []
+}
