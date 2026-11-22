@@ -1,0 +1,121 @@
+{
+  "mode": "review",
+  "date": "2026-11-23",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "review_of": "2026-11-22",
+  "theme": "travel and culture",
+  "title": "Travel and Culture Review: Heritage, Authenticity and Encounters",
+  "review_words": [
+    {
+      "term": "heritage",
+      "meaning_zh": "遗产；文化传统",
+      "key_point_zh": "阅读中常与 legacy、tradition 同义替换，但 heritage 更强调被社会珍视并加以保护的整体文化财产；写作常搭 preserve / promote cultural heritage。",
+      "example": "The old fishing village has turned its maritime heritage into a small museum run by local residents.",
+      "translation_zh": "这个古老的渔村把自己的海洋文化遗产变成了一座由当地居民经营的小型博物馆。",
+      "note_zh": "maritime heritage 指“海洋文化遗产”；heritage 指整体文化传统时通常不可数，不说 a heritage。"
+    },
+    {
+      "term": "authentic",
+      "meaning_zh": "真正的，正宗的；可信的",
+      "key_point_zh": "阅读中常与 genuine、real 同义替换；口语谈旅行体验时用 authentic experience / authentic local cuisine，强调原汁原味、非为游客伪造。",
+      "example": "Critics argue that the festival has become a performance for tourists rather than an authentic celebration.",
+      "translation_zh": "批评者认为，这个节日已变成给游客看的表演，而不再是真正的庆祝活动。",
+      "note_zh": "rather than 前后结构需平行（a performance ... an authentic celebration）；authentic 在此修饰 celebration，强调“非为游客伪造”。"
+    },
+    {
+      "term": "encounter",
+      "meaning_zh": "遇到，遭遇；邂逅",
+      "key_point_zh": "作动词常接 difficulty / problem / barrier，与 face 相近但更强调“意外遇到”；名词搭配 a chance encounter。",
+      "example": "Volunteers in rural schools often encounter a shortage of teaching materials.",
+      "translation_zh": "乡村学校的志愿者常常遇到教材短缺的问题。",
+      "note_zh": "encounter 作动词直接跟宾语，不加 with；比较：meet with 更偏美式、face 更强调必须应对。"
+    },
+    {
+      "term": "preserve",
+      "meaning_zh": "保护，保存",
+      "key_point_zh": "辨析：conserve 强调节约资源（energy / water），protect 泛指使免受伤害，preserve 强调保持原状、防止损坏；常搭 preserve traditions / historic buildings。",
+      "example": "Some island communities have preserved their songs and dances mainly through annual festivals.",
+      "translation_zh": "一些岛屿社区主要通过一年一度的节庆把歌舞保存下来。",
+      "note_zh": "preserve 常用于被动语态；through 表示“通过……方式”，后接名词或动名词。"
+    },
+    {
+      "term": "immerse",
+      "meaning_zh": "使沉浸；使专注",
+      "key_point_zh": "几乎只以 immerse oneself in 或 be immersed in 出现，指主动投入文化或语言环境；与 be absorbed in 相比更强调“进入环境”。",
+      "example": "Living with a host family allowed her to immerse herself in everyday Spanish life.",
+      "translation_zh": "与寄宿家庭同住让她得以沉浸在西班牙人的日常生活中。",
+      "note_zh": "immerse 后须接反身代词 + in，或用被动 be immersed in；不能说 immerse a culture。"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "Mei",
+      "text": "I've been reading about that island festival. Apparently it's one of the few celebrations that local people still organise themselves rather than for tour companies."
+    },
+    {
+      "speaker": "Tom",
+      "text": "That's exactly why I want to go. I'd rather see something authentic than a staged show, even if it means basic accommodation."
+    },
+    {
+      "speaker": "Mei",
+      "text": "Fair enough. Though you might encounter a few problems: the ferries are unreliable in November and very few people there speak English."
+    },
+    {
+      "speaker": "Tom",
+      "text": "I can live with that. I'd rather immerse myself in the place than sit in a resort where everything is translated for me."
+    },
+    {
+      "speaker": "Mei",
+      "text": "Just be careful not to treat the villagers' heritage as background scenery for your photos."
+    },
+    {
+      "speaker": "Tom",
+      "text": "That's a good point. I'll ask before photographing anyone, and I'll buy from local shops instead of the airport."
+    },
+    {
+      "speaker": "Mei",
+      "text": "And if you want to help preserve the old boat-building workshop, they take volunteers in spring."
+    },
+    {
+      "speaker": "Tom",
+      "text": "Now that sounds like a plan. I'll look it up tonight."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In the sentence \"the town's heritage attracts thousands of visitors each year\", heritage is closest in meaning to:",
+      "options": [
+        "the cultural traditions and buildings inherited from the past",
+        "the recent economic growth of the town",
+        "the transport links serving the town",
+        "a temporary exhibition held in the town"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "heritage 指从过去继承下来、被社会珍视的文化传统与建筑，相当于 cultural traditions and buildings；其余选项分别是经济增长、交通和临时展览，与“遗产”无关。"
+    },
+    {
+      "question": "Which option correctly completes the sentence? \"Volunteers can immerse ___ in village life by joining the daily market work.\"",
+      "options": [
+        "themselves in",
+        "themselves to",
+        "them in",
+        "themselves with"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "immerse 的固定用法是 immerse oneself in sth 或 be immersed in sth，介词只能是 in；主语 volunteers 为复数，反身代词用 themselves。"
+    },
+    {
+      "question": "Which word best fits the gap? \"Local groups are working hard to ___ traditional fishing methods before they disappear altogether.\"",
+      "options": [
+        "preserve",
+        "prevent",
+        "protest",
+        "present"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "preserve 表示“使保持原状、防止损坏或消失”，与 traditional fishing methods 搭配自然，也呼应 before they disappear；prevent 意为“阻止”，protest 意为“抗议”，present 意为“呈现”，均不合语义。"
+    }
+  ]
+}
