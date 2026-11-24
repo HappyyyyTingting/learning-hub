@@ -1,0 +1,408 @@
+{
+  "date": "2026-11-24",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "mode": "lesson",
+  "theme": "health",
+  "title": "Staying Well: Health, Habits and Public Services",
+  "words": [
+    {
+      "term": "contract",
+      "ipa_us": "/kənˈtrækt/",
+      "ipa_uk": "/kənˈtrækt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "听力与阅读的健康类文章中常作动词表示“感染（疾病）”，重音在后；作名词“合同”时重音在前 /ˈkɒntrækt/，考试常借重音差别设陷阱。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "感染（疾病）",
+          "definition_en": "to catch or become infected with an illness"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "收缩；缩小",
+          "definition_en": "to become smaller or tighter, especially of muscles or an economy"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "合同，契约",
+          "definition_en": "a formal written agreement between two parties"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "catch",
+          "pos": "v.",
+          "definition_zh": "染上（疾病）",
+          "nuance_zh": "口语常用，非正式场合更自然（catch a cold）；contract 更正式，多用于书面和学术语境的疾病名称前。",
+          "collocation": "catch a cold（感冒）"
+        },
+        {
+          "term": "shrink",
+          "pos": "v.",
+          "definition_zh": "缩小，萎缩",
+          "nuance_zh": "强调体积或数量变小，不及物用法更常见；contract 还可指肌肉主动收缩，较正式。",
+          "collocation": "shrink in size（体积缩小）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "contract an infection（感染）",
+          "meaning_zh": "受到细菌或病毒感染"
+        },
+        {
+          "phrase": "contract a disease（患病）",
+          "meaning_zh": "染上某种疾病"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "contraction",
+          "pos": "n.",
+          "meaning_zh": "收缩；（词的）缩略形式"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Children who contract the virus usually recover within a week, but they can still pass it on to vulnerable relatives.",
+          "translation_zh": "感染这种病毒的孩子通常一周内康复，但仍可能传染给易感的家人。",
+          "note_zh": "阅读中 contract 作动词是“感染”，不要误读成“合同”。"
+        },
+        {
+          "sentence": "During the winter months, the number of people who contract flu rises sharply, putting extra strain on local clinics.",
+          "translation_zh": "冬季感染流感的人数急剧上升，给当地诊所带来额外压力。",
+          "note_zh": "健康类段落常把 contract 与 strain 等词放在一起考搭配。"
+        }
+      ]
+    },
+    {
+      "term": "alleviate",
+      "ipa_us": "/əˈliːvieɪt/",
+      "ipa_uk": "/əˈliːvieɪt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作 Task 2 中用来替换 reduce/ease 的高分动词，常与表示痛苦、压力、贫困等负面名词搭配；阅读中常被同义替换为 ease 或 relieve。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "缓解（疼痛、症状）",
+          "definition_en": "to make pain or an unpleasant feeling less severe"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "减轻（问题的严重程度）",
+          "definition_en": "to make a problem or difficult situation less serious"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "relieve",
+          "pos": "v.",
+          "definition_zh": "减轻，解除",
+          "nuance_zh": "更强调直接“解除”痛苦，搭配范围更广（relieve stress/pain）；alleviate 更正式书面，常见于政策与医学论述。",
+          "collocation": "relieve stress（缓解压力）"
+        },
+        {
+          "term": "ease",
+          "pos": "v.",
+          "definition_zh": "缓和，减轻",
+          "nuance_zh": "语体偏中性，可指压力、拥堵等逐步缓和；alleviate 更正式，多用于症状、贫困、负担等较严肃的对象。",
+          "collocation": "ease the pressure（缓解压力）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "alleviate symptoms（缓解症状）",
+          "meaning_zh": "使症状减轻"
+        },
+        {
+          "phrase": "alleviate poverty（缓解贫困）",
+          "meaning_zh": "减轻贫困程度"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "alleviation",
+          "pos": "n.",
+          "meaning_zh": "缓解，减轻"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Planting trees along busy roads can help alleviate the effects of air pollution in densely built-up areas.",
+          "translation_zh": "在繁忙道路旁种树有助于减轻密集城区空气污染的影响。",
+          "note_zh": "写作中 alleviate 后接 effects、pressure、burden 等负面名词最自然。"
+        },
+        {
+          "sentence": "The government introduced subsidies to alleviate the financial burden on low-income households.",
+          "translation_zh": "政府推出补贴，以减轻低收入家庭的经济负担。",
+          "note_zh": "阅读同义替换常把 alleviate 改写为 reduce 或 ease。"
+        }
+      ]
+    },
+    {
+      "term": "prevalent",
+      "ipa_us": "/ˈprevələnt/",
+      "ipa_uk": "/ˈprevələnt/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常被同义替换为 widespread 或 common，写作里用于描述某种现象“日益普遍”，是健康与社会类话题的高频形容词。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "普遍的，盛行的",
+          "definition_en": "existing very commonly or happening often in a particular place or time"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "widespread",
+          "pos": "adj.",
+          "definition_zh": "广泛的，普遍的",
+          "nuance_zh": "强调分布范围广，常用于看法、现象、使用的扩散；prevalent 更强调在某群体或某时期内“常见”。",
+          "collocation": "widespread use of technology（技术的广泛使用）"
+        },
+        {
+          "term": "common",
+          "pos": "adj.",
+          "definition_zh": "常见的",
+          "nuance_zh": "最通用的口语词；prevalent 更正式，适合学术写作与数据分析语境。",
+          "collocation": "a common problem（常见问题）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "increasingly prevalent（日益普遍）",
+          "meaning_zh": "变得越来越常见"
+        },
+        {
+          "phrase": "prevalent among young adults（在年轻人中普遍）",
+          "meaning_zh": "在某个群体中广泛存在"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "prevalence",
+          "pos": "n.",
+          "meaning_zh": "普遍性；患病率"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The survey found that sleep problems were most prevalent among people working night shifts.",
+          "translation_zh": "该调查发现，睡眠问题在上夜班的人群中最为普遍。",
+          "note_zh": "prevalent among + 人群 是阅读和写作都常用的结构。"
+        },
+        {
+          "sentence": "As desk-based jobs have become more prevalent, rates of back pain have continued to climb.",
+          "translation_zh": "随着伏案工作日益普遍，背痛的发病率持续上升。",
+          "note_zh": "写作中可用 increasingly prevalent 描述趋势，避免重复 popular。"
+        }
+      ]
+    },
+    {
+      "term": "susceptible",
+      "ipa_us": "/səˈseptəbl/",
+      "ipa_uk": "/səˈseptəbl/",
+      "exam_frequency": "medium",
+      "exam_focus_zh": "阅读健康类文章常与 vulnerable、prone 构成同义替换；固定搭配 be susceptible to + 名词，写作中用来指出某群体更易受影响。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "易受……影响的；易感染……的",
+          "definition_en": "likely to be affected by something, especially an illness or a bad influence"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "敏感的，易受伤害的",
+          "definition_en": "easily harmed or influenced because of a lack of protection"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "vulnerable",
+          "pos": "adj.",
+          "definition_zh": "脆弱的，易受伤害的",
+          "nuance_zh": "强调缺乏保护，常指人群或系统；susceptible 更侧重“身体或条件上容易受到某具体因素影响”，常接 to。",
+          "collocation": "vulnerable groups（弱势群体）"
+        },
+        {
+          "term": "prone",
+          "pos": "adj.",
+          "definition_zh": "易于……的，有……倾向的",
+          "nuance_zh": "多指行为或性格倾向（prone to error），也可指易患某病；susceptible 更中性客观，学术味更浓。",
+          "collocation": "prone to error（容易出错）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "be susceptible to infection（易受感染）",
+          "meaning_zh": "容易受到感染"
+        },
+        {
+          "phrase": "highly susceptible（高度易感）",
+          "meaning_zh": "非常容易受影响或感染"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "susceptibility",
+          "pos": "n.",
+          "meaning_zh": "易感性；敏感性"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Older adults and young children are especially susceptible to dehydration in hot weather.",
+          "translation_zh": "老年人和幼儿在炎热天气中尤其容易脱水。",
+          "note_zh": "be susceptible to + 名词 是固定搭配，介词不能换成 for。"
+        },
+        {
+          "sentence": "People who regularly sleep fewer than six hours appear more susceptible to infection.",
+          "translation_zh": "经常睡眠不足六小时的人似乎更容易受到感染。",
+          "note_zh": "写作中用来说明某类人群风险更高，可替代 likely to get。"
+        }
+      ]
+    },
+    {
+      "term": "strain",
+      "ipa_us": "/streɪn/",
+      "ipa_uk": "/streɪn/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作中 put a strain on 是描述公共资源压力的高频搭配；听力健康场景又常作动词“拉伤”，一词多义易在选择题中设干扰。",
+      "senses": [
+        {
+          "pos": "n.",
+          "definition_zh": "压力，负担",
+          "definition_en": "pressure on a person, system or resource that makes it difficult to cope"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "拉伤，扭伤",
+          "definition_en": "an injury caused by stretching a muscle too much"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "使紧张；拉伤",
+          "definition_en": "to put pressure on something, or to injure a muscle by stretching it"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "pressure",
+          "pos": "n.",
+          "definition_zh": "压力",
+          "nuance_zh": "更泛，可指心理或物理压力；strain 强调因长期负荷而“吃紧”，多用于医疗、交通、财政等系统。",
+          "collocation": "under pressure（承受压力）"
+        },
+        {
+          "term": "burden",
+          "pos": "n.",
+          "definition_zh": "负担",
+          "nuance_zh": "强调重量与责任，常与 financial、economic 搭配；strain 更强调承受方的紧张状态。",
+          "collocation": "a financial burden（经济负担）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "put a strain on public services（给公共服务带来压力）",
+          "meaning_zh": "使公共服务不堪重负"
+        },
+        {
+          "phrase": "strain a muscle（拉伤肌肉）",
+          "meaning_zh": "使肌肉过度拉伸而受伤"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "strained",
+          "pos": "adj.",
+          "meaning_zh": "紧张的；拉伤的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "An ageing population places a growing strain on hospitals and care services.",
+          "translation_zh": "人口老龄化给医院和护理服务带来越来越大的压力。",
+          "note_zh": "place/put a strain on 是 Task 2 讨论公共资源的固定句式。"
+        },
+        {
+          "sentence": "Runners who increase their weekly distance too quickly often strain muscles in the lower leg.",
+          "translation_zh": "每周跑量增加过快的跑者常会拉伤小腿肌肉。",
+          "note_zh": "听力健康场景中 strain 作动词表“拉伤”，注意与名词义区分。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "You look exhausted. Are you coming down with something?"
+    },
+    {
+      "speaker": "B",
+      "text": "I hope not. Three people in my office have contracted the same bug this week."
+    },
+    {
+      "speaker": "A",
+      "text": "It seems really prevalent this winter. My sister's whole class was off last week."
+    },
+    {
+      "speaker": "B",
+      "text": "I'm not surprised. We all sit in the same meeting room with the windows shut."
+    },
+    {
+      "speaker": "A",
+      "text": "Maybe that's why the manager sent round an email about ventilation. Apparently fresh air helps alleviate the headaches people were complaining about."
+    },
+    {
+      "speaker": "B",
+      "text": "Good luck with that. I doubt an open window will fix the real problem — the workload is putting a huge strain on everyone."
+    },
+    {
+      "speaker": "A",
+      "text": "True. And the people most susceptible to stress are usually the ones who never say no."
+    },
+    {
+      "speaker": "B",
+      "text": "Exactly. I'm trying to leave on time now, even if it means answering a few emails at home."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Regular exercise and enough sleep can help ____ the symptoms of mild stress.",
+      "options": [
+        "alleviate",
+        "contract",
+        "strain",
+        "prevalent"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "alleviate 意为“缓解（症状、痛苦）”，与 symptoms 搭配最自然。contract 是“感染”，strain 作动词是“拉伤/使紧张”，prevalent 是形容词，都不能填入动词位置。"
+    },
+    {
+      "question": "In the reading passage, 'children are more vulnerable to the infection' could best be rewritten as:",
+      "options": [
+        "children are more susceptible to the infection",
+        "children are more prevalent among the infection",
+        "children are more strained by the infection",
+        "children are more contracted by the infection"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "be susceptible to 与 be vulnerable to 都可表示“易受……影响”，是雅思阅读常见的同义替换。prevalent 是“普遍的”，不能接 among the infection；strained 指“紧张的”；contract 是主动感染，不能用被动加 by。"
+    }
+  ],
+  "review": [
+    {
+      "term": "infrastructure",
+      "first_seen": "2026-11-17",
+      "question": "Complete the sentence: 'The city invested heavily in public ____, such as roads, drainage systems and power lines.'",
+      "answer": "infrastructure"
+    },
+    {
+      "term": "congestion",
+      "first_seen": "2026-11-10",
+      "question": "Rewrite using a word from your review list: 'The new bus lanes have reduced traffic jams in the city centre.'",
+      "answer": "The new bus lanes have reduced traffic congestion in the city centre."
+    }
+  ]
+}
