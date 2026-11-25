@@ -1,0 +1,113 @@
+{
+  "mode": "review",
+  "date": "2026-11-25",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "review_of": "2026-11-24",
+  "theme": "health",
+  "title": "Health Review: Infection, Pressure and Risk",
+  "review_words": [
+    {
+      "term": "contract",
+      "meaning_zh": "感染（疾病）；收缩；合同",
+      "key_point_zh": "动词“感染”读 /kənˈtrækt/，名词“合同”读 /ˈkɒntrækt/，听力常靠重音区分词义；书面语中比 catch 更正式。",
+      "example": "Volunteers working in crowded shelters were more likely to contract the infection than office staff.",
+      "translation_zh": "在拥挤的收容所做志愿工作的人比办公室职员更容易感染这种疾病。",
+      "note_zh": "contract 后直接接疾病名称，不加 with；口语中更常说 catch。"
+    },
+    {
+      "term": "susceptible",
+      "meaning_zh": "易受影响的；易感染的",
+      "key_point_zh": "固定搭配 be susceptible to + 名词，阅读中常与 vulnerable、prone 构成同义替换，用来指出易感人群。",
+      "example": "People with weakened immune systems are particularly susceptible to food-borne infections.",
+      "translation_zh": "免疫系统较弱的人尤其容易感染食源性疾病。",
+      "note_zh": "介词固定用 to；程度可用 particularly、highly 修饰。"
+    },
+    {
+      "term": "prevalent",
+      "meaning_zh": "普遍的，盛行的",
+      "key_point_zh": "阅读中常被 widespread、common 同义替换；写作描述现象“日益普遍”用 increasingly prevalent，比 common 正式。",
+      "example": "Short-sightedness has become increasingly prevalent among primary school children in urban areas.",
+      "translation_zh": "城市小学生中的近视问题正变得日益普遍。",
+      "note_zh": "increasingly 修饰 prevalent 是写作高频组合；说明范围时常用 among 或 in。"
+    },
+    {
+      "term": "strain",
+      "meaning_zh": "压力，负担；拉伤",
+      "key_point_zh": "写作高频搭配 put a strain on 描述公共资源承受的压力；听力中又常作动词指“拉伤”肌肉，一词多义易设干扰。",
+      "example": "Rising numbers of elderly patients are putting a strain on community care services.",
+      "translation_zh": "老年患者人数不断增加，正给社区护理服务带来压力。",
+      "note_zh": "此处 strain 为不可数名词，常用 put/place a strain on sth 结构。"
+    },
+    {
+      "term": "alleviate",
+      "meaning_zh": "缓解，减轻（痛苦、问题）",
+      "key_point_zh": "写作中替代 reduce、ease 的正式动词，常搭配 symptoms、poverty、burden；阅读中常被同义替换为 relieve。",
+      "example": "Allowing staff to work from home two days a week could alleviate congestion on the roads at rush hour.",
+      "translation_zh": "允许员工每周两天居家办公，可以缓解高峰时段道路拥堵。",
+      "note_zh": "alleviate 是及物动词，后面直接跟被缓解的对象，中间不加介词。"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "I've been reading that flu is far more prevalent in winter than in summer. Is it just because we all stay indoors?"
+    },
+    {
+      "speaker": "B",
+      "text": "That's a big part of it. Once the virus gets into a crowded, poorly ventilated room, people who are already run down are much more susceptible to it."
+    },
+    {
+      "speaker": "A",
+      "text": "So what actually works? I keep seeing advertisements for supplements that claim to alleviate the symptoms."
+    },
+    {
+      "speaker": "B",
+      "text": "Most of them make very little difference. Sleep, fresh air and vaccination matter far more, and they also reduce the strain on hospitals in January."
+    },
+    {
+      "speaker": "A",
+      "text": "That makes sense. My flatmate works night shifts and seems to contract something every few months."
+    },
+    {
+      "speaker": "B",
+      "text": "Shift work really does wear down the immune system. If he can protect a regular sleep window, he'll be less likely to pick things up."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "The government hopes to ___ the financial burden on low-income families.",
+      "options": [
+        "alleviate",
+        "contract",
+        "strain",
+        "prevail"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "alleviate 表示“减轻（负担、痛苦）”，与 burden 搭配自然；contract 作动词意为“感染/收缩”，strain 意为“拉伤/使紧张”，prevail 是不及物动词“盛行”，均不合。"
+    },
+    {
+      "question": "Which sentence uses the correct preposition after “susceptible”?",
+      "options": [
+        "Older adults are especially susceptible to dehydration.",
+        "Older adults are especially susceptible of dehydration.",
+        "Older adults are especially susceptible for dehydration.",
+        "Older adults are especially susceptible with dehydration."
+      ],
+      "answer_index": 0,
+      "explanation_zh": "be susceptible to 是固定搭配，to 后接名词或动名词；表示“易受……影响”时不能用 of、for 或 with。"
+    },
+    {
+      "question": "The infection is most ___ in overcrowded housing, where it spreads quickly.",
+      "options": [
+        "prevalent",
+        "susceptible",
+        "strained",
+        "alleviated"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "prevalent 意为“普遍的”，可接 in/among 说明常见范围；susceptible 需接 to 且主语通常是人或群体；strained 与 alleviated 为分词，语义不符。"
+    }
+  ]
+}
