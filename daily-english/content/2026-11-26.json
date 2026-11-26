@@ -1,0 +1,412 @@
+{
+  "date": "2026-11-26",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "mode": "lesson",
+  "theme": "technology",
+  "title": "Technology: The Words Behind the Change",
+  "words": [
+    {
+      "term": "ubiquitous",
+      "ipa_us": "/juːˈbɪkwɪtəs/",
+      "ipa_uk": "/juːˈbɪkwɪtəs/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中常与 widespread、omnipresent 构成同义替换；写作 Task 2 谈科技普及时可用来替代口语化的 everywhere。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "无处不在的，普遍存在的",
+          "definition_en": "present or seeming to be present everywhere"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "omnipresent",
+          "pos": "adj.",
+          "definition_zh": "无所不在的",
+          "nuance_zh": "比 ubiquitous 更书面、语气更重，强调同时存在于所有地方，多修饰抽象事物如监控、影响。",
+          "collocation": "omnipresent surveillance（无处不在的监控）"
+        },
+        {
+          "term": "widespread",
+          "pos": "adj.",
+          "definition_zh": "广泛的，普遍的",
+          "nuance_zh": "只强调分布范围广，语气客观中性，可修饰 belief、use、support 等。",
+          "collocation": "the widespread use of smartphones（智能手机的广泛使用）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "become ubiquitous",
+          "meaning_zh": "变得无处不在"
+        },
+        {
+          "phrase": "the ubiquitous presence of …",
+          "meaning_zh": "……无处不在的存在"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "ubiquity",
+          "pos": "n.",
+          "meaning_zh": "普遍存在，无处不在"
+        },
+        {
+          "form": "ubiquitously",
+          "pos": "adv.",
+          "meaning_zh": "无处不在地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Smartphones have become so ubiquitous that many people check them before they even get out of bed.",
+          "translation_zh": "智能手机已经变得如此普及，以至于很多人还没起床就先看手机。",
+          "note_zh": "become ubiquitous 是口语和写作都好用的搭配，ubiquitous 常作表语。"
+        },
+        {
+          "sentence": "The ubiquitous presence of cameras in public spaces has prompted a debate about privacy.",
+          "translation_zh": "摄像头在公共场所无处不在，这引发了关于隐私的讨论。",
+          "note_zh": "阅读中 ubiquitous presence 是高频搭配，常与 privacy、surveillance 同段出现。"
+        }
+      ]
+    },
+    {
+      "term": "address",
+      "ipa_us": "/əˈdres/",
+      "ipa_uk": "/əˈdres/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作 Task 2 中 address the problem/issue 表示“着手解决”，是高频搭配；阅读里 address 常与 tackle、deal with 同义替换，而不是“地址”。",
+      "senses": [
+        {
+          "pos": "v.",
+          "definition_zh": "处理，应对（问题）",
+          "definition_en": "to deal with a problem or issue"
+        },
+        {
+          "pos": "v.",
+          "definition_zh": "向……讲话，对……致辞",
+          "definition_en": "to speak formally to a group of people"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "地址；演讲",
+          "definition_en": "details of where someone lives; a formal speech"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "tackle",
+          "pos": "v.",
+          "definition_zh": "着手处理，应对",
+          "nuance_zh": "比 address 更强调主动迎难而上，语体稍口语，写作和口语都常用。",
+          "collocation": "tackle climate change（应对气候变化）"
+        },
+        {
+          "term": "deal with",
+          "pos": "phrase",
+          "definition_zh": "处理，应对",
+          "nuance_zh": "最通用、语体中性，宾语可以是问题，也可以是人。",
+          "collocation": "deal with complaints（处理投诉）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "address a concern",
+          "meaning_zh": "回应／解决一项担忧"
+        },
+        {
+          "phrase": "address the root cause",
+          "meaning_zh": "解决根本原因"
+        }
+      ],
+      "word_forms": [],
+      "examples": [
+        {
+          "sentence": "The report calls on governments to address the shortage of affordable housing in major cities.",
+          "translation_zh": "该报告呼吁各国政府解决大城市经济适用房短缺的问题。",
+          "note_zh": "address 后直接接问题名词，不加介词，也不说 address to the problem。"
+        },
+        {
+          "sentence": "Several speakers addressed the audience on the need for stricter data protection.",
+          "translation_zh": "几位发言人向听众谈到了加强数据保护的必要性。",
+          "note_zh": "address sb 表示“向某人讲话”，听力会议场景中常见。"
+        }
+      ]
+    },
+    {
+      "term": "novel",
+      "ipa_us": "/ˈnɑːvəl/",
+      "ipa_uk": "/ˈnɒvəl/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "学术阅读和写作中多作形容词表示“新颖的”，与 original、innovative 同义替换；词义辨析题常把它和名词“小说”放在一起考。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "新颖的，新奇的",
+          "definition_en": "new, original and unlike anything before"
+        },
+        {
+          "pos": "n.",
+          "definition_zh": "小说",
+          "definition_en": "a long written story about imaginary people and events"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "innovative",
+          "pos": "adj.",
+          "definition_zh": "创新的",
+          "nuance_zh": "强调引入新方法或新想法，通常带褒义，多用于商业与技术语境。",
+          "collocation": "innovative solutions（创新的解决方案）"
+        },
+        {
+          "term": "original",
+          "pos": "adj.",
+          "definition_zh": "独创的，原创的",
+          "nuance_zh": "强调“非模仿、首创”，也可形容人有创意，语气比 novel 更强调来源。",
+          "collocation": "an original approach（独创的方法）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "a novel approach",
+          "meaning_zh": "新颖的方法"
+        },
+        {
+          "phrase": "a novel idea",
+          "meaning_zh": "新奇的想法"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "novelty",
+          "pos": "n.",
+          "meaning_zh": "新奇；新鲜事物"
+        },
+        {
+          "form": "novelist",
+          "pos": "n.",
+          "meaning_zh": "小说家"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "Researchers have developed a novel method of storing solar energy for use at night.",
+          "translation_zh": "研究人员开发出一种储存太阳能供夜间使用的新方法。",
+          "note_zh": "学术阅读中 novel 常修饰 method、approach、technique，表示“新研发的”。"
+        },
+        {
+          "sentence": "For young children, the novelty of a new toy wears off within days.",
+          "translation_zh": "对幼儿来说，新玩具的新鲜感几天就消退了。",
+          "note_zh": "novelty 是 novel 的名词派生，听力与阅读都可能出现。"
+        }
+      ]
+    },
+    {
+      "term": "virtually",
+      "ipa_us": "/ˈvɜːrtʃuəli/",
+      "ipa_uk": "/ˈvɜːtʃuəli/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "阅读中表示“几乎、差不多”，判断题和摘要填空题常把它改写为 almost、nearly；也可指“以线上方式”，听力里谈会议、课程时出现。",
+      "senses": [
+        {
+          "pos": "adv.",
+          "definition_zh": "几乎，差不多",
+          "definition_en": "almost, or nearly"
+        },
+        {
+          "pos": "adv.",
+          "definition_zh": "通过虚拟方式，以线上形式",
+          "definition_en": "by means of a computer or the internet rather than in person"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "practically",
+          "pos": "adv.",
+          "definition_zh": "几乎，差不多",
+          "nuance_zh": "与 virtually 意思极近，可互换，但 practically 在口语中更常见。",
+          "collocation": "practically impossible（几乎不可能）"
+        },
+        {
+          "term": "nearly",
+          "pos": "adv.",
+          "definition_zh": "将近，几乎",
+          "nuance_zh": "侧重接近某个数量或程度，常与数字、时间连用，语气比 virtually 略轻。",
+          "collocation": "nearly half of the participants（近一半的参与者）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "virtually impossible",
+          "meaning_zh": "几乎不可能"
+        },
+        {
+          "phrase": "virtually all",
+          "meaning_zh": "几乎所有"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "virtual",
+          "pos": "adj.",
+          "meaning_zh": "虚拟的；实际上的"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "By 2020, virtually every household in the region had access to broadband.",
+          "translation_zh": "到 2020 年，该地区几乎所有家庭都能接入宽带。",
+          "note_zh": "virtually + every/all 是阅读中常见的范围限定表达，改写题常换成 almost。"
+        },
+        {
+          "sentence": "The trade fair was held virtually, allowing small firms to take part at low cost.",
+          "translation_zh": "这场交易会以线上方式举办，让小公司也能低成本参与。",
+          "note_zh": "此处 virtually 指“以线上方式”，与虚拟会议、远程学习场景相关。"
+        }
+      ]
+    },
+    {
+      "term": "robust",
+      "ipa_us": "/roʊˈbʌst/",
+      "ipa_uk": "/rəʊˈbʌst/",
+      "exam_frequency": "high",
+      "exam_focus_zh": "写作中常修饰 evidence、system、growth，表示“有力的、稳固的”；阅读中与 strong、sound、resilient 同义替换，注意它不是“粗鲁的”。",
+      "senses": [
+        {
+          "pos": "adj.",
+          "definition_zh": "强健的，结实的",
+          "definition_en": "strong and unlikely to break or fail"
+        },
+        {
+          "pos": "adj.",
+          "definition_zh": "（论据、制度、系统）有力的，可靠的",
+          "definition_en": "strong and well-supported, and therefore reliable"
+        }
+      ],
+      "synonyms": [
+        {
+          "term": "resilient",
+          "pos": "adj.",
+          "definition_zh": "有韧性的，能迅速恢复的",
+          "nuance_zh": "强调受挫或受冲击后能恢复，多形容经济、人或材料，侧重“恢复力”。",
+          "collocation": "a resilient economy（有韧性的经济）"
+        },
+        {
+          "term": "sound",
+          "pos": "adj.",
+          "definition_zh": "合理的，可靠的",
+          "nuance_zh": "多修饰论证、判断、基础，语体正式，但不强调“结实、耐用”。",
+          "collocation": "sound evidence（可靠的证据）"
+        }
+      ],
+      "collocations": [
+        {
+          "phrase": "robust evidence",
+          "meaning_zh": "有力的证据"
+        },
+        {
+          "phrase": "a robust system",
+          "meaning_zh": "稳固的系统"
+        }
+      ],
+      "word_forms": [
+        {
+          "form": "robustness",
+          "pos": "n.",
+          "meaning_zh": "稳健性，强健性"
+        },
+        {
+          "form": "robustly",
+          "pos": "adv.",
+          "meaning_zh": "有力地，坚固地"
+        }
+      ],
+      "examples": [
+        {
+          "sentence": "The study's conclusions are supported by robust evidence from three long-term trials.",
+          "translation_zh": "该研究的结论得到了三项长期试验的有力证据支持。",
+          "note_zh": "写作中评价研究质量时，robust evidence 比 strong evidence 更学术。"
+        },
+        {
+          "sentence": "A robust digital system can keep public services running during a cyber-attack.",
+          "translation_zh": "稳固的数字系统能在网络攻击期间维持公共服务运转。",
+          "note_zh": "阅读中 robust system 常与 resilient 构成同义替换。"
+        }
+      ]
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Have you seen the plans for the new smart district on the east side of town?"
+    },
+    {
+      "speaker": "B",
+      "text": "Only briefly. Apparently sensors will be ubiquitous — in street lights, rubbish bins, even bus stops."
+    },
+    {
+      "speaker": "A",
+      "text": "That's the idea. The council reckons the data will help them address traffic congestion and wasted energy."
+    },
+    {
+      "speaker": "B",
+      "text": "It sounds good on paper, but I'd want to see some robust evidence that it actually saves money."
+    },
+    {
+      "speaker": "A",
+      "text": "Fair point. They're also testing a novel system that dims street lights depending on how many people are out."
+    },
+    {
+      "speaker": "B",
+      "text": "Now that's more convincing. Still, virtually every resident will be tracked in some way, won't they?"
+    },
+    {
+      "speaker": "A",
+      "text": "According to the brochure, the data is anonymous and kept for no more than thirty days."
+    },
+    {
+      "speaker": "B",
+      "text": "Then they need to explain that clearly, or people will assume the worst."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In the sentence \"The council must address the rise in electronic waste\", what does \"address\" mean?",
+      "options": [
+        "tackle the problem",
+        "mention it in passing",
+        "write down the address",
+        "deliver a parcel"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "address 在雅思写作与阅读中最常考“着手处理、应对”，与 tackle、deal with 同义。mention 只表示“提到”，不包含解决问题的意思。"
+    },
+    {
+      "question": "In the phrase \"a novel approach to recycling\", what does \"novel\" mean?",
+      "options": [
+        "fictional",
+        "familiar",
+        "original",
+        "lengthy"
+      ],
+      "answer_index": 2,
+      "explanation_zh": "novel 作形容词表示“新颖的、独创的”，与 original、innovative 同义；fictional 是把名词“小说”的意思套到形容词上的常见误读。"
+    }
+  ],
+  "review": [
+    {
+      "term": "harness",
+      "first_seen": "2026-11-12",
+      "question": "Complete the sentence with one word: \"Engineers are working out how to ______ the power of ocean tides to generate electricity.\"",
+      "answer": "harness — here it means to capture and use a natural force for a practical purpose."
+    },
+    {
+      "term": "proliferate",
+      "first_seen": "2026-11-12",
+      "question": "Rewrite using \"proliferate\": \"Short video apps have spread very quickly over the past five years.\"",
+      "answer": "Short video apps have proliferated over the past five years."
+    }
+  ]
+}
