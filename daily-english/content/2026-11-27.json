@@ -1,0 +1,117 @@
+{
+  "mode": "review",
+  "date": "2026-11-27",
+  "task": "english",
+  "level": "IELTS (B2-C1)",
+  "prompt_version": "v3",
+  "review_of": "2026-11-26",
+  "theme": "technology",
+  "title": "Review: Talking Technology — Five Words to Consolidate",
+  "review_words": [
+    {
+      "term": "ubiquitous",
+      "meaning_zh": "无处不在的，普遍存在的",
+      "key_point_zh": "阅读中常与 widespread、omnipresent 构成同义替换；写作谈科技普及时可用来替代口语化的 everywhere。",
+      "example": "Contactless payment has become ubiquitous in cities, from corner shops to vending machines.",
+      "translation_zh": "非接触式支付在城市里已无处不在，从街角小店到自动售货机都能用。",
+      "note_zh": "become ubiquitous 是高频搭配，强调从少到多的普及过程，而不是单纯的“很多”。"
+    },
+    {
+      "term": "novel",
+      "meaning_zh": "（形容词）新颖的；（名词）小说",
+      "key_point_zh": "学术语境中多作形容词，与 innovative、original 同义替换；辨析题常拿它和名词“小说”义混淆。",
+      "example": "The company tested a novel way of cooling data centres by pumping seawater through pipes.",
+      "translation_zh": "这家公司试验了一种新颖的数据中心降温方式：用管道抽取海水来冷却。",
+      "note_zh": "a novel way / approach / method of doing sth 是学术写作中常见的褒义搭配。"
+    },
+    {
+      "term": "robust",
+      "meaning_zh": "强健的；有力的，可靠的",
+      "key_point_zh": "修饰 evidence、system、growth 时表示“有力、可靠”，阅读中与 strong、sound 同义替换，与“粗鲁”无关。",
+      "example": "Regulators need robust safeguards before self-driving cars are allowed on public roads.",
+      "translation_zh": "在允许自动驾驶汽车上公共道路之前，监管机构需要有力的保障措施。",
+      "note_zh": "robust safeguards / evidence / system 是正式搭配；注意它不表示“耐用度”以外的“粗鲁”。"
+    },
+    {
+      "term": "address",
+      "meaning_zh": "处理，应对（问题）",
+      "key_point_zh": "address the problem / issue 表“着手解决”，阅读中与 tackle、deal with 同义替换，切勿只记“地址”。",
+      "example": "Few platforms have addressed the question of what happens to users' data after they delete an account.",
+      "translation_zh": "很少有平台认真回应过这样一个问题：用户注销账号后，他们的数据会怎样。",
+      "note_zh": "address 是及物动词，直接接宾语，不加 to 或 with；address a question / concern 为正式搭配。"
+    },
+    {
+      "term": "virtually",
+      "meaning_zh": "几乎，差不多；以线上方式",
+      "key_point_zh": "阅读判断题常把它改写为 almost、nearly；谈会议或课程时也可表示“以线上形式”。",
+      "example": "Virtually all university applications are now submitted online.",
+      "translation_zh": "现在几乎所有大学申请都是在线提交的。",
+      "note_zh": "virtually all / every + 名词表示“几乎所有”，语气比 almost 略正式、更书面。"
+    }
+  ],
+  "dialogue": [
+    {
+      "speaker": "A",
+      "text": "Did you read that piece about smart speakers in the home?"
+    },
+    {
+      "speaker": "B",
+      "text": "Yes, and it's striking how ubiquitous they've become in just a few years. My parents even use one to switch off the lights."
+    },
+    {
+      "speaker": "A",
+      "text": "Same in my flat. But the article raised a concern the industry hasn't really addressed: what actually happens to all the recordings?"
+    },
+    {
+      "speaker": "B",
+      "text": "That's the part I found worrying. Voice data is virtually impossible to remove once it's been passed to a third party."
+    },
+    {
+      "speaker": "A",
+      "text": "Exactly. A couple of start-ups are trying a novel approach, though — processing speech on the device itself instead of in the cloud."
+    },
+    {
+      "speaker": "B",
+      "text": "That sounds promising, but it will need robust testing before people trust it with anything sensitive."
+    },
+    {
+      "speaker": "A",
+      "text": "Agreed. Still, it's a step in the right direction."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "In the sentence 'The team came up with a novel approach to reducing e-waste', 'novel' most nearly means:",
+      "options": [
+        "a traditional method",
+        "an original method",
+        "an expensive method",
+        "a widely used method"
+      ],
+      "answer_index": 1,
+      "explanation_zh": "novel 作形容词表示“新颖的”，与 innovative、original 同义替换；只有“小说”这一名词义，此处不适用。"
+    },
+    {
+      "question": "The company has promised to ______ the privacy concerns raised by users.",
+      "options": [
+        "address",
+        "address to",
+        "address with",
+        "address for"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "address 表示“处理、应对”时是及物动词，直接接宾语，不加介词：address the concerns / the issue。"
+    },
+    {
+      "question": "______ every student in the class now uses a laptop for taking notes.",
+      "options": [
+        "Virtually",
+        "Novel",
+        "Robust",
+        "Ubiquitous"
+      ],
+      "answer_index": 0,
+      "explanation_zh": "virtually every 表示“几乎每一个”，阅读中常被改写为 almost / nearly；ubiquitous 是形容词，不能修饰 every。"
+    }
+  ]
+}
